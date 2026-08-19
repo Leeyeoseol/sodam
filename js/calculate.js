@@ -3,11 +3,12 @@ var now = new Date();
 
 //상단 년/월 표시
 function labelRender() {
-  var targetLabel = document.getElementById("monthLabel");
-  if (targetLabel) {
-    targetLabel.innerText =
+  var targetLabels = document.querySelectorAll(".month-label");
+
+  targetLabels.forEach(function (label) {
+    label.innerText =
       now.getFullYear() + "년 " + (now.getMonth() + 1) + "월";
-  }
+  });
 }
 
 //날짜 선택 현재 날짜 가져오기 + 미래선택 불가
