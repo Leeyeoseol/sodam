@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>소담</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!--calculate.js연결-->
+    <script src="js/calculate.js"></script>
+
+    <div class="app-shell">
+      <!-- 좌측 사이드바: 화면 전환 -->
+      <nav class="sidebar">
+        <div class="logo">소담</div>
+        <button class="nav-btn active" data-target="ledger">가계부</button>
+        <button class="nav-btn" data-target="stats">통계</button>
+      </nav>
+
+      <main class="main-area">
+        <!-- 월 이동 -->
+        <div class="month-nav">
+          <button class="nav-arrow" id="prevMonth" onclick="leftArrowClick()">
+            ‹
+          </button>
+          <span id="monthLabel">0000년 00월</span>
+          <button class="nav-arrow" id="nextMonth" onclick="rightArrowClick()">
+            ›
+          </button>
+        </div>
+
+        <!-- 수입/지출/합계: 값은 script.js에서 계산해서 채워넣음 -->
+        <div class="summary-strip">
+          <div class="summary-cell">
+            <p class="summary-label">수입</p>
+            <p class="summary-value income" id="totalIncome">0</p>
+          </div>
+          <div class="summary-cell">
+            <p class="summary-label">지출</p>
+            <p class="summary-value expense" id="totalExpense">0</p>
+          </div>
+          <div class="summary-cell">
+            <p class="summary-label">합계</p>
+            <p class="summary-value" id="totalBalance">0</p>
+          </div>
+        </div>
+
+        <!-- 전월 대비 문장 -->
+        <div
+          class="insight-banner"
+          id="insightBanner"
+          style="display: none"
+        ></div>
+
+        <!-- 입력 폼 -->
+        <form class="entry-form" id="entryForm">
+          <div class="form-row">
+            <input type="date" id="inputDate" />
+            <input type="time" id="inputTime" value="00:00" />
+            <select id="inputCategory">
+              <option value="" selected disabled hidden>선택</option>
+              <option value="food">식비</option>
+              <option value="shopping">쇼핑</option>
+              <option value="transport">교통</option>
+              <option value="living">생활</option>
+              <option value="leisure">문화·여가</option>
+              <option value="fixed">고정지출</option>
+              <option value="income">수입</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <input
+              type="text"
+              id="inputAmount"
+              placeholder="금액"
+              inputmode="numeric"
+            />
+            <input type="text" id="inputContent" placeholder="내용" />
+            <button type="submit" class="add-btn">추가</button>
+          </div>
+        </form>
+
+        <!-- 날짜별 기록 목록: script.js -->
+        <div class="record-list" id="recordList"></div>
+      </main>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/calculate.js"></script>
+    <script src="js/render.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
