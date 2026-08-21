@@ -385,8 +385,8 @@ body {
 }
 
 .pie {
-  width: 176px;
-  height: 176px;
+  width: 212px;
+  height: 212px;
   border-radius: 50%;
   background: conic-gradient(var(--cat-food) 0% 38%,
       var(--cat-shop) 38% 61%,
@@ -490,4 +490,16 @@ body {
 .stat-amount {
   font-size: 13px;
   color: var(--ink-soft);
+}
+
+/*빈 값 있을 때 */
+.form-error {
+  display: none;
+  margin: 8px 0 0;
+  color: var(--expense);
+  font-size: 12px;
+}
+
+.form-error.show {
+  display: block;
 }

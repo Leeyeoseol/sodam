@@ -50,8 +50,17 @@ function rightArrowClick() {
   }
 }
 
+//현재시간 가져오기 / 시간 입력 기본값
+function setCurrentTime() {
+  const hours = String(now.getHours()).padStart(2, "0");
+  const minutes = String(now.getMinutes()).padStart(2, "0");
+
+  document.getElementById("inputTime").value = `${hours}:${minutes}`;
+}
+
 //처음 시작시 실행 시키는것들
 window.onload = function () {
+  setCurrentTime();
   labelRender();
   initDateInput();
 };

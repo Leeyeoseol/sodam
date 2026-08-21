@@ -47,7 +47,7 @@
       <form class="entry-form" id="entryForm">
         <div class="form-row">
           <input type="date" id="inputDate" />
-          <input type="time" id="inputTime" value="00:00" />
+          <input type="time" id="inputTime" />
           <select id="inputCategory">
             <option value="" selected disabled hidden>선택</option>
             <option value="food">식비</option>
@@ -65,10 +65,16 @@
           <input type="text" id="inputContent" placeholder="내용" />
           <button type="submit" class="add-btn">추가</button>
         </div>
+        <p id="formError" class="form-error"></p>
       </form>
 
       <!-- 날짜별 기록 목록:  -->
-      <div class="record-list" id="recordList"></div>
+      <div class="record-list" id="recordList">
+        <details>
+          <summary>15일</summary>
+          <ul id="List"> </ul>
+        </details>
+      </div>
     </section>
     <!-- 통계 화면 -->
     <section id="stats" class="screen">
