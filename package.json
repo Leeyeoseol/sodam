@@ -1,0 +1,25 @@
+{
+  "name": "sodam_project",
+  "version": "1.0.0",
+  "description": "## 2026 2학기 웹응용 가계부 프로젝트 레포지토리",
+  "main": "AI.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leeyeoseol/sodam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leeyeoseol/sodam/issues"
+  },
+  "homepage": "https://github.com/Leeyeoseol/sodam#readme",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "openai": "^7.5.0"
+  }
+}

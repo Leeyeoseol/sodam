@@ -15,13 +15,19 @@
 ### 버그 및 디버그
 
 ### 참고 및 출처
+- 
 
-### 버전 및 업데이트 정보
+### 버전 및 업데이트 정보 (X)
 
-### FAQ
+### FAQ (X)
 
 ### git 커밋방법
 
 - git add .
 - git commit -m "자세한 설명"
 - git push
+
+### 초기 설정
+
+npm init -y
+npm install express openai dotenv

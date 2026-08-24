@@ -1,0 +1,813 @@
+/*색상*/
+:root {
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --line: #e1e1e6;
+
+  --ink: #1d1d1f;
+  --ink-soft: #6e6e73;
+  --ink-mute: #98989d;
+
+  --income: #0071e3;
+  --expense: #d7263d;
+  --expense-tint: #fdecea;
+
+  /*카테고리 색 8가지*/
+  --cat-food: #e2828a;
+  /* 식비 - 코랄레드 */
+  --cat-shop: #efb26b;
+  /* 쇼핑 - 오렌지 */
+  --cat-transport: #93cb8c;
+  /* 교통 - 그린 */
+  --cat-living: #7ed0c4;
+  /* 생활 - 틸/민트 */
+  --cat-leisure: #8fb4e8;
+  /* 문화·여가 - 블루 */
+  --cat-fixed: #b39ddb;
+  /* 고정지출 - 퍼플 */
+  --income: #0071e3;
+  /* 수입 - 기존 시스템 블루 그대로 사용 */
+  --cat-other: #98989d;
+  /* 기타 - 회색  */
+
+  --radius: 10px;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Pretendard", sans-serif;
+}
+
+/* 전체 */
+.app-shell {
+  display: flex;
+  max-width: 1140px;
+  /* 전체 폭 제한 */
+  margin: 40px auto;
+  /*가운데 정렬*/
+  background: var(--surface);
+  border-radius: 16px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.03),
+    0 12px 32px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  min-height: 720px;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  /* 사이 간격 */
+  align-items: center;
+  /* 가운데 정렬 */
+
+  width: 84px;
+  flex-shrink: 0;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  padding: 24px 0;
+}
+
+.nav-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-mute);
+  padding: 8px 4px;
+  width: 60px;
+  border-radius: 8px;
+}
+
+.nav-btn.active {
+  color: var(--income);
+  background: rgba(0, 113, 227, 0.08);
+}
+
+.screen {
+  flex: 1;
+  padding: 32px;
+  min-width: 0;
+}
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.month-nav span {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.nav-arrow {
+  border: none;
+  background: none;
+  font-size: 16px;
+  color: var(--ink-mute);
+  cursor: pointer;
+}
+
+/* 수입/지출/합계 */
+.summary-strip {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.summary-cell {
+  flex: 1;
+  /*폭*/
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.summary-label {
+  font-size: 11.5px;
+  color: var(--ink-mute);
+  margin: 0 0 4px;
+}
+
+.summary-value {
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.summary-value.income {
+  color: var(--income);
+}
+
+.summary-value.expense {
+  color: var(--expense);
+}
+
+.insight-banner {
+  border: 1px solid #f3c6c0;
+  background: var(--expense-tint);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  margin-bottom: 28px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--expense);
+}
+
+/* 폼 */
+.entry-form {
+  margin-bottom: 32px;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.entry-form input,
+.entry-form select {
+  height: 38px;
+  font-size: 13px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 9px;
+  padding: 0 12px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.entry-form input:focus,
+.entry-form select:focus {
+  outline: none;
+  border-color: var(--income);
+}
+
+#inputAmount,
+#inputContent {
+  flex: 1;
+}
+
+.add-btn {
+  width: 56px;
+  height: 38px;
+  border: none;
+  border-radius: 9px;
+  background: var(--income);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #005bbf;
+}
+
+/*목록*/
+.day-group {
+  margin-bottom: 16px;
+}
+
+.day-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.day-num {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.day-name {
+  font-size: 11px;
+  color: var(--ink-mute);
+}
+
+.day-sum {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.day-sum.income {
+  color: var(--income);
+  margin-left: auto;
+}
+
+.day-sum.expense {
+  color: var(--expense);
+}
+
+.record-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.record-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cat-dot.food {
+  background: var(--cat-food);
+}
+
+.cat-dot.shopping {
+  background: var(--cat-shop);
+}
+
+.cat-dot.transport {
+  background: var(--cat-transport);
+}
+
+.cat-dot.living {
+  background: var(--cat-living);
+}
+
+.cat-dot.leisure {
+  background: var(--cat-leisure);
+}
+
+.cat-dot.fixed {
+  background: var(--cat-fixed);
+}
+
+.cat-dot.income {
+  background: var(--income);
+}
+
+.cat-dot.other {
+  background: var(--cat-other);
+}
+
+.record-name {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.record-time {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin: 0;
+}
+
+.record-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.record-amount {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.record-amount.income {
+  color: var(--income);
+}
+
+.record-amount.expense {
+  color: var(--expense);
+}
+
+.delete-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #c7c7cc;
+  font-size: 12px;
+}
+
+.month-collapsed {
+  padding: 8px 4px;
+  font-size: 13px;
+  color: var(--ink-mute);
+  cursor: pointer;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--ink-mute);
+  font-size: 13px;
+  padding: 40px 0;
+}
+
+.stats-layout {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.pie-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.pie {
+  width: 212px;
+  height: 212px;
+  border-radius: 50%;
+  background: conic-gradient(var(--cat-food) 0% 38%,
+      var(--cat-shop) 38% 61%,
+      var(--cat-fixed) 61% 83%,
+      var(--cat-transport) 83% 100%);
+}
+
+.pie-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background: var(--surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pie-amount {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.pie-label {
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  margin-top: 2px;
+}
+
+.stat-list {
+  flex: 1;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.stat-dot.food {
+  background: var(--cat-food);
+}
+
+.stat-dot.shopping {
+  background: var(--cat-shop);
+}
+
+.stat-dot.transport {
+  background: var(--cat-transport);
+}
+
+.stat-dot.living {
+  background: var(--cat-living);
+}
+
+.stat-dot.leisure {
+  background: var(--cat-leisure);
+}
+
+.stat-dot.fixed {
+  background: var(--cat-fixed);
+}
+
+.stat-dot.income {
+  background: var(--income);
+}
+
+.stat-dot.other {
+  background: var(--cat-other);
+}
+
+.stat-name {
+  font-size: 13.5px;
+  flex: 1;
+}
+
+.stat-pct {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  width: 32px;
+}
+
+.stat-amount {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.form-error {
+  display: none;
+  margin: 8px 0 0;
+  color: var(--expense);
+  font-size: 12px;
+}
+
+.form-error.show {
+  display: block;
+}
+
+.bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 90px;
+  font-size: 12.5px;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.bar-fill.food {
+  background: var(--cat-food);
+}
+
+.bar-fill.shopping {
+  background: var(--cat-shop);
+}
+
+.bar-fill.transport {
+  background: var(--cat-transport);
+}
+
+.bar-fill.living {
+  background: var(--cat-living);
+}
+
+.bar-fill.leisure {
+  background: var(--cat-leisure);
+}
+
+.bar-fill.fixed {
+  background: var(--cat-fixed);
+}
+
+.bar-fill.other {
+  background: var(--cat-other);
+}
+
+.bar-amount {
+  width: 80px;
+  text-align: right;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  flex-shrink: 0;
+}
+
+.bar-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.period-toggle {
+  display: flex;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.period-btn {
+  border: none;
+  background: none;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.period-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  height: 200px;
+  padding-top: 16px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-track {
+  flex: 1;
+  width: 28px;
+  background: var(--bg);
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: var(--ink-mute);
+  border-radius: 6px 6px 0 0;
+}
+
+.bar-fill.active-month {
+  background: var(--income);
+}
+
+.bar-value {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+.bar-month {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 2px;
+}
+
+.segment-group {
+  display: flex;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 3px;
+  margin-bottom: 24px;
+  width: fit-content;
+}
+
+.segment-btn {
+  border: none;
+  background: none;
+  padding: 7px 14px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.segment-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.stat-view {
+  display: none;
+}
+
+.stat-view.active {
+  display: block;
+}
+
+.bar-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.period-toggle {
+  display: flex;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.period-btn {
+  border: none;
+  background: none;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.period-btn.active {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.category-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.filter-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ink-mute);
+  cursor: pointer;
+}
+
+.filter-chip.active {
+  border-color: var(--income);
+  color: var(--ink);
+  background: rgba(0, 113, 227, 0.06);
+}
+
+.filter-chip .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.filter-chip .dot.food {
+  background: var(--cat-food);
+}
+
+.filter-chip .dot.shopping {
+  background: var(--cat-shop);
+}
+
+.filter-chip .dot.transport {
+  background: var(--cat-transport);
+}
+
+.filter-chip .dot.living {
+  background: var(--cat-living);
+}
+
+.filter-chip .dot.leisure {
+  background: var(--cat-leisure);
+}
+
+.filter-chip .dot.fixed {
+  background: var(--cat-fixed);
+}
+
+.filter-chip .dot.other {
+  background: var(--cat-other);
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  height: 200px;
+  padding-top: 16px;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.bar-track {
+  flex: 1;
+  width: 28px;
+  background: var(--bg);
+  border-radius: 6px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.bar-fill {
+  width: 100%;
+  background: var(--ink-mute);
+  border-radius: 6px 6px 0 0;
+}
+
+.bar-fill.active-month {
+  background: var(--income);
+}
+
+.bar-value {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+}
+
+.bar-month {
+  font-size: 11px;
+  color: var(--ink-mute);
+  margin-top: 2px;
+}

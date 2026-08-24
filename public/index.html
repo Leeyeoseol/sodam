@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>소담</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+    <!-- 좌측 사이드바: 화면 전환 -->
+    <nav class="sidebar">
+      <button class="nav-btn active" data-target="ledger">가계부</button>
+      <button class="nav-btn" data-target="stats">통계</button>
+      <button class="nav-btn" data-target="ai">AI질문</button>
+    </nav>
+    <!-- 가계부 화면 -->
+    <section id="ledger" class="screen active">
+      <!-- 월 이동 -->
+      <div class="month-nav">
+        <button class="nav-arrow prev-month" onclick="leftArrowClick()">‹</button>
+        <span class="month-label">0000년 00월</span>
+        <button class="nav-arrow next-month" onclick="rightArrowClick()">›</button>
+      </div>
+
+      <!-- 수입/지출/합계 : -->
+      <div class="summary-strip">
+        <div class="summary-cell">
+          <p class="summary-label">수입</p>
+          <p class="summary-value income" id="totalIncome">0</p>
+        </div>
+        <div class="summary-cell">
+          <p class="summary-label">지출</p>
+          <p class="summary-value expense" id="totalExpense">0</p>
+        </div>
+        <div class="summary-cell">
+          <p class="summary-label">합계</p>
+          <p class="summary-value" id="totalBalance">0</p>
+        </div>
+      </div>
+
+      <!-- 전월 대비 문장 -->
+      <div class="insight-banner" id="insightBanner" style="display: none"></div>
+
+      <!-- 입력 폼 -->
+      <form class="entry-form" id="entryForm">
+        <div class="form-row">
+          <input type="date" id="inputDate" />
+          <input type="time" id="inputTime" />
+          <select id="inputCategory">
+            <option value="" selected disabled hidden>선택</option>
+            <option value="food">식비</option>
+            <option value="shopping">쇼핑</option>
+            <option value="transport">교통</option>
+            <option value="living">생활</option>
+            <option value="leisure">문화·여가</option>
+            <option value="fixed">고정지출</option>
+            <option value="income">수입</option>
+            <option value="other">기타</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <input type="text" id="inputAmount" placeholder="금액" inputmode="numeric" />
+          <input type="text" id="inputContent" placeholder="내용" />
+          <button type="submit" class="add-btn">추가</button>
+        </div>
+        <!--에러 표시-->
+        <p id="formError" class="form-error"></p>
+      </form>
+      <!-- 날짜별 기록 목록: -->
+      <div class="record-list" id="recordList">
+        <details class="day-group">
+          <summary class="day-header">
+            <span class="day-num">15</span>
+            <span class="day-name">목요일</span>
+            <span class="day-totals">
+              <span class="t-income">+5,000</span>
+              <span class="t-expense">-8,000</span>
+            </span>
+          </summary>
+          <ul class="items"></ul>
+        </details>
+      </div>
+    </section>
+    <!-- 통계 화면 -->
+    <section id="stats" class="screen">
+
+      <div class="month-nav">
+        <button class="nav-arrow prev-month" onclick="leftArrowClick()">‹</button>
+        <span class="month-label">0000년 00월</span>
+        <button class="nav-arrow next-month" onclick="rightArrowClick()">›</button>
+      </div>
+
+      <!-- 세그먼트 탭 -->
+      <div class="segment-group">
+        <button class="segment-btn active" data-view="pie">카테고리 비율</button>
+        <button class="segment-btn" data-view="bar">기간별 추이</button>
+      </div>
+
+      <!-- 뷰 1: 카테고리 비율 -->
+      <div class="stat-view active" id="view-pie">
+        <div class="stats-layout">
+          <div class="pie-wrap">
+            <div class="pie"></div>
+            <div class="pie-hole">
+              <span class="pie-amount">320,000</span>
+              <span class="pie-label">총 지출</span>
+            </div>
+          </div>
+
+          <div class="stat-list">
+            <div class="stat-row">
+              <span class="stat-dot food"></span>
+              <span class="stat-name">식비</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot shopping"></span>
+              <span class="stat-name">쇼핑</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot transport"></span>
+              <span class="stat-name">교통</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot living"></span>
+              <span class="stat-name">생활</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot leisure"></span>
+              <span class="stat-name">문화·여가</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot fixed"></span>
+              <span class="stat-name">고정지출</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot income"></span>
+              <span class="stat-name">수입</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-dot other"></span>
+              <span class="stat-name">기타</span>
+              <span class="stat-pct">12.5%</span>
+              <span class="stat-amount">40,000원</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 뷰 2: 기간별 추이 -->
+      <div class="stat-view" id="view-bar">
+
+        <div class="bar-controls">
+          <div class="period-toggle">
+            <button class="period-btn active" data-period="6m">최근 6개월</button>
+            <button class="period-btn" data-period="1y">올해</button>
+          </div>
+        </div>
+
+        <div class="category-filter" id="barCategoryFilter">
+          <button class="filter-chip active" data-cat="all">전체</button>
+          <button class="filter-chip" data-cat="food"><span class="dot food"></span>식비</button>
+          <button class="filter-chip" data-cat="shopping"><span class="dot shopping"></span>쇼핑</button>
+          <button class="filter-chip" data-cat="transport"><span class="dot transport"></span>교통</button>
+          <button class="filter-chip" data-cat="living"><span class="dot living"></span>생활</button>
+          <button class="filter-chip" data-cat="leisure"><span class="dot leisure"></span>문화·여가</button>
+          <button class="filter-chip" data-cat="fixed"><span class="dot fixed"></span>고정지출</button>
+          <button class="filter-chip" data-cat="other"><span class="dot other"></span>기타</button>
+        </div>
+
+        <div class="bar-chart">
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" style="height: 60%;"></div>
+            </div>
+            <span class="bar-value">32만</span>
+            <span class="bar-month">10월</span>
+          </div>
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" style="height: 80%;"></div>
+            </div>
+            <span class="bar-value">42만</span>
+            <span class="bar-month">11월</span>
+          </div>
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" style="height: 45%;"></div>
+            </div>
+            <span class="bar-value">24만</span>
+            <span class="bar-month">12월</span>
+          </div>
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" style="height: 70%;"></div>
+            </div>
+            <span class="bar-value">38만</span>
+            <span class="bar-month">1월</span>
+          </div>
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" style="height: 55%;"></div>
+            </div>
+            <span class="bar-value">29만</span>
+            <span class="bar-month">2월</span>
+          </div>
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill active-month" style="height: 62%;"></div>
+            </div>
+            <span class="bar-value">32만</span>
+            <span class="bar-month">3월</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+    <section id="ai" class="screen">
+      <h2>AI 소비 분석 및 질문</h2>
+      <div id="aichatbox"
+        style="border: 1px solid #ccc; height: 300px; overflow-y: scroll; padding: 10px; margin-bottom: 10px; background: #f9f9f9;">
+        <p style="color: #666;">안녕하세요! 가계부와 관련된 궁금한 점을 AI에게 물어보세요.</p>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <input type="text" id="aiuserinput" placeholder="이번 달 식비를 너무 많이 썼나? 등 질문 입력..."
+          style="flex: 1; padding: 10px;" />
+        <button onclick="sendAIQuestion()" style="padding: 10px 20px;">질문하기</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/calculate.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/ai.js"></script>
+</body>
+
+</html>
