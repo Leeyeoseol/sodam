@@ -827,3 +827,7 @@ details[open]>.day-header::before {
   color: var(--ink-mute);
   margin-top: 2px;
 }
+
+.bi {
+  font-size: 24px;
+}
