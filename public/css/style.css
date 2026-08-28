@@ -232,6 +232,22 @@ body {
   align-items: baseline;
   gap: 10px;
   margin-bottom: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.day-header::-webkit-details-marker {
+  display: none;
+}
+
+.day-header::before {
+  content: "▸";
+  font-size: 22px;
+  color: var(--ink-mute);
+}
+
+details[open]>.day-header::before {
+  content: "▾";
 }
 
 .day-num {

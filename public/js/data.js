@@ -1,6 +1,19 @@
 //기록, 로컬스토리지 등
 var records = [];
 
+// 저장하기
+function saveRecords() {
+  localStorage.setItem("sodam-records", JSON.stringify(records));
+}
+
+// 불러오기 (페이지 열릴 때 실행되어야 함, main.js에서 호출)
+function loadRecords() {
+  const saved = localStorage.getItem("sodam-records");
+  if (saved) {
+    records = JSON.parse(saved);
+  }
+}
+
 //폼 제출 시 기록추가
 document.getElementById("entryForm").addEventListener("submit", function (e) {
   e.preventDefault();
@@ -23,6 +36,8 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   formError.classList.remove("show");
 
   const newRecord = {
+    id: Date.now(),                                             // 추가: 삭제할 때 구분용 고유값
+    type: categoryValue === "income" ? "income" : "expense",     // 추가: 수입/지출 구분
     date: dateValue,
     time: timeValue,
     category: categoryValue,
@@ -30,7 +45,9 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
     content: contentValue,
   };
   records.push(newRecord);
+  saveRecords();
   renderList();
+  renderSummary();
 
   console.log(records);
 });

@@ -26,41 +26,32 @@ async function sendAIQuestion() {
     chatBox.scrollTop = chatBox.scrollHeight;
 }
 
-// ----------------------------------------------------
-// ★ 원하셨던 askAI 함수 구조 그대로 구현한 부분입니다!
-// ----------------------------------------------------
 async function askAI(question) {
     try {
-        // TODO 1: 질문에 답하는 데 필요한 실제 데이터 계산하기
-        // (기존에 만드신 가계부 함수들을 활용해 이번 달 기록과 카테고리별 합계를 냅니다)
-        const currentYearMonth = currentMonth.toISOString().slice(0, 7); // 예: "2026-08"
+        const currentYearMonth = currentMonth.toISOString().slice(0, 7);
         const monthlyRecords = getRecordsOfMonth(currentYearMonth);
         const categoryTotals = calculateCategoryTotals(monthlyRecords);
 
-        // TODO 2: 계산된 데이터를 문자열로 요약하기
-        // 예: "식비: 40000원, 쇼핑: 15000원..." 처럼 문자열로 변환합니다.
+        // 문자열로 요약하기
         let dataSummary = Object.entries(categoryTotals)
             .map(([category, amount]) => `${category}: ${amount}원`)
             .join(', ');
 
         if (!dataSummary) dataSummary = "이번 달 기록된 가계부 데이터가 없습니다.";
 
-        // TODO 3: fetch로 OpenAI API 호출하기 (★API 키 숨기기 핵심 수정지점)
-        // 원래 가이드(https://api.openai.com...) 대신 '내가 만든 안전한 서버 주소'로 바꿉니다.
-        // 이렇게 하면 프론트엔드 코드(AI.js)에는 그 어디에도 API_KEY가 적히지 않으므로 안전합니다!
+        //호출
         const response = await fetch("/api/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
-                // ⚠ "Authorization": "Bearer " + API_KEY 코드가 필요 없어집니다!
             },
             body: JSON.stringify({
-                userMessage: question,  // 사용자의 질문
-                ledgerData: dataSummary  // TODO 2에서 계산한 가계부 데이터 요약본
+                userMessage: question,  //질문
+                ledgerData: dataSummary  //가계부 데이터
             })
         });
 
-        // TODO 4: response.json()으로 답변 꺼내서 반환하기
+        //반환하기
         const data = await response.json();
         return data.reply;
 

@@ -45,3 +45,6 @@ document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(function (c
     chip.classList.add('active');
   });
 });
+
+loadRecords();
+renderList();

@@ -30,6 +30,8 @@ function initDateInput() {
 function leftArrowClick() {
   now.setMonth(now.getMonth() - 1); //자동임
   labelRender();
+  renderList();
+  renderSummary();
 }
 
 //오른쪽 화살표 클릭 이벤트
@@ -47,6 +49,8 @@ function rightArrowClick() {
     now.setMonth(now.getMonth() - 1);
   } else {
     labelRender();
+    renderList();
+    renderSummary();
   }
 }
 
@@ -63,5 +67,48 @@ window.onload = function () {
   setCurrentTime();
   labelRender();
   initDateInput();
+  loadRecords();
+  renderList();
+  renderSummary();
 };
 
+function getWeekdayName(dateStr) {
+  const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+  const date = new Date(dateStr);
+  return days[date.getDay()];
+}
+
+// 지금 년/월 기록만
+function getRecordsOfMonth(recordArray, year, month) {
+  const monthStr = String(month).padStart(2, "0"); // 3 을 "03"로
+  const prefix = year + "-" + monthStr;
+  return recordArray.filter(function (record) {
+    return record.date.startsWith(prefix);
+  });
+}
+
+//수입합계/지출합계/잔액 계산
+function calculateTotals(recordArray) {
+  let income = 0;
+  let expense = 0;
+  recordArray.forEach(function (record) {
+    if (record.type === "income") {
+      income += record.amount;
+    } else {
+      expense += record.amount;
+    }
+  });
+  return { income: income, expense: expense, balance: income - expense };
+}
+
+// 날짜별로 묶음
+function groupByDate(recordArray) {
+  const groups = {};
+  recordArray.forEach(function (record) {
+    if (!groups[record.date]) {
+      groups[record.date] = [];
+    }
+    groups[record.date].push(record);
+  });
+  return groups;
+}

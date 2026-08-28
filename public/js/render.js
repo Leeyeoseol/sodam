@@ -3,73 +3,141 @@ function renderList() {
   const container = document.getElementById("recordList");
   container.innerHTML = ""; //지우고 다시 그리기
 
-  for (let i = 0; i < records.length; i++) {
-    const record = records[i];
+  // 날짜별로 묶기
+  const grouped = groupByDate(records);
+  const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a)); // 최신순
 
-    // 날짜
-    const row = document.createElement("div");
-    row.className = "record-row";
+  sortedDates.forEach(function (date) {
+    const dayRecords = grouped[date];
 
-    // 왼쪽 영역
-    const left = document.createElement("div");
-    left.className = "record-left";
-
-    // 카테고리 점
-    const dot = document.createElement("span");
-    dot.className = "cat-dot " + record.category;
-
-    // 내용 + 시간
-    const info = document.createElement("div");
-
-    const nameText = document.createElement("p");
-    nameText.className = "record-name";
-    nameText.textContent = record.content;
-
-    const timeText = document.createElement("p");
-    timeText.className = "record-time";
-    timeText.textContent = record.time;
-
-    info.appendChild(nameText);
-    info.appendChild(timeText);
-
-    left.appendChild(dot);
-    left.appendChild(info);
-
-    // 오른쪽 영역
-    const right = document.createElement("div");
-    right.className = "record-right";
-
-    // 금액
-    const amountText = document.createElement("span");
-    amountText.className = "record-amount";
-
-    if (record.category === "income") {
-      amountText.classList.add("income");
-      amountText.textContent = "+" + record.amount.toLocaleString() + "원";
-    } else {
-      amountText.classList.add("expense");
-      amountText.textContent = "-" + record.amount.toLocaleString() + "원";
-    }
-
-    // 삭제 버튼
-    const deleteBtn = document.createElement("button");
-    deleteBtn.className = "delete-btn";
-    deleteBtn.textContent = "🗑";
-
-    deleteBtn.addEventListener("click", function () {
-      records.splice(i, 1);
-      renderList();
+    // 그날 수입/지출 합계 계산
+    let dayIncome = 0;
+    let dayExpense = 0;
+    dayRecords.forEach(function (record) {
+      if (record.type === "income") {
+        dayIncome += record.amount;
+      } else {
+        dayExpense += record.amount;
+      }
     });
 
-    right.appendChild(amountText);
-    right.appendChild(deleteBtn);
+    // 날짜 그룹 (접기/펼치기)
+    const details = document.createElement("details");
+    details.className = "day-group";
 
-    // 최종
-    row.appendChild(left);
-    row.appendChild(right);
+    const today = new Date().toISOString().slice(0, 10); // 'YYYY-MM-DD'
+    if (date === today) {
+      details.setAttribute("open", "");
+    }
 
-    container.appendChild(row);
-  }
+    const summary = document.createElement("summary");
+    summary.className = "day-header";
+    summary.innerHTML = `
+      <span class="day-num">${date.slice(8, 10).replace(/^0/, "")}</span>
+      <span class="day-name">${getWeekdayName(date)}</span>
+      <span class="day-totals">
+        <span class="t-income">+${dayIncome.toLocaleString()}</span>
+        <span class="t-expense">-${dayExpense.toLocaleString()}</span>
+      </span>
+    `;
+    details.appendChild(summary);
+
+    const ul = document.createElement("ul");
+    ul.className = "items";
+
+    // 그날 기록들 하나씩 항목으로 추가
+    dayRecords.forEach(function (record) {
+      // 날짜
+      const row = document.createElement("li");
+      row.className = "record-row";
+
+      // 왼쪽 영역
+      const left = document.createElement("div");
+      left.className = "record-left";
+
+      // 카테고리 점
+      const dot = document.createElement("span");
+      dot.className = "cat-dot " + record.category;
+
+      // 내용 + 시간
+      const info = document.createElement("div");
+
+      const nameText = document.createElement("p");
+      nameText.className = "record-name";
+      nameText.textContent = record.content;
+
+      const timeText = document.createElement("p");
+      timeText.className = "record-time";
+      timeText.textContent = record.time;
+
+      info.appendChild(nameText);
+      info.appendChild(timeText);
+
+      left.appendChild(dot);
+      left.appendChild(info);
+
+      // 오른쪽 영역
+      const right = document.createElement("div");
+      right.className = "record-right";
+
+      // 금액
+      const amountText = document.createElement("span");
+      amountText.className = "record-amount";
+
+      if (record.type === "income") { // category 대신 type으로 판단
+        amountText.classList.add("income");
+        amountText.textContent = "+" + record.amount.toLocaleString() + "원";
+      } else {
+        amountText.classList.add("expense");
+        amountText.textContent = "-" + record.amount.toLocaleString() + "원";
+      }
+
+      // 삭제 버튼
+      const deleteBtn = document.createElement("button");
+      deleteBtn.className = "delete-btn";
+      deleteBtn.textContent = "🗑";
+
+      deleteBtn.addEventListener("click", function () {
+        records = records.filter(function (r) {
+          return r.id !== record.id; // id로 정확히 지우기 (index보다 안전)
+        });
+        saveRecords(); // 저장도 같이 해줘야 새로고침해도 안 살아남
+        renderList();
+      });
+
+      right.appendChild(amountText);
+      right.appendChild(deleteBtn);
+
+      // 최종
+      row.appendChild(left);
+      row.appendChild(right);
+
+      ul.appendChild(row);
+    });
+
+    details.appendChild(ul);
+    container.appendChild(details);
+  });
 }
 
+function groupByDate(recordArray) {
+  const groups = {};
+  recordArray.forEach(function (record) {
+    if (!groups[record.date]) {
+      groups[record.date] = [];
+    }
+    groups[record.date].push(record);
+  });
 
+  return groups;
+}
+
+//수입/지출/합계 보이게
+function renderSummary() {
+  const monthRecords = getRecordsOfMonth(records, now.getFullYear(), now.getMonth() + 1);
+  const totals = calculateTotals(monthRecords);
+
+  document.getElementById("totalIncome").textContent = totals.income.toLocaleString();
+  document.getElementById("totalExpense").textContent = totals.expense.toLocaleString();
+  document.getElementById("totalBalance").textContent = totals.balance.toLocaleString();
+}
