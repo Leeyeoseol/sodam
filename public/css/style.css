@@ -448,46 +448,7 @@ details:not([open])>.day-header {
   gap: 40px;
 }
 
-.pie-wrap {
-  position: relative;
-  flex-shrink: 0;
-}
 
-.pie {
-  width: 212px;
-  height: 212px;
-  border-radius: 50%;
-  background: conic-gradient(var(--cat-food) 0% 38%,
-      var(--cat-shop) 38% 61%,
-      var(--cat-fixed) 61% 83%,
-      var(--cat-transport) 83% 100%);
-}
-
-.pie-hole {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 108px;
-  height: 108px;
-  border-radius: 50%;
-  background: var(--surface);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.pie-amount {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.pie-label {
-  font-size: 10.5px;
-  color: var(--ink-mute);
-  margin-top: 2px;
-}
 
 .stat-list {
   flex: 1;

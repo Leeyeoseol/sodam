@@ -37,6 +37,14 @@
 ### 참고 및 출처
 - (참고 자료 URL)
 - oepn API 사용 : https://toyou101.tistory.com/28
+- localStorage 사용 : https://patrick-f.tistory.com/41
+- chart.js 사용 : 
+    https://deahan.tistory.com/16
+    https://www.chartjs.org/docs/latest/charts/doughnut.html#doughnut
+    - 도넛 차트 가운데 글자 : 
+        https://dev.mescius.co.kr/bbs/board.php?bo_table=wijmo_qna&wr_id=2085
+        https://zizonemoi.tistory.com/82
+        https://risha-lee.tistory.com/11
 
 ### 버전 및 업데이트 정보 (X)
 
