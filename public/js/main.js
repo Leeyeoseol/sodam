@@ -48,3 +48,4 @@ document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(function (c
 
 loadRecords();
 renderList();
+renderSummary();

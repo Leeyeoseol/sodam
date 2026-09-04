@@ -6,7 +6,7 @@ function saveRecords() {
   localStorage.setItem("sodam-records", JSON.stringify(records));
 }
 
-// 불러오기 (페이지 열릴 때 실행되어야 함, main.js에서 호출)
+// 불러오기 :main.js
 function loadRecords() {
   const saved = localStorage.getItem("sodam-records");
   if (saved) {
@@ -21,6 +21,11 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   //값 읽어오기
   const dateValue = document.getElementById("inputDate").value;
   const timeValue = document.getElementById("inputTime").value;
+
+  // typeValue 정의 추가 (inputType 요소가 없을 경우 expense 처리)
+  const typeInput = document.getElementById("inputType");
+  const typeValue = typeInput ? typeInput.value : "expense";
+
   const categoryValue = document.getElementById("inputCategory").value;
   const amountValue = Number(document.getElementById("inputAmount").value); //숫자로
   const contentValue = document.getElementById("inputContent").value;
@@ -36,8 +41,8 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   formError.classList.remove("show");
 
   const newRecord = {
-    id: Date.now(),                                             // 추가: 삭제할 때 구분용 고유값
-    type: categoryValue === "income" ? "income" : "expense",     // 추가: 수입/지출 구분
+    id: Date.now(),
+    type: typeValue,
     date: dateValue,
     time: timeValue,
     category: categoryValue,
@@ -51,5 +56,3 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
 
   console.log(records);
 });
-
-//펼쳐지는 목록에 날짜 띄우기 + 날짜별로 기록 띄우기 필요

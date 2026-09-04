@@ -3,8 +3,10 @@ function renderList() {
   const container = document.getElementById("recordList");
   container.innerHTML = ""; //지우고 다시 그리기
 
+  const currentMonthRecords = getRecordsOfMonth(records, now.getFullYear(), now.getMonth() + 1);
+
   // 날짜별로 묶기
-  const grouped = groupByDate(records);
+  const grouped = groupByDate(currentMonthRecords);
   const sortedDates = Object.keys(grouped).sort((a, b) => b.localeCompare(a)); // 최신순
 
   sortedDates.forEach(function (date) {
@@ -21,7 +23,7 @@ function renderList() {
       }
     });
 
-    // 날짜 그룹 (접기/펼치기)
+    // 날짜 그룹
     const details = document.createElement("details");
     details.className = "day-group";
 
@@ -35,17 +37,16 @@ function renderList() {
     summary.innerHTML = `
       <span class="day-num">${date.slice(8, 10).replace(/^0/, "")}</span>
       <span class="day-name">${getWeekdayName(date)}</span>
-      <span class="day-totals">
-        <span class="t-income">+${dayIncome.toLocaleString()}</span>
-        <span class="t-expense">-${dayExpense.toLocaleString()}</span>
-      </span>
+     <span class="day-sums">
+      <span class="day-sum income">+${dayIncome.toLocaleString()}</span>
+      <span class="day-sum expense">-${dayExpense.toLocaleString()}</span>
+    </span>
     `;
     details.appendChild(summary);
 
     const ul = document.createElement("ul");
     ul.className = "items";
 
-    // 그날 기록들 하나씩 항목으로 추가
     dayRecords.forEach(function (record) {
       // 날짜
       const row = document.createElement("li");
@@ -55,11 +56,11 @@ function renderList() {
       const left = document.createElement("div");
       left.className = "record-left";
 
-      // 카테고리 점
+      // 점
       const dot = document.createElement("span");
       dot.className = "cat-dot " + record.category;
 
-      // 내용 + 시간
+      // 내용이랑 시간
       const info = document.createElement("div");
 
       const nameText = document.createElement("p");
@@ -99,9 +100,9 @@ function renderList() {
 
       deleteBtn.addEventListener("click", function () {
         records = records.filter(function (r) {
-          return r.id !== record.id; // id로 정확히 지우기 (index보다 안전)
+          return r.id !== record.id; // id로 지우기
         });
-        saveRecords(); // 저장도 같이 해줘야 새로고침해도 안 살아남
+        saveRecords(); // 저장
         renderList();
       });
 

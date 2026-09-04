@@ -112,3 +112,65 @@ function groupByDate(recordArray) {
   });
   return groups;
 }
+
+//카테고리별 합계 계산
+function calculateCategoryTotals(recordArray) {
+  const categoryTotals = {};
+
+  recordArray.forEach(function (record) {
+    const category = record.category || "other";
+    const amount = Number(record.amount) || 0;
+
+    if (!categoryTotals[category]) {
+      categoryTotals[category] = 0;
+    }
+    categoryTotals[category] += amount;
+  });
+
+  return categoryTotals;
+}
+
+// 카테고리 목록 정의
+const categories = {
+  expense: [
+    { value: "food", label: "식비" },
+    { value: "shopping", label: "쇼핑" },
+    { value: "transport", label: "교통" },
+    { value: "living", label: "생활" },
+    { value: "leisure", label: "문화·여가" },
+    { value: "fixed", label: "고정지출" },
+    { value: "other", label: "기타" }
+  ],
+  income: [
+    { value: "salary", label: "월급" },
+    { value: "side", label: "부업·알바" },
+    { value: "allowance", label: "용돈" },
+    { value: "carryover", label: "이월" },
+    { value: "other_income", label: "기타수입" }
+  ]
+};
+
+// 수입/지출 선택 변경 시 카테고리 옵션 업데이트
+function updateCategoryOptions() {
+  const typeSelect = document.getElementById("inputType");
+  const categorySelect = document.getElementById("inputCategory");
+
+  if (!typeSelect || !categorySelect) return;
+
+  const selectedType = typeSelect.value; // 'expense' 또는 'income'
+  const options = categories[selectedType];
+
+  categorySelect.innerHTML = ""; // 기존 옵션 비우기
+
+  options.forEach(cat => {
+    const opt = document.createElement("option");
+    opt.value = cat.value;
+    opt.textContent = cat.label;
+    categorySelect.appendChild(opt);
+  });
+}
+
+// 기존 initDateInput 실행 시 카테고리도 초기 세팅되도록 호출
+window.addEventListener("DOMContentLoaded", function () {
+  updateCategoryOptions();
+});
