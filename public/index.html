@@ -10,8 +10,6 @@
 </head>
 
 <body>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <div class="app-shell">
     <!-- 좌측 사이드바: 화면 전환 -->
     <nav class="sidebar">
@@ -19,16 +17,23 @@
       <button class="nav-btn" data-target="stats"><i class="bi bi-bar-chart"></i><br>통계</button>
       <button class="nav-btn" data-target="ai"><i class="bi bi-stars"></i><br>AI질문</button>
     </nav>
+
     <!-- 가계부 화면 -->
     <section id="ledger" class="screen active">
+
       <!-- 월 이동 -->
       <div class="month-nav">
         <button class="nav-arrow prev-month" onclick="leftArrowClick()">‹</button>
         <span class="month-label">0000년 00월</span>
         <button class="nav-arrow next-month" onclick="rightArrowClick()">›</button>
       </div>
+      <!-- 현재의 총잔고 (수정 가능)
+      <div class="balance-input">
+        <label for="currentBalance">현재 총잔고:</label>
+        <input type="number" id="currentBalance" name="currentBalance" />
+      </div> -->
 
-      <!-- 수입/지출/합계 : -->
+      <!-- 수입/지출/합계 -->
       <div class="summary-strip">
         <div class="summary-cell">
           <p class="summary-label">수입</p>
@@ -44,7 +49,7 @@
         </div>
       </div>
 
-      <!-- 전월 대비 문장: 정보가 있으면 표시하도록 -->
+      <!-- 전월 대비 문장 -->
       <div class="insight-banner" id="insightBanner" style="display: none"></div>
 
       <!-- 입력 폼 -->
@@ -69,21 +74,11 @@
         </div>
         <p id="formError" class="form-error"></p>
       </form>
-      <!-- 날짜별 기록 목록: -->
-      <div class="record-list" id="recordList">
-        <details class="day-group">
-          <summary class="day-header">
-            <span class="day-num">15</span>
-            <span class="day-name">목요일</span>
-            <span class="day-totals">
-              <span class="t-income">+5,000</span>
-              <span class="t-expense">-8,000</span>
-            </span>
-          </summary>
-          <ul class="items"></ul>
-        </details>
-      </div>
+
+      <!-- 날짜별 기록 목록 -->
+      <div class="record-list" id="recordList"></div>
     </section>
+
     <!-- 통계 화면 -->
     <section id="stats" class="screen">
 
@@ -96,28 +91,21 @@
       <!-- 탭 -->
       <div class="segment-group">
         <button class="segment-btn active" data-view="pie">카테고리 비율</button>
-        <button class="segment-btn" data-view="bar">기간별 추이</button>
+        <button class="segment-btn" data-view="bar">카테고리 비교</button>
       </div>
 
       <!-- 카테고리 비율 -->
       <div class="stat-view active" id="view-pie">
         <div class="stats-layout">
-          <div class="pie-wrap">
-            <div class="pie"></div>
-            <div class="pie-hole">
-              <span class="pie-amount">320,000</span>
-              <span class="pie-label">총 지출</span>
-            </div>
-          </div>
-
-          <div style="width: 900px; height: 900px;">
-            <!--차트가 그려질 부분-->
+          <div class="chart-box" style="position: relative; width: 260px; height: 260px; flex-shrink: 0;">
+            <!-- 도넛 차트 -->
             <canvas id="doughnutChart"></canvas>
+          </div>
+          <div class="stat-list" id="statList">
           </div>
         </div>
       </div>
-
-      <!-- 기간별-->
+      <!-- 기간별 -->
       <div class="stat-view" id="view-bar">
 
         <div class="bar-controls">
@@ -138,34 +126,31 @@
           <button class="filter-chip" data-cat="other"><span class="dot other"></span>기타</button>
         </div>
 
-        <div class="bar-chart">
-          <!--차트가 그려질 부분-->
+        <!-- Chart.js 바 차트 영역 -->
+        <div class="chart-box" style="position: relative; width: 100%; height: 300px;">
           <canvas id="barChart"></canvas>
         </div>
 
       </div>
 
     </section>
+
+    <!-- AI 질문 화면 -->
     <section id="ai" class="screen">
       <h2>AI 소비 분석 및 질문</h2>
 
       <div id="chat-container">
-
-        <div id="ai-chat-box">
-        </div>
+        <div id="ai-chat-box"></div>
 
         <div id="user-input">
           <input id="ai-user-input" type="text" placeholder="소비에 대해 질문하세요..." />
-
-          <button onclick="sendAIQuestion()">
-            전송
-          </button>
+          <button onclick="sendAIQuestion()">전송</button>
         </div>
-
       </div>
     </section>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/data.js"></script>
   <script src="js/calculate.js"></script>
   <script src="js/render.js"></script>

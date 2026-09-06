@@ -32,6 +32,8 @@ function leftArrowClick() {
   labelRender();
   renderList();
   renderSummary();
+  createDoughnutChart();
+  createBarChart();
 }
 
 //오른쪽 화살표 클릭 이벤트

@@ -4,6 +4,11 @@ var records = [];
 // 저장하기
 function saveRecords() {
   localStorage.setItem("sodam-records", JSON.stringify(records));
+  // 데이터가 바뀔 때 차트도 새로고침
+  if (typeof createDoughnutChart === 'function') {
+    createDoughnutChart();
+    createBarChart();
+  }
 }
 
 // 불러오기 :main.js
@@ -22,7 +27,7 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   const dateValue = document.getElementById("inputDate").value;
   const timeValue = document.getElementById("inputTime").value;
 
-  // typeValue 정의 추가 (inputType 요소가 없을 경우 expense 처리)
+  // typeValue 정의 추가 (없을 경우 expense)
   const typeInput = document.getElementById("inputType");
   const typeValue = typeInput ? typeInput.value : "expense";
 

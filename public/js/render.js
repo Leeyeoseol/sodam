@@ -119,6 +119,11 @@ function renderList() {
     details.appendChild(ul);
     container.appendChild(details);
   });
+  // 데이터가 바뀔 때 차트도 새로고침
+  if (typeof createDoughnutChart === 'function') {
+    createDoughnutChart();
+    createBarChart();
+  }
 }
 
 function groupByDate(recordArray) {
