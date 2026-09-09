@@ -80,33 +80,46 @@ body {
 }
 
 .sidebar {
+  width: 180px;
+  background: var(--bg);
+  border-right: 1px solid var(--line);
+  padding: 20px 12px;
+
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  width: 84px;
+  gap: 10px;
   flex-shrink: 0;
-  background: var(--bg);
-  /* 왼쪽 영역 회색 */
-  border-right: 1px solid var(--line);
-  padding: 24px 0;
 }
 
 .nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  height: 44px;
+
   border: none;
-  background: none;
-  cursor: pointer;
-  font-size: 11px;
+  border-radius: 14px;
+  background: transparent;
+
+  padding: 0 14px;
+
+  font-size: 15px;
   font-weight: 500;
   color: var(--ink-mute);
-  padding: 8px 4px;
-  width: 60px;
-  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-btn i {
+  font-size: 18px;
 }
 
 .nav-btn.active {
   color: var(--income);
-  background: rgba(0, 113, 227, 0.08);
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, .08);
 }
 
 .screen {
@@ -784,6 +797,7 @@ details:not([open])>.day-header {
 .stat-list {
   flex: 1;
 }
+
 .stat-row {
   display: flex;
   align-items: center;
@@ -791,13 +805,66 @@ details:not([open])>.day-header {
   padding: 11px 0;
   border-bottom: 1px solid var(--line);
 }
-.stat-row:last-child { border-bottom: none; }
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
 .stat-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
   flex-shrink: 0;
 }
-.stat-name { font-size: 13.5px; flex: 1; }
-.stat-pct { font-size: 12.5px; font-weight: 600; color: var(--ink-soft); width: 32px; }
-.stat-amount { font-size: 13px; color: var(--ink-soft); }
+
+.stat-name {
+  font-size: 13.5px;
+  flex: 1;
+}
+
+.stat-pct {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  width: 32px;
+}
+
+.stat-amount {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 30px;
+  padding: 0 10px;
+}
+
+.logo img {
+  width: 48px;
+  height: 48px;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-text h2 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.1;
+}
+
+.logo-text p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #666;
+  font-weight: 500;
+}

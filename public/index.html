@@ -12,10 +12,31 @@
 <body>
   <div class="app-shell">
     <!-- 좌측 사이드바: 화면 전환 -->
+
     <nav class="sidebar">
-      <button class="nav-btn active" data-target="ledger"><i class="bi bi-calculator"></i><br>가계부</button>
-      <button class="nav-btn" data-target="stats"><i class="bi bi-bar-chart"></i><br>통계</button>
-      <button class="nav-btn" data-target="ai"><i class="bi bi-stars"></i><br>AI질문</button>
+      <div class="logo">
+        <img src="img/logo.png" alt="Logo">
+
+        <div class="logo-text">
+          <h2>소담가계부</h2>
+          <p>SODAM</p>
+        </div>
+      </div>
+
+      <button class="nav-btn active" data-target="ledger">
+        <i class="bi bi-wallet2"></i>
+        <span>가계부</span>
+      </button>
+
+      <button class="nav-btn" data-target="stats">
+        <i class="bi bi-bar-chart"></i>
+        <span>통계</span>
+      </button>
+
+      <button class="nav-btn" data-target="ai">
+        <i class="bi bi-stars"></i>
+        <span>AI 질문</span>
+      </button>
     </nav>
 
     <!-- 가계부 화면 -->
@@ -135,6 +156,7 @@
 
     </section>
 
+    <!--ai질문 화면 창 위에 창 띄우기 js!! 디자인 변경-->
     <!-- AI 질문 화면 -->
     <section id="ai" class="screen">
       <h2>AI 소비 분석 및 질문</h2>
@@ -150,6 +172,7 @@
     </section>
   </div>
 
+  <!-- Chart.js 라이브러리 사용-->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/data.js"></script>
   <script src="js/calculate.js"></script>

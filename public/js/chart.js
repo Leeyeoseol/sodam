@@ -41,6 +41,7 @@ function createDoughnutChart() {
     const canvas = document.getElementById('doughnutChart');
     if (!canvas) return;
 
+    // 캔버스 요소 가져오기
     const context = canvas.getContext('2d');
     const expenseData = getCategoryExpenseData();
     const labels = ['식비', '쇼핑', '교통', '생활', '문화·여가', '고정지출', '기타'];
@@ -50,6 +51,7 @@ function createDoughnutChart() {
         doughnutChartInstance.destroy();
     }
 
+    // 차트 객체 생성
     doughnutChartInstance = new Chart(context, {
         type: 'doughnut',
         data: {
@@ -106,6 +108,7 @@ function createBarChart() {
     const canvas = document.getElementById('barChart');
     if (!canvas) return;
 
+    // 캔버스 요소 가져오기
     const context = canvas.getContext('2d');
     const expenseData = getCategoryExpenseData();
 
@@ -113,6 +116,7 @@ function createBarChart() {
         barChartInstance.destroy();
     }
 
+    // 차트 객체 생성
     barChartInstance = new Chart(context, {
         type: 'bar',
         data: {
