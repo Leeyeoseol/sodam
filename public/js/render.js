@@ -1,4 +1,4 @@
-//화면에 표시 / 불러오기
+//화면에 표시하고 불러오기
 function renderList() {
   const container = document.getElementById("recordList");
   container.innerHTML = ""; //지우고 다시 그리기

@@ -1,4 +1,20 @@
-//계산,문장
+/*
+1. 상단 년/월 표시
+2. 날짜 선택 현재 날짜 가져오기 + 미래선택 불가
+3. 왼쪽 화살표 클릭 이벤트
+4. 오른쪽 화살표 클릭 이벤트
+5. 현재시간 가져오기/시간 입력 기본값
+6. 처음 시작시 실행 시키는것들
+7. 일주일 이름 함수
+8. 년/월 기록만
+9. 수입합계/지출합계/잔액 계산
+10. 날짜별로 묶기
+11. 카테고리별 합계 계산
+12. 수입/지출 선택 변경 시 카테고리 옵션 업데이트
+13. 기존 initDateInput 실행 시 카테고리도 초기 세팅되도록 호출
+*/
+
+
 var now = new Date();
 
 //상단 년/월 표시
@@ -34,7 +50,7 @@ function leftArrowClick() {
   renderSummary();
   createDoughnutChart();
   createBarChart();
-}
+}//클릭할때 다 다시 호출하기?
 
 //오른쪽 화살표 클릭 이벤트
 function rightArrowClick() {
@@ -56,7 +72,7 @@ function rightArrowClick() {
   }
 }
 
-//현재시간 가져오기 / 시간 입력 기본값
+//현재시간 가져오기/시간 입력 기본값
 function setCurrentTime() {
   const hours = String(now.getHours()).padStart(2, "0");
   const minutes = String(now.getMinutes()).padStart(2, "0");
@@ -74,15 +90,15 @@ window.onload = function () {
   renderSummary();
 };
 
-function getWeekdayName(dateStr) {
+function getWeekdayName(dateStr) {//일주일 이름 함수ㅜ
   const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
   const date = new Date(dateStr);
   return days[date.getDay()];
 }
 
-// 지금 년/월 기록만
+//년/월 기록만
 function getRecordsOfMonth(recordArray, year, month) {
-  const monthStr = String(month).padStart(2, "0"); // 3 을 "03"로
+  const monthStr = String(month).padStart(2, "0"); // 3 을 "03"으로
   const prefix = year + "-" + monthStr;
   return recordArray.filter(function (record) {
     return record.date.startsWith(prefix);
@@ -103,7 +119,7 @@ function calculateTotals(recordArray) {
   return { income: income, expense: expense, balance: income - expense };
 }
 
-// 날짜별로 묶음
+//날짜별로 묶어서
 function groupByDate(recordArray) {
   const groups = {};
   recordArray.forEach(function (record) {
@@ -159,7 +175,7 @@ function updateCategoryOptions() {
 
   if (!typeSelect || !categorySelect) return;
 
-  const selectedType = typeSelect.value; // 'expense' 또는 'income'
+  const selectedType = typeSelect.value;
   const options = categories[selectedType];
 
   categorySelect.innerHTML = ""; // 기존 옵션 비우기
