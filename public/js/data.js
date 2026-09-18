@@ -11,7 +11,7 @@ function saveRecords() {
   }
 }
 
-// 불러오기 :main.js
+// 불러오기
 function loadRecords() {
   const saved = localStorage.getItem("sodam-records");
   if (saved) {
@@ -27,7 +27,7 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   const dateValue = document.getElementById("inputDate").value;
   const timeValue = document.getElementById("inputTime").value;
 
-  // typeValue 정의 추가 (없을 경우 expense)
+  // typeValue 정의 추가 /없을 경우 expense
   const typeInput = document.getElementById("inputType");
   const typeValue = typeInput ? typeInput.value : "expense";
 

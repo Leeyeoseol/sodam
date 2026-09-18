@@ -77,11 +77,11 @@ function renderList() {
       left.appendChild(dot);
       left.appendChild(info);
 
-      // 오른쪽 영역
+      //오른쪽 영역
       const right = document.createElement("div");
       right.className = "record-right";
 
-      // 금액
+      //금액
       const amountText = document.createElement("span");
       amountText.className = "record-amount";
 
@@ -93,7 +93,7 @@ function renderList() {
         amountText.textContent = "-" + record.amount.toLocaleString() + "원";
       }
 
-      // 삭제 버튼
+      //삭제 버튼
       const deleteBtn = document.createElement("button");
       deleteBtn.className = "delete-btn";
       deleteBtn.textContent = "🗑";
