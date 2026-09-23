@@ -1,20 +1,30 @@
-//ai 
+//ai
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
 
 export async function sendAIQuestion(question, expenses = []) {
-    if (!GEMINI_API_KEY) {
-        throw new Error("GEMINI_API_KEY가 설정되지 않았습니다.");
-    }
+  //우선 사용자의 질문 추가
+  let quest = document.createElement("li");
+  quest.setAttribute("id", question);
+  const textNode = document.createTextNode(question);
+  quest.appendChild(textNode);
+  document.getElementById("id").appendChild(quest);
 
-    if (!question || !question.trim()) {
-        throw new Error("질문을 입력해주세요.");
-    }
+  //   pulsUI.innerHTML = "<li>" + question + "</li>";
+  //   document.getElementById("list").appendChild(plusUl);
 
-    const expenseData = JSON.stringify(expenses, null, 2);
+  if (!GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY가 설정되지 않았습니다.");
+  }
 
-    const prompt = `
+  if (!question || !question.trim()) {
+    throw new Error("질문을 입력해주세요.");
+  }
+
+  const expenseData = JSON.stringify(expenses, null, 2);
+
+  const prompt = `
 너는 가계부 서비스 '모담'의 소비 분석 AI야.
 
 사용자가 자신의 지출에 대해 질문하면 제공된 지출 데이터를 바탕으로 답변해줘.
@@ -34,105 +44,42 @@ ${question}
 ${expenseData}
 `;
 
-    const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "x-goog-api-key": GEMINI_API_KEY,
-            },
-            body: JSON.stringify({
-                contents: [
-                    {
-                        parts: [
-                            {
-                                text: prompt,
-                            },
-                        ],
-                    },
-                ],
-            }),
-        }
-    );
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-goog-api-key": GEMINI_API_KEY,
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: prompt,
+              },
+            ],
+          },
+        ],
+      }),
+    },
+  );
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(`Gemini API 오류: ${errorText}`);
-    }
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Gemini API 오류: ${errorText}`);
+  }
 
-    const data = await response.json();
+  const data = await response.json();
 
-    const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+  const answer = data?.candidates?.[0]?.content?.parts?.[0]?.text;
 
-    if (!answer) {
-        throw new Error("Gemini에서 답변을 받지 못했습니다.");
-    }
+  if (!answer) {
+    throw new Error("Gemini에서 답변을 받지 못했습니다.");
+  }
 
-    return answer;
+  return answer;
 }
 
-
-
-// async function sendAIQuestion() {
-//     const inputElement = document.getElementById('ai-user-input');
-//     const chatBox = document.getElementById('ai-chat-box');
-//     const message = inputElement.value.trim();
-
-//     if (!message) return;
-
-//     chatBox.innerHTML += `<p><strong>나:</strong> ${message}</p>`;
-//     inputElement.value = '';
-//     chatBox.scrollTop = chatBox.scrollHeight;
-
-//     chatBox.innerHTML += `<p id="ai-loading" style="color: gray;">AI가 가계부를 분석 중입니다...</p>`;
-
-//     const reply = await askAI(message);
-
-//     const loadingText = document.getElementById('ai-loading');
-//     if (loadingText) loadingText.remove();
-
-//     chatBox.innerHTML += `<p><strong>AI 헬퍼:</strong> ${reply}</p>`;
-//     chatBox.scrollTop = chatBox.scrollHeight;
-// }
-
-// async function askAI(question) {
-//     try {
-//         const today = new Date();
-
-//         // 'now'를 'today'로 수정
-//         const currentYearMonth = today.toISOString().slice(0, 7);
-//         const monthlyRecords = getRecordsOfMonth(
-//             records,
-//             today.getFullYear(),
-//             today.getMonth() + 1
-//         );
-//         const categoryTotals = calculateCategoryTotals(monthlyRecords);
-//         const totals = calculateTotals(monthlyRecords);
-
-//         // API 호출
-//         const response = await fetch("http://localhost:3000/api/chat", {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({
-//                 userMessage: question,
-//                 currentMonth: currentYearMonth,
-//                 records: monthlyRecords,
-//                 categoryTotals,
-//                 totalIncome: totals.income,
-//                 totalExpense: totals.expense,
-//                 balance: totals.balance
-//             })
-//         });
-
-//         // 결과 반환
-//         const data = await response.json();
-//         return data.reply;
-
-//     } catch (error) {
-//         console.error("AI 질문 중 오류 발생:", error);
-//         return "오류가 발생하여 AI 답변을 가져오지 못했습니다.";
-//     }
-// }
+//ul.리스트로 하여서 내가 클릭하면 사용자의 q질문이 들어가면 동시에 ai한테도 물어봐지게끔.

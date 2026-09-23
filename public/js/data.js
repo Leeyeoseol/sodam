@@ -58,6 +58,7 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   saveRecords();
   renderList();
   renderSummary();
+  checkSpendingInsight(newRecord);
 
   console.log(records);
 });

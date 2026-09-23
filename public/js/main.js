@@ -18,43 +18,23 @@ document.querySelectorAll(".nav-btn").forEach(function (btn) {
   });
 });
 
+// 기간별 추이 안에서 전환
+document.querySelectorAll('.period-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    createBarChart();
+  });
+});
 
-
-
-
-
-
-
-
-
-
-
-// // 통계 화면 안에서 카테고리 비율/기간별 추이 탭 전환
-// document.querySelectorAll('.segment-btn').forEach(function (btn) {
-//   btn.addEventListener('click', function () {
-//     document.querySelectorAll('.segment-btn').forEach(b => b.classList.remove('active'));
-//     btn.classList.add('active');
-
-//     document.querySelectorAll('.stat-view').forEach(v => v.classList.remove('active'));
-//     document.getElementById('view-' + btn.dataset.view).classList.add('active');
-//   });
-// });
-
-// // 기간별 추이 안에서 전환
-// document.querySelectorAll('.period-btn').forEach(function (btn) {
-//   btn.addEventListener('click', function () {
-//     document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
-//     btn.classList.add('active');
-//   });
-// });
-
-// // 기간별 추이 안에서 카테고리 칩 선택
-// document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(function (chip) {
-//   chip.addEventListener('click', function () {
-//     document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(c => c.classList.remove('active'));
-//     chip.classList.add('active');
-//   });
-// });
+// 기간별 추이 안에서 카테고리 칩 선택
+document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(function (chip) {
+  chip.addEventListener('click', function () {
+    document.querySelectorAll('#barCategoryFilter .filter-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    createBarChart(); 
+  });
+});
 
 loadRecords();
 renderList();

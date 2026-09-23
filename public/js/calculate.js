@@ -13,7 +13,7 @@
 12. 수입/지출 선택 변경 시 카테고리 옵션 업데이트
 13. 기존 initDateInput 실행 시 카테고리도 초기 세팅되도록 호출
 */
-
+//날짜랑 왼쪽 오른쪽 이동, 계산, 카테고리, 일주일 등
 
 var now = new Date();
 
@@ -50,7 +50,7 @@ function leftArrowClick() {
   renderSummary();
   createDoughnutChart();
   createBarChart();
-}//클릭할때 다 다시 호출하기?
+}//클릭할때 다시 호출하기
 
 //오른쪽 화살표 클릭 이벤트
 function rightArrowClick() {
@@ -90,7 +90,7 @@ window.onload = function () {
   renderSummary();
 };
 
-function getWeekdayName(dateStr) {//일주일 이름 함수ㅜ
+function getWeekdayName(dateStr) {//일주일 이름 함수
   const days = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
   const date = new Date(dateStr);
   return days[date.getDay()];
