@@ -1,5 +1,5 @@
 //ai
-const GEMINI_API_KEY = "AQ.Ab8RN6KbyE6zrNRebfQfvvFzOEHzdxwBoaQi21MCE4Kb7WFqAA";
+const GEMINI_API_KEY = "";
 const GEMINI_MODEL = "gemini-3-flash-preview";
 
 // 로컬스토리지에서 실제 가계부 기록 가져오기
