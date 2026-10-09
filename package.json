@@ -12,7 +12,7 @@
   "description": "- **팀원**: 2207 안지호, 2208 이여설 - **주제**: 웹 기반 개인 지출 관리 서비스 - **기술 스택**: HTML, CSS, JavaScript - **데이터 저장**: 브라우저 localStorage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node public/js/server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +21,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Leeyeoseol/sodam/issues"
   },

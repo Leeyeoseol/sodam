@@ -154,7 +154,7 @@ function checkSpendingInsight(record) {
     );
     return;
   }
-
+x 
   if (avgPerDay > 0 && todayTotal > avgPerDay * 1.5) {
     showToast(
       `오늘 지출이 하루 평균(${formatMoney(Math.round(avgPerDay))})보다 많아요`,

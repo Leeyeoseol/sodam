@@ -1,30 +1,44 @@
 import express from "express";
-import dotenv from "dotenv";
+import path from "path";
 import cors from "cors";
+import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import { GoogleGenAI } from "@google/genai";
 
+// .env 파일 로드
 dotenv.config();
 
 const app = express();
 
+// ES 모듈 환경에서는 __dirname이 기본 제공되지 않으므로 아래와 같이 정의해야 합니다.
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 미들웨어 설정
 app.use(cors());
 app.use(express.json());
 
+// 브라우저 접속 시 public 폴더의 index.html과 정적 파일(CSS/JS)을 불러오도록 설정
+// server.js가 public/js 폴더에 있으므로, 상위 폴더인 public 폴더를 지정합니다.
+app.use(express.static(path.join(__dirname, "..")));
+
+// Gemini AI 초기화
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
+// AI 채팅 API 라우트
 app.post("/api/chat", async (req, res) => {
-    try {
-        const {
-            userMessage,
-            currentMonth,
-            records,
-            categoryTotals,
-            totalIncome,
-            totalExpense,
-            balance
-        } = req.body;
+  try {
+    const {
+      userMessage,
+      currentMonth,
+      records,
+      categoryTotals,
+      totalIncome,
+      totalExpense,
+      balance,
+    } = req.body;
 
-        const prompt = `
+    const prompt = `
 너는 친절하고 유능한 AI 가계부 소비 분석 상담사이다.
 
 사용자가 자신의 지출에 대해 질문하면 제공된 지출 데이터를 바탕으로 답변해줘.
@@ -48,23 +62,27 @@ app.post("/api/chat", async (req, res) => {
 사용자 질문: ${userMessage}
 `;
 
-        const response = await ai.models.generateContent({
-            model: "gemini-3.6-flash",
-            contents: prompt,
-        });
+    const response = await ai.models.generateContent({
+      model: "gemini-2.5-flash", // 사용 가능한 올바른 모델명으로 지정
+      contents: prompt,
+    });
 
-        return res.json({ reply: response.text });
+    // SDK 버전에 따라 함수 호출 방식에 대응하도록 처리
+    const replyText =
+      typeof response.text === "function" ? response.text() : response.text;
 
-    } catch (err) {
-        console.error("=== Gemini API 호출 에러 상세 ===");
-        console.error(err);
+    return res.json({ reply: replyText });
+  } catch (err) {
+    console.error("=== Gemini API 호출 에러 상세 ===");
+    console.error(err);
 
-        return res.status(500).json({
-            reply: "AI 응답을 가져오지 못했습니다. 터미널 콘솔 로그를 확인해 주세요."
-        });
-    }
+    return res.status(500).json({
+      reply: "AI 응답을 가져오지 못했습니다. 터미널 콘솔 로그를 확인해 주세요.",
+    });
+  }
 });
 
+// 서버 실행
 app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+  console.log("Server running on http://localhost:3000");
 });

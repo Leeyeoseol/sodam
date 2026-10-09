@@ -95,6 +95,36 @@
             </select>
 
             <select id="inputCategory"></select>
+
+            <!--필터링기능-->
+            <div id="filter">
+              <div>
+                <input type="checkbox" id="food" checked /><label for="food"
+                  >식비</label
+                >
+                <input type="checkbox" id="shopping" checked /><label
+                  for="shopping"
+                  >쇼핑</label
+                >
+                <input type="checkbox" id="transport" checked /><label
+                  for="transport"
+                  >교통</label
+                >
+                <input type="checkbox" id="living" checked /><label for="living"
+                  >생활</label
+                >
+                <input type="checkbox" id="culture" checked /><label
+                  for="culture"
+                  >문화·여가</label
+                >
+                <input type="checkbox" id="fixed" checked /><label for="fixed"
+                  >고정지출</label
+                >
+                <input type="checkbox" id="etc" checked /><label for="etc"
+                  >기타</label
+                >
+              </div>
+            </div>
           </div>
 
           <div class="form-row">
@@ -109,7 +139,6 @@
           </div>
           <p id="formError" class="form-error"></p>
         </form>
-
         <!-- 날짜별 기록 목록 -->
         <div class="record-list" id="recordList"></div>
 
@@ -233,9 +262,8 @@
               type="text"
               placeholder="소비에 대해 질문하세요..."
             />
-            <button onclick="sendAIQuestion()">전송</button>
+            <button id="ai-send-btn">전송</button>
           </div>
-          <ul id="chat-messages"></ul>
         </div>
       </section>
     </div>
@@ -249,6 +277,6 @@
     <script src="js/chart.js"></script>
     <script src="js/alarm.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/ai.js"></script>
+    <script type="module" src="./js/ai.js"></script>
   </body>
 </html>
