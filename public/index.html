@@ -99,30 +99,66 @@
             <!--필터링기능-->
             <div id="filter">
               <div>
-                <input type="checkbox" id="food" checked /><label for="food"
-                  >식비</label
-                >
-                <input type="checkbox" id="shopping" checked /><label
-                  for="shopping"
-                  >쇼핑</label
-                >
-                <input type="checkbox" id="transport" checked /><label
-                  for="transport"
-                  >교통</label
-                >
-                <input type="checkbox" id="living" checked /><label for="living"
-                  >생활</label
-                >
-                <input type="checkbox" id="culture" checked /><label
-                  for="culture"
-                  >문화·여가</label
-                >
-                <input type="checkbox" id="fixed" checked /><label for="fixed"
-                  >고정지출</label
-                >
-                <input type="checkbox" id="etc" checked /><label for="etc"
-                  >기타</label
-                >
+                <input type="checkbox" id="all" checked />
+                <label for="all">전체</label>
+
+                <input
+                  type="checkbox"
+                  id="food"
+                  class="categoryFilter"
+                  value="food"
+                />
+                <label for="food">식비</label>
+
+                <input
+                  type="checkbox"
+                  id="shopping"
+                  class="categoryFilter"
+                  value="shopping"
+                />
+                <label for="shopping">쇼핑</label>
+
+                <input
+                  type="checkbox"
+                  id="transport"
+                  class="categoryFilter"
+                  value="transport"
+                />
+                <label for="transport">교통</label>
+
+                <input
+                  type="checkbox"
+                  id="living"
+                  class="categoryFilter"
+                  value="living"
+                />
+                <label for="living">생활</label>
+
+                <!-- culture -> leisure 수정 -->
+                <input
+                  type="checkbox"
+                  id="culture"
+                  class="categoryFilter"
+                  value="leisure"
+                />
+                <label for="culture">문화·여가</label>
+
+                <input
+                  type="checkbox"
+                  id="fixed"
+                  class="categoryFilter"
+                  value="fixed"
+                />
+                <label for="fixed">고정지출</label>
+
+                <!-- etc -> other 수정 -->
+                <input
+                  type="checkbox"
+                  id="etc"
+                  class="categoryFilter"
+                  value="other"
+                />
+                <label for="etc">기타</label>
               </div>
             </div>
           </div>
@@ -274,6 +310,7 @@
     <script src="js/data.js"></script>
     <script src="js/calculate.js"></script>
     <script src="js/render.js"></script>
+    <script src="js/filter.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/alarm.js"></script>
     <script src="js/main.js"></script>

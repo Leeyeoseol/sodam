@@ -242,6 +242,7 @@ body {
   display: flex;
   gap: 10px;
   margin-bottom: 8px;
+  flex-wrap: wrap; /*반응형*/
 }
 
 .entry-form input,
@@ -298,9 +299,8 @@ body {
 #filter > div {
   display: flex;
   align-items: center;
-  gap: 8px; /* 체크박스 간의 간격 */
-  flex-wrap: wrap; /* 화면이 좁아지면 자연스럽게 줄바꿈 */
-  margin-left: 10px; /* 선택창들과의 최소 거리 두기 */
+  gap: 8px;
+  margin-left: 10px;
 }
 
 #filter input[type="checkbox"] {

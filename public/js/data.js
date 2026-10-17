@@ -5,7 +5,7 @@ var records = [];
 function saveRecords() {
   localStorage.setItem("sodam-records", JSON.stringify(records));
   // 데이터가 바뀔 때 차트도 새로고침
-  if (typeof createDoughnutChart === 'function') {
+  if (typeof createDoughnutChart === "function") {
     createDoughnutChart();
     createBarChart();
   }
@@ -37,7 +37,13 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
 
   const formError = document.getElementById("formError");
   //빈 값 찾기
-  if (!dateValue || !timeValue || !categoryValue || !amountValue || !contentValue.trim()) {
+  if (
+    !dateValue ||
+    !timeValue ||
+    !categoryValue ||
+    !amountValue ||
+    !contentValue.trim()
+  ) {
     formError.textContent = "모든 항목을 입력해주세요.";
     formError.classList.add("show");
     return;
@@ -56,7 +62,7 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   };
   records.push(newRecord);
   saveRecords();
-  renderList();
+  updateFilter();
   renderSummary();
   checkSpendingInsight(newRecord);
 

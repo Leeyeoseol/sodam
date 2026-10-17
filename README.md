@@ -1,62 +1,190 @@
-# sodam
+# SODAM
 
-## 2026 2학기 웹응용 가계부 프로젝트 레포지토리
+## 2026 2학기 웹응용 가계부 프로젝트
 
-### 프로젝트 구성
+### 프로젝트 소개
 
-- **팀원**: 2207 안지호, 2208 이여설
-- **주제**: 웹 기반 개인 지출 관리 서비스
-- **기술 스택**: HTML, CSS, JavaScript
-- **데이터 저장**: 브라우저 localStorage
+SODAM은 HTML, CSS, JavaScript를 활용하여 개발한 웹 기반 개인 가계부 서비스입니다.
 
-### 프로젝트 프로그램 설치방법
+수입과 지출을 기록하고, 월별 통계와 카테고리별 소비 현황을 확인할 수 있으며, AI 질문 기능을 통해 소비 내역을 분석할 수 있습니다.
 
-- 별도 설치 없이 브라우저에서 바로 실행 가능합니다.
-- `index.html` 파일을 열거나, 배포 주소로 접속하면 됩니다.
-- (AI 질문 기능은 Netlify 배포 환경에서만 정상 동작합니다. 로컬에서 `index.html`을 직접 열면 해당 기능은 작동하지 않을 수 있습니다.)
+---
 
-### 프로젝트 기획 개발 일정
+# 개발 환경
 
-- 1주차: 프로젝트 환경 구축, 파일 구조 설계, GitHub 저장소 설정
-- 2주차: 메인 화면 레이아웃 (사이드바 포함 틀)
-- 3주차: 지출/수입 기록 추가 폼 구현
-- 4주차: localStorage 연동, 기록 삭제
-- 5~6주차: 날짜별 그룹 목록 + 소계(기능 5) 계산
-- 7주차: 월별 접기/펼치기 섹션 + 월별 총액 표시
-- 8주차: 상단 월별 수입·지출·합계 요약 헤더
-- 9주차: 전월 대비 문장형 비교
-- 10주차: 카테고리별 색상 구분 + 원형그래프
-- 11주차: 전체 기능 통합 및 테스트, 오류 수정 ⬅️?
-- 12주차: 최종 점검, 발표 자료 제작, 발표 준비
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- Chart.js
+- Browser LocalStorage
+- Netlify Functions
+- OpenAI API
 
-(수정 가능) - AI 기능 추후 추가함
+---
 
-### 배포
+# 실행 방법
 
-- Netlify를 통해 배포합니다.
-- 정적 파일(HTML/CSS/JS)은 그대로 호스팅되고, AI 질문 기능은 Netlify Functions(`netlify/functions/ask-ai.js`)를 통해 서버 측에서 처리됩니다.
-- OpenAI API 키는 Netlify 대시보드의 환경변수(Environment variables)에 등록되어 있으며, 코드에는 포함되어 있지 않습니다.
+## 1. 배포 사이트 실행 (권장)
 
-### 프로젝트 프로그램 사용법
+배포 주소에 접속하면 별도의 설치 없이 바로 사용할 수 있습니다.
 
-- 좌측 사이드바에서 **가계부 / 통계** 화면을 전환할 수 있습니다.
-- **가계부**: 상단 폼에 날짜·시간·카테고리·금액·내용을 입력해 기록을 추가합니다.
-- **통계**: 카테고리 비율(도넛그래프)과 기간별 추이(막대그래프)를 확인할 수 있습니다.
-- **AI질문**: 가계부 데이터를 바탕으로 자연어 질문에 답변을 받을 수 있습니다.
+> 배포 주소  
+> (Netlify URL 입력)
 
-### 저작권 및 사용권 정보
+AI 질문 기능을 포함한 모든 기능을 사용할 수 있습니다.
 
-- 본 프로젝트는 학교 수업 과제로 제작되었습니다.
+---
 
-### 프로그래머 정보
+## 2. 로컬 실행
 
--
+프로젝트 폴더에서 `index.html` 파일을 실행하면 사용할 수 있습니다.
 
-### 버그 및 디버그
+단, AI 질문 기능은 Netlify Functions를 사용하므로 로컬 환경에서는 정상적으로 동작하지 않을 수 있습니다.
 
-- 발견된 버그나 이슈는 GitHub Issues에 등록해주세요.
+---
 
-### 참고 및 출처
+# 테스트 데이터 불러오기
+
+발표 및 시연을 위해 준비한 LocalStorage 데이터를 사용할 수 있습니다.
+
+### 사용 방법
+
+1. 브라우저에서 프로젝트를 실행합니다.
+2. 개발자도구(F12)를 엽니다.
+3. **Console** 탭을 선택합니다.
+4. 아래 코드의 `jsonData` 부분에 제공된 JSON 데이터를 붙여넣습니다.
+5. Enter를 누르면 데이터가 자동으로 저장되고 새로고침됩니다.
+
+```javascript
+(function () {
+  const jsonData = "여기에 JSON 데이터 붙여넣기";
+
+  try {
+    const content = JSON.parse(jsonData);
+
+    localStorage.clear();
+
+    for (const key in content) {
+      localStorage.setItem(key, content[key]);
+    }
+
+    alert("데이터가 정상적으로 불러와졌습니다.");
+    location.reload();
+  } catch (e) {
+    alert("JSON 형식을 다시 확인해주세요.");
+  }
+})();
+```
+
+---
+
+# 주요 기능
+
+## 가계부
+
+- 수입 및 지출 기록 추가
+- 기록 수정 및 삭제
+- 날짜별 내역 조회
+- 월별 수입·지출 합계 확인
+
+## 통계
+
+- 카테고리별 소비 비율(도넛 차트)
+- 기간별 소비 추이(막대 차트)
+- 월별 소비 통계 확인
+
+## AI 질문
+
+가계부 데이터를 기반으로 소비 내역을 분석하여 자연어 질문에 답변합니다.
+
+예시
+
+- 이번 달 식비를 얼마나 사용했어?
+- 가장 많이 지출한 카테고리는?
+- 소비 습관을 분석해줘.
+- 절약 방법을 알려줘.
+
+---
+
+# 테스트 환경
+
+정상 동작이 확인된 환경입니다.
+
+- Google Chrome
+- Microsoft Edge
+
+최신 Chromium 기반 브라우저 사용을 권장합니다.
+
+---
+
+# 환경 변수
+
+OpenAI API Key는 보안을 위해 코드에 포함되어 있지 않습니다.
+
+`.env.example`
+
+```env
+OPENAI_API_KEY=
+```
+
+실제 API Key는 Netlify 환경 변수(Environment Variables)에 등록하여 사용합니다.
+
+---
+
+# 프로젝트 구조
+
+```text
+sodam
+├── css/
+├── js/
+├── images/
+├── netlify/
+│   └── functions/
+├── index.html
+├── README.md
+├── .env.example
+├── package.json
+└── package-lock.json
+```
+
+---
+
+# 주의사항
+
+- 데이터는 브라우저 LocalStorage에 저장됩니다.
+- 브라우저 데이터를 삭제하면 저장된 가계부 데이터도 함께 삭제됩니다.
+- AI 질문 기능은 Netlify 배포 환경에서만 정상적으로 동작합니다.
+
+---
+
+# 개발자
+
+- 2207 안지호
+- 2208 이여설
+
+---
+
+# 저장소
+
+GitHub Repository
+
+(저장소 URL 입력)
+
+---
+
+# 배포
+
+Netlify
+
+(배포 URL 입력)
+
+---
+
+# 참고 자료
+
+- OpenAI API
+- Chart.js
+- Web Storage API(LocalStorage)
 
 - (참고 자료 URL)
 - oepn API 사용 : https://toyou101.tistory.com/28
@@ -68,40 +196,10 @@
     https://dev.mescius.co.kr/bbs/board.php?bo_table=wijmo_qna&wr_id=2085
     https://zizonemoi.tistory.com/82
     https://risha-lee.tistory.com/11
-
-### 버전 및 업데이트 정보 (X)
-
-### FAQ (X)
+- 체크박스 하나만 선택 : https://hianna.tistory.com/434
 
 ### git 커밋방법
 
 - git add .
 - git commit -m "자세한 설명"
 - git push
-
-### API 관련 상세설명
-
-- 수행평가 과제용으로 API key가 코드에 포함된 채 제출
-- 그 후 재발급 후 node.js, Netlify등을 사용해 배포 후 사용자에게 배포 예정
-- API는 한도 설정
-
-### 로컬 스토리지 시연 JSON 파일
-
-(function() {
-// ⚠️ 아래 따옴표 사이에 USB에서 복사한 텍스트를 붙여넣으세요.
-const jsonData = '여기다가 메모장 내용을 붙여넣으세요';
-
-    try {
-        const content = JSON.parse(jsonData);
-        localStorage.clear(); // 이전에 테스트했던 잔여 데이터 삭제
-
-        for (const key in content) {
-            localStorage.setItem(key, content[key]);
-        }
-        alert('데이터 주입 완료! 이제 안심하고 시연하세요.');
-        location.reload();
-    } catch (e) {
-        alert('데이터 복사가 잘못되었거나 형식이 올바르지 않습니다. 메모장 내용을 다시 확인해주세요.');
-    }
-
-})();

@@ -1,9 +1,13 @@
 //화면에 표시하고 불러오기
-function renderList() {
+function renderList(list = records) {
   const container = document.getElementById("recordList");
   container.innerHTML = ""; //지우고 다시 그리기
 
-  const currentMonthRecords = getRecordsOfMonth(records, now.getFullYear(), now.getMonth() + 1);
+  const currentMonthRecords = getRecordsOfMonth(
+    list,
+    now.getFullYear(),
+    now.getMonth() + 1,
+  );
 
   // 날짜별로 묶기
   const grouped = groupByDate(currentMonthRecords);
@@ -85,7 +89,8 @@ function renderList() {
       const amountText = document.createElement("span");
       amountText.className = "record-amount";
 
-      if (record.type === "income") { // category 대신 type으로 판단
+      if (record.type === "income") {
+        // category 대신 type으로 판단
         amountText.classList.add("income");
         amountText.textContent = "+" + record.amount.toLocaleString() + "원";
       } else {
@@ -103,7 +108,7 @@ function renderList() {
           return r.id !== record.id; // id로 지우기
         });
         saveRecords(); // 저장
-        renderList();
+        updateFilter(); //필터 유지
       });
 
       right.appendChild(amountText);
@@ -120,7 +125,7 @@ function renderList() {
     container.appendChild(details);
   });
   // 데이터가 바뀔 때 차트도 새로고침
-  if (typeof createDoughnutChart === 'function') {
+  if (typeof createDoughnutChart === "function") {
     createDoughnutChart();
     createBarChart();
   }
@@ -140,10 +145,17 @@ function groupByDate(recordArray) {
 
 //수입/지출/합계 보이게
 function renderSummary() {
-  const monthRecords = getRecordsOfMonth(records, now.getFullYear(), now.getMonth() + 1);
+  const monthRecords = getRecordsOfMonth(
+    records,
+    now.getFullYear(),
+    now.getMonth() + 1,
+  );
   const totals = calculateTotals(monthRecords);
 
-  document.getElementById("totalIncome").textContent = totals.income.toLocaleString();
-  document.getElementById("totalExpense").textContent = totals.expense.toLocaleString();
-  document.getElementById("totalBalance").textContent = totals.balance.toLocaleString();
+  document.getElementById("totalIncome").textContent =
+    totals.income.toLocaleString();
+  document.getElementById("totalExpense").textContent =
+    totals.expense.toLocaleString();
+  document.getElementById("totalBalance").textContent =
+    totals.balance.toLocaleString();
 }
