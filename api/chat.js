@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method Not Allowed" });
+    return res.status(405).json({ reply: "Method Not Allowed" });
   }
 
   try {
@@ -17,10 +17,10 @@ export default async function handler(req, res) {
       contents: prompt,
     });
 
-    const text =
+    const reply =
       typeof response.text === "function" ? response.text() : response.text;
 
-    res.status(200).json({ reply: text });
+    res.status(200).json({ reply });
   } catch (err) {
     console.error(err);
     res.status(500).json({
