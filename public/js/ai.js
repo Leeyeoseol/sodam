@@ -46,10 +46,6 @@ export async function sendAIQuestion(question) {
   chatBox.appendChild(loading);
 
   try {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === "여기에_Gemini_API_키") {
-      throw new Error("ai.js에 Gemini API 키를 설정해주세요.");
-    }
-
     // 최신 로컬스토리지 기록 읽기
     const expenses = getExpenses();
 
