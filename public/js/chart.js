@@ -578,8 +578,7 @@ function getMonthDailyExpense() {
   return dailyTotals;
 }
 
-// 지출 금액에 따라 색깔 진하기 정하기
-
+//색 진하기
 function getHeatColor(amount, maxAmount) {
   if (amount === 0) return "var(--bg)";
 
@@ -591,7 +590,6 @@ function getHeatColor(amount, maxAmount) {
   return "#fbe1e3";
 }
 
-// 소비 패턴 히트맵 그리기
 
 function createHeatmap() {
   const container = document.getElementById("heatmapGrid");

@@ -1,7 +1,3 @@
-//AI
-const GEMINI_API_KEY = "";
-const GEMINI_MODEL = "gemini-3-flash-preview";
-
 // 로컬스토리지에서 실제 가계부 기록 가져오기
 function getExpenses() {
   try {
@@ -79,36 +75,23 @@ ${JSON.stringify(expenses, null, 2)}
 사용자 질문:
 ${question}
 `;
-
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": GEMINI_API_KEY,
-        },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        prompt,
+      }),
+    });
 
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Gemini API 오류:", data);
-
-      if (response.status === 429) {
-        throw new Error("AI 이용량이 초과됐어요. 나중에 다시 이용해 주세요.");
-      }
-
-      throw new Error("AI 답변을 가져오지 못했어요.");
+      throw new Error(data.reply || "AI 오류");
     }
 
-    const answer = data.candidates?.[0]?.content?.parts
-      ?.map((part) => part.text || "")
-      .join("");
+    const answer = data.reply;
 
     if (!answer) {
       throw new Error("AI 답변을 받지 못했어요. 다시 시도해 주세요.");

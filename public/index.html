@@ -20,8 +20,6 @@
 
       <nav class="sidebar">
         <div class="logo">
-          <!-- <img src="img/logo.png" alt="Logo"> 로고가 꼭 필요한가??-->
-
           <div class="logo-text">
             <h2>소담가계부</h2>
             <p>SODAM</p>
@@ -95,72 +93,6 @@
             </select>
 
             <select id="inputCategory"></select>
-
-            <!--필터링기능-->
-            <div id="filter">
-              <div>
-                <input type="checkbox" id="all" checked />
-                <label for="all">전체</label>
-
-                <input
-                  type="checkbox"
-                  id="food"
-                  class="categoryFilter"
-                  value="food"
-                />
-                <label for="food">식비</label>
-
-                <input
-                  type="checkbox"
-                  id="shopping"
-                  class="categoryFilter"
-                  value="shopping"
-                />
-                <label for="shopping">쇼핑</label>
-
-                <input
-                  type="checkbox"
-                  id="transport"
-                  class="categoryFilter"
-                  value="transport"
-                />
-                <label for="transport">교통</label>
-
-                <input
-                  type="checkbox"
-                  id="living"
-                  class="categoryFilter"
-                  value="living"
-                />
-                <label for="living">생활</label>
-
-                <!-- culture -> leisure 수정 -->
-                <input
-                  type="checkbox"
-                  id="culture"
-                  class="categoryFilter"
-                  value="leisure"
-                />
-                <label for="culture">문화·여가</label>
-
-                <input
-                  type="checkbox"
-                  id="fixed"
-                  class="categoryFilter"
-                  value="fixed"
-                />
-                <label for="fixed">고정지출</label>
-
-                <!-- etc -> other 수정 -->
-                <input
-                  type="checkbox"
-                  id="etc"
-                  class="categoryFilter"
-                  value="other"
-                />
-                <label for="etc">기타</label>
-              </div>
-            </div>
           </div>
 
           <div class="form-row">
@@ -177,13 +109,6 @@
         </form>
         <!-- 날짜별 기록 목록 -->
         <div class="record-list" id="recordList"></div>
-
-        <!-- <div class="test">
-        <div class="test-btn">ai
-          <button class="close-btn" onclick="onTestBox()">버튼</button>
-        </div>
-        <div class="box">ai 들어갈 사각형 상자</div>
-      </div> -->
       </section>
       <!-- 통계 화면 -->
       <section id="stats" class="screen">
