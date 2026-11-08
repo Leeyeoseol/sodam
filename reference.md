@@ -101,3 +101,15 @@ ai.js 파일에 직접 제미나이 무료 api를 넣어 사용합니다
 - git add .
 - git commit -m "설명"
 - git push
+
+### Local Storage에서 데이터를 옮길때
+
+1. 기존 localStorage를 복사
+   로컬에서 개발자 도구(F12) → Console에서
+   `localStorage.getItem("sodam-records")`
+
+를 실행해서 나온 긴 문자열을 복사.
+
+2. 그다음 Vercel 사이트에서 F12 → Console에
+   `localStorage.setItem("sodam-records", '복사한문자열');`
+   `location.reload();`
