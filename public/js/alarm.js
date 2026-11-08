@@ -1,5 +1,4 @@
 // 알림 띄우기
-//여기다가 랜덤 메세지 넣기
 function showToast(message, type) {
   const container = document.getElementById("toastContainer");
   if (!container) return;
@@ -13,6 +12,7 @@ function showToast(message, type) {
   const closeBtn = document.createElement("button");
   closeBtn.className = "toast-close";
   closeBtn.textContent = "✕";
+
   closeBtn.addEventListener("click", function () {
     toast.remove();
   });
@@ -21,43 +21,26 @@ function showToast(message, type) {
   toast.appendChild(closeBtn);
   container.appendChild(toast);
 
-  playToastSound(); //소리재생
-
-  // 4초 뒤 자동으로 사라지기
+  // 4초 뒤 알림 제거
   setTimeout(function () {
     toast.remove();
   }, 4000);
 }
 
-// 알림 소리
-function playToastSound() {
-  try {
-    const audio = new (window.AudioContext || window.webkitAudioContext)();
-    const oscillator = audio.createOscillator();
-    const gainNode = audio.createGain();
-
-    oscillator.connect(gainNode);
-    gainNode.connect(audio.destination);
-
-    oscillator.frequency.value = 800;
-    gainNode.gain.value = 0.1;
-
-    oscillator.start();
-    oscillator.stop(audio.currentTime + 0.15);
-  } catch (e) {}
-}
-
-// 여러 버전 문구 중 하나 랜덤으로 고르기
+// 랜덤 문구 선택
 function pickRandom(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
-// 연속 며칠 기록했는지 계산
+// 연속 기록 일수 계산
 function getStreakDays() {
-  // 기록된 날짜들만 중복없이 뽑기
-  let dateSet = new Set();
-  records.forEach((r) => dateSet.add(r.date));
-  let dateList = Array.from(dateSet).sort().reverse(); // 최신순
+  let dateList = [];
+
+  for (let i = 0; i < records.length; i++) {
+    if (!dateList.includes(records[i].date)) {
+      dateList.push(records[i].date);
+    }
+  }
 
   let streak = 0;
   let checkDate = new Date();
@@ -77,18 +60,19 @@ function getStreakDays() {
       break;
     }
   }
+
   return streak;
 }
 
-// 지출/수입 입력하고 계산해서 알림 띄우기
+// 지출 / 수입 알림
 function checkSpendingInsight(record) {
-  // 수입 입력했을 때
+  // 수입 입력
   if (record.type === "income") {
     showToast(
       pickRandom([
-        "수입이 들어왔어요! 💰",
-        "수입 기록 완료했어요",
-        "좋은 소식이네요, 수입 추가됐어요",
+        "수입 기록이 저장되었습니다.",
+        "수입 내역이 추가되었습니다.",
+        "수입 등록이 완료되었습니다.",
       ]),
       "success",
     );
@@ -98,96 +82,134 @@ function checkSpendingInsight(record) {
   const thisYear = now.getFullYear();
   const thisMonth = now.getMonth();
 
-  // 이번달 이 카테고리 지출 합계
+  // 이번 달 카테고리 지출 합계
   const thisMonthRecords = getRecordsOfMonth(records, thisYear, thisMonth + 1);
+
   let thisMonthCategoryTotal = 0;
   let categoryRecordCount = 0;
-  thisMonthRecords.forEach((r) => {
+
+  for (let i = 0; i < thisMonthRecords.length; i++) {
+    const r = thisMonthRecords[i];
+
     if (r.type === "expense" && r.category === record.category) {
       thisMonthCategoryTotal += Number(r.amount) || 0;
       categoryRecordCount++;
     }
-  });
+  }
 
-  // 지난달 같은 카테고리 지출 합계
+  // 지난달 카테고리 지출 합계
   let lastMonth = thisMonth - 1;
   let lastMonthYear = thisYear;
+
   if (lastMonth < 0) {
     lastMonth = 11;
-    lastMonthYear = thisYear - 1;
+    lastMonthYear--;
   }
+
   const lastMonthRecords = getRecordsOfMonth(
     records,
     lastMonthYear,
     lastMonth + 1,
   );
+
   let lastMonthCategoryTotal = 0;
-  lastMonthRecords.forEach((r) => {
+
+  for (let i = 0; i < lastMonthRecords.length; i++) {
+    const r = lastMonthRecords[i];
+
     if (r.type === "expense" && r.category === record.category) {
       lastMonthCategoryTotal += Number(r.amount) || 0;
     }
-  });
+  }
 
+  // 카테고리 이름 가져오기
   const categoryInfo = STAT_CATEGORIES.find((c) => c.key === record.category);
+
   const categoryLabel = categoryInfo ? categoryInfo.label : "지출";
 
-  // 오늘 지출 / 하루 평균 계산
+  // 하루 지출 합계
   let dayTotals = {};
-  thisMonthRecords.forEach((r) => {
-    if (r.type !== "expense") return;
-    if (!dayTotals[r.date]) dayTotals[r.date] = 0;
-    dayTotals[r.date] += Number(r.amount) || 0;
-  });
-  const totalExpense = Object.values(dayTotals).reduce((a, b) => a + b, 0);
-  const spentDayCount = Object.keys(dayTotals).length;
+
+  for (let i = 0; i < thisMonthRecords.length; i++) {
+    const r = thisMonthRecords[i];
+
+    if (r.type === "expense") {
+      if (!dayTotals[r.date]) {
+        dayTotals[r.date] = 0;
+      }
+
+      dayTotals[r.date] += Number(r.amount) || 0;
+    }
+  }
+
+  let totalExpense = 0;
+  let spentDayCount = 0;
+
+  for (let date in dayTotals) {
+    totalExpense += dayTotals[date];
+    spentDayCount++;
+  }
+
   const avgPerDay = spentDayCount > 0 ? totalExpense / spentDayCount : 0;
+
   const todayTotal = dayTotals[record.date] || 0;
 
+  // 지난달보다 지출이 많은 경우
   if (
     lastMonthCategoryTotal > 0 &&
     thisMonthCategoryTotal > lastMonthCategoryTotal
   ) {
     const diff = thisMonthCategoryTotal - lastMonthCategoryTotal;
+
     showToast(
-      `이번 달 ${categoryLabel}, 지난달보다 벌써 ${formatMoney(diff)} 더 썼어요`,
+      `${categoryLabel} 지출이 전월보다 ${formatMoney(diff)} 증가했습니다.`,
       "warning",
     );
     return;
   }
-x 
+
+  // 하루 평균보다 지출이 많은 경우
   if (avgPerDay > 0 && todayTotal > avgPerDay * 1.5) {
     showToast(
-      `오늘 지출이 하루 평균(${formatMoney(Math.round(avgPerDay))})보다 많아요`,
+      `오늘 지출이 일평균 지출(${formatMoney(Math.round(avgPerDay))})을 초과했습니다.`,
       "warning",
     );
     return;
   }
 
+  // 이번 달 첫 카테고리 지출
   if (categoryRecordCount === 1) {
-    showToast(`이번 달 첫 ${categoryLabel} 지출이에요`, "success");
+    showToast(`이번 달 첫 ${categoryLabel} 지출이 등록되었습니다.`, "success");
     return;
   }
 
+  // 하루 평균보다 지출이 적은 경우
   if (avgPerDay > 0 && todayTotal < avgPerDay * 0.5) {
     showToast(
       pickRandom([
-        "오늘 절약 잘하고 계세요 👍",
-        "오늘은 지출이 적네요, 좋아요!",
-        "알뜰하게 쓰고 계시네요",
+        "오늘 지출이 평균보다 적습니다.",
+        "지출 금액이 안정적으로 유지되고 있습니다.",
+        "소비 절감 상태입니다.",
       ]),
       "success",
     );
     return;
   }
 
+  // 연속 기록 확인
   const streak = getStreakDays();
+
   if (streak >= 3) {
-    showToast(`${streak}일 연속 기록 중이에요! 🔥`, "success");
+    showToast(`${streak}일 연속 기록이 유지되고 있습니다.`, "success");
     return;
   }
 
   showToast(
-    pickRandom(["저장했어요", "기록 완료!", "잘 기록했어요"]),
+    pickRandom([
+      "지출 내역이 저장되었습니다.",
+      "기록이 정상적으로 등록되었습니다.",
+      "저장이 완료되었습니다.",
+    ]),
     "success",
   );
 }

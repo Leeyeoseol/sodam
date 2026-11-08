@@ -544,15 +544,16 @@ details:not([open]) > .day-header {
 .stats-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 28px;
+  gap: 20px;
+  margin-bottom: 32px;
 }
 
 .stats-summary-item {
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 14px 16px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 12px 4px;
   min-width: 0;
 }
 
@@ -565,45 +566,27 @@ details:not([open]) > .day-header {
 
 .stats-summary-item strong {
   display: block;
-  font-size: 15px;
-  font-weight: 550;
+  font-size: 16px;
+  font-weight: 600;
   letter-spacing: -0.2px;
   line-height: 1.4;
-}
-
-.stats-income {
-  color: var(--income);
-}
-
-.stats-expense {
-  color: var(--expense);
-}
-
-.stats-balance {
-  color: var(--ink);
-}
-
-.stats-balance.positive {
-  color: var(--ink);
-}
-
-.stats-balance.negative {
-  color: var(--expense);
 }
 
 /* 카테고리 통계 */
 .stats-layout {
   display: flex;
   align-items: center;
-  gap: 48px;
+  gap: 40px;
   background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 28px 32px;
+  border: none;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 28px 16px;
   min-height: 310px;
 }
 
-/* 도넛 */
+/* 도넛 차트 */
 .doughnut-wrap {
   position: relative;
   width: 270px;
@@ -621,7 +604,7 @@ details:not([open]) > .day-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 13px 0;
+  padding: 13px 4px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -629,71 +612,11 @@ details:not([open]) > .day-header {
   border-bottom: none;
 }
 
-.stat-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.stat-dot.food {
-  background: var(--cat-food);
-}
-
-.stat-dot.shopping {
-  background: var(--cat-shop);
-}
-
-.stat-dot.transport {
-  background: var(--cat-transport);
-}
-
-.stat-dot.living {
-  background: var(--cat-living);
-}
-
-.stat-dot.leisure {
-  background: var(--cat-leisure);
-}
-
-.stat-dot.fixed {
-  background: var(--cat-fixed);
-}
-
-.stat-dot.income {
-  background: var(--income);
-}
-
-.stat-dot.other {
-  background: var(--cat-other);
-}
-
-.stat-name {
-  flex: 1;
-  min-width: 0;
-  font-size: 13.5px;
-}
-
-.stat-pct {
-  width: 40px;
-  text-align: right;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-
-.stat-amount {
-  width: 95px;
-  text-align: right;
-  font-size: 13px;
-  color: var(--ink-soft);
-}
-
-/* 막대 그래프 */
+/* 통계 그래프 */
 .bar-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
 }
 
 .bar-item {
@@ -702,158 +625,91 @@ details:not([open]) > .day-header {
   gap: 12px;
 }
 
-.bar-label {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  width: 90px;
-  font-size: 12.5px;
-  flex-shrink: 0;
-}
-
 .bar-track {
   flex: 1;
-  height: 10px;
-  background: var(--bg);
-  border-radius: 999px;
+  height: 8px;
+  background: #f0f0f2;
+  border-radius: 2px;
   overflow: hidden;
 }
 
 .bar-fill {
   height: 100%;
-  border-radius: 999px;
-}
-
-.bar-fill.food {
-  background: var(--cat-food);
-}
-
-.bar-fill.shopping {
-  background: var(--cat-shop);
-}
-
-.bar-fill.transport {
-  background: var(--cat-transport);
-}
-
-.bar-fill.living {
-  background: var(--cat-living);
-}
-
-.bar-fill.leisure {
-  background: var(--cat-leisure);
-}
-
-.bar-fill.fixed {
-  background: var(--cat-fixed);
-}
-
-.bar-fill.other {
-  background: var(--cat-other);
-}
-
-.bar-amount {
-  width: 80px;
-  text-align: right;
-  font-size: 12.5px;
-  color: var(--ink-soft);
-  flex-shrink: 0;
-}
-
-.bar-controls {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 16px;
+  border-radius: 2px;
 }
 
 /* 기간 버튼 */
 .period-toggle {
   display: flex;
   align-items: center;
-  background: var(--bg);
-  border-radius: 8px;
-  padding: 3px;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 0;
   flex-shrink: 0;
 }
 
 .period-btn {
   border: none;
   background: transparent;
-  padding: 7px 12px;
-  font-size: 11.5px;
+  padding: 8px 12px;
+  font-size: 12px;
   color: var(--ink-soft);
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
 }
 
 .period-btn.active {
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  box-shadow: inset 0 -2px var(--ink);
 }
 
-/* 세그먼트 버튼 */
+/* 통계 메뉴 */
 .segment-group {
   display: flex;
-  background: var(--bg);
-  border-radius: 10px;
-  padding: 3px;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 0;
   margin-bottom: 24px;
   width: fit-content;
 }
 
 .segment-btn {
   border: none;
-  background: none;
-  padding: 7px 14px;
+  background: transparent;
+  padding: 9px 14px;
   font-size: 12.5px;
   font-weight: 500;
   color: var(--ink-soft);
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
 }
 
 .segment-btn.active {
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
-}
-
-.stat-view {
-  display: none;
-}
-
-.stat-view.active {
-  display: block;
+  font-weight: 600;
+  box-shadow: inset 0 -2px var(--ink);
 }
 
 /* 카테고리 필터 */
-.category-filter {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 18px;
-}
-
 .filter-chip {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-
   border: 1px solid var(--line);
   background: var(--surface);
   color: var(--ink-soft);
-
-  border-radius: 999px;
-  padding: 7px 11px;
+  border-radius: 4px;
+  padding: 6px 10px;
   font-size: 11.5px;
   cursor: pointer;
-
   transition:
-    background 0.15s ease,
-    color 0.15s ease,
-    border-color 0.15s ease;
+    background 0.15s,
+    color 0.15s;
 }
 
 .filter-chip:hover {
@@ -866,59 +722,15 @@ details:not([open]) > .day-header {
   color: #fff;
 }
 
-.filter-chip .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-}
-
-/* 카테고리 색상 */
-.filter-chip .dot.food {
-  background: var(--cat-food);
-}
-
-.filter-chip .dot.shopping {
-  background: var(--cat-shop);
-}
-
-.filter-chip .dot.transport {
-  background: var(--cat-transport);
-}
-
-.filter-chip .dot.living {
-  background: var(--cat-living);
-}
-
-.filter-chip .dot.leisure {
-  background: var(--cat-leisure);
-}
-
-.filter-chip .dot.fixed {
-  background: var(--cat-fixed);
-}
-
-.filter-chip .dot.other {
-  background: var(--cat-other);
-}
-
-/* 활성화된 칩에서는 점을 흰색으로 (위 색상 규칙보다 뒤에 있어야 함) */
-.filter-chip.active .dot {
-  background: #fff;
-}
-
 /* 소비 추이 그래프 */
 .trend-chart-wrap {
   position: relative;
   width: 100%;
   height: 340px;
-
   background: var(--surface);
-
   border: 1px solid var(--line);
-  border-radius: 14px;
-
+  border-radius: 4px;
   padding: 24px 26px;
-
   box-sizing: border-box;
 }
 
@@ -926,33 +738,17 @@ details:not([open]) > .day-header {
 .heatmap-wrap {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 4px;
   padding: 16px 18px;
   max-width: 360px;
 }
 
-.heatmap-weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 8px;
-}
-
-.heatmap-weekdays span {
-  text-align: center;
-  font-size: 11px;
-  color: var(--ink-mute);
-}
-
-.heatmap-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-}
-
 .heatmap-cell {
-  aspect-ratio: 1;
+  width: 100%;
   max-width: 40px;
-  border-radius: 6px;
+  aspect-ratio: 1 / 1;
+  min-width: 0;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -963,6 +759,29 @@ details:not([open]) > .day-header {
 
 .heatmap-cell.empty {
   background: transparent;
+}
+/* 달력 카테고리 색상 범례 */
+.heatmap-legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.heatmap-legend > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+/* 달력 날짜 배치 */
+#heatmapGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  justify-items: center;
 }
 
 /* 대시보드 */

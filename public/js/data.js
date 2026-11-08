@@ -62,7 +62,6 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   };
   records.push(newRecord);
   saveRecords();
-  updateFilter();
   renderSummary();
   checkSpendingInsight(newRecord);
 

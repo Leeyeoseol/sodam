@@ -44,5 +44,4 @@ document
   });
 
 loadRecords();
-updateFilter();
 renderSummary();

@@ -11,16 +11,20 @@ const STAT_CATEGORIES = [
   { key: "other", label: "기타", color: "#98989d" },
 ];
 
-const CATEGORY_LABELS = STAT_CATEGORIES.map((category) => category.label);
-const CATEGORY_COLORS = STAT_CATEGORIES.map((category) => category.color);
+let CATEGORY_LABELS = [];
+let CATEGORY_COLORS = [];
+
+for (let i = 0; i < STAT_CATEGORIES.length; i++) {
+  CATEGORY_LABELS.push(STAT_CATEGORIES[i].label);
+  CATEGORY_COLORS.push(STAT_CATEGORIES[i].color);
+}
 
 // 금액 표시
 function formatMoney(amount) {
   return Number(amount || 0).toLocaleString() + "원";
 }
 
-//그 달의 카테고리 지출
-
+// 카테고리별 지출
 function getCategoryExpenseData() {
   const monthRecords = getRecordsOfMonth(
     records,
@@ -28,7 +32,7 @@ function getCategoryExpenseData() {
     now.getMonth() + 1,
   );
 
-  const categories = {
+  let categories = {
     food: 0,
     shopping: 0,
     transport: 0,
@@ -38,20 +42,27 @@ function getCategoryExpenseData() {
     other: 0,
   };
 
-  monthRecords.forEach((record) => {
+  for (let i = 0; i < monthRecords.length; i++) {
+    let record = monthRecords[i];
+
     if (
       record.type === "expense" &&
-      Object.prototype.hasOwnProperty.call(categories, record.category)
+      categories[record.category] !== undefined
     ) {
       categories[record.category] += Number(record.amount) || 0;
     }
-  });
+  }
 
-  return STAT_CATEGORIES.map((category) => categories[category.key]);
+  let result = [];
+
+  for (let i = 0; i < STAT_CATEGORIES.length; i++) {
+    result.push(categories[STAT_CATEGORIES[i].key]);
+  }
+
+  return result;
 }
 
-//도넛 차트
-
+// 도넛 차트
 function createDoughnutChart() {
   const canvas = document.getElementById("doughnutChart");
   if (!canvas) return;
@@ -62,12 +73,11 @@ function createDoughnutChart() {
   if (doughnutChartInstance) {
     doughnutChartInstance.destroy();
   }
+
   doughnutChartInstance = new Chart(context, {
     type: "doughnut",
-
     data: {
       labels: CATEGORY_LABELS,
-
       datasets: [
         {
           data: expenseData,
@@ -78,12 +88,10 @@ function createDoughnutChart() {
         },
       ],
     },
-
     options: {
       responsive: true,
       maintainAspectRatio: false,
-      cutout: "48%", //도넛 두께
-
+      cutout: "48%",
       plugins: {
         legend: {
           display: false,
@@ -91,56 +99,53 @@ function createDoughnutChart() {
         tooltip: {
           callbacks: {
             label: function (context) {
-              const value = context.raw || 0;
-              return " " + formatMoney(value);
+              return " " + formatMoney(context.raw || 0);
             },
           },
         },
       },
     },
   });
+
   renderCategoryList(CATEGORY_LABELS, CATEGORY_COLORS, expenseData);
 }
 
-// 도넛 차트 오른 카테고리 목록
-
+// 도넛 차트 옆 카테고리 목록
 function renderCategoryList(labels, colors, dataArray) {
   const container = document.getElementById("statList");
   if (!container) return;
-  container.innerHTML = "";
-  const total = dataArray.reduce((sum, value) => sum + Number(value || 0), 0);
 
-  labels.forEach((label, index) => {
-    const amount = Number(dataArray[index] || 0);
-    const percentage = total > 0 ? Math.round((amount / total) * 100) : 0;
+  container.innerHTML = "";
+
+  let total = 0;
+
+  for (let i = 0; i < dataArray.length; i++) {
+    total += Number(dataArray[i]) || 0;
+  }
+
+  for (let i = 0; i < labels.length; i++) {
+    let amount = Number(dataArray[i]) || 0;
+    let percentage = 0;
+
+    if (total > 0) {
+      percentage = Math.round((amount / total) * 100);
+    }
 
     const row = document.createElement("div");
     row.className = "stat-row";
 
     row.innerHTML = `
-            <span
-                class="stat-dot"
-                style="background: ${colors[index]}"
-            ></span>
+      <span class="stat-dot" style="background: ${colors[i]}"></span>
+      <span class="stat-name">${labels[i]}</span>
+      <span class="stat-pct">${percentage}%</span>
+      <span class="stat-amount">${formatMoney(amount)}</span>
+    `;
 
-            <span class="stat-name">
-                ${label}
-            </span>
-
-            <span class="stat-pct">
-                ${percentage}%
-            </span>
-
-            <span class="stat-amount">
-                ${formatMoney(amount)}
-            </span>
-        `;
     container.appendChild(row);
-  });
+  }
 }
 
-//통계 요약
-
+// 통계 요약
 function renderStatisticsSummary() {
   const monthRecords = getRecordsOfMonth(
     records,
@@ -150,14 +155,17 @@ function renderStatisticsSummary() {
 
   let income = 0;
   let expense = 0;
-  monthRecords.forEach((record) => {
-    const amount = Number(record.amount) || 0;
+
+  for (let i = 0; i < monthRecords.length; i++) {
+    let record = monthRecords[i];
+    let amount = Number(record.amount) || 0;
+
     if (record.type === "income") {
       income += amount;
     } else {
       expense += amount;
     }
-  });
+  }
 
   const balance = income - expense;
 
@@ -177,6 +185,7 @@ function renderStatisticsSummary() {
     balanceElement.textContent = formatMoney(balance);
 
     balanceElement.classList.remove("positive", "negative");
+
     if (balance >= 0) {
       balanceElement.classList.add("positive");
     } else {
@@ -185,8 +194,7 @@ function renderStatisticsSummary() {
   }
 }
 
-// 이번 달 분석 문장 (가장 많이 쓴 날 / 하루 평균 / 가장 많이 쓴 카테고리)
-
+// 이번 달 분석
 function renderAnalysisSummary() {
   const monthRecords = getRecordsOfMonth(
     records,
@@ -194,46 +202,78 @@ function renderAnalysisSummary() {
     now.getMonth() + 1,
   );
 
-  // 날짜별 지출 합계 구하기
+  // 날짜별 지출 합계
   let dayTotals = {};
-  monthRecords.forEach((record) => {
-    if (record.type !== "expense") return;
-    if (!dayTotals[record.date]) dayTotals[record.date] = 0;
-    dayTotals[record.date] += Number(record.amount) || 0;
-  });
 
-  // 가장 많이 쓴 날 찾기
+  for (let i = 0; i < monthRecords.length; i++) {
+    let record = monthRecords[i];
+
+    if (record.type !== "expense") continue;
+
+    if (!dayTotals[record.date]) {
+      dayTotals[record.date] = 0;
+    }
+
+    dayTotals[record.date] += Number(record.amount) || 0;
+  }
+
+  // 가장 많이 쓴 날
   let maxDate = null;
   let maxAmount = 0;
+  let totalExpense = 0;
+  let spentDayCount = 0;
+
   for (let date in dayTotals) {
-    if (dayTotals[date] > maxAmount) {
-      maxAmount = dayTotals[date];
+    let amount = dayTotals[date];
+
+    totalExpense += amount;
+    spentDayCount++;
+
+    if (amount > maxAmount) {
+      maxAmount = amount;
       maxDate = date;
     }
   }
 
-  // 하루 평균 지출 (지출 있었던 날 기준)
-  const totalExpense = Object.values(dayTotals).reduce((a, b) => a + b, 0);
-  const spentDayCount = Object.keys(dayTotals).length;
-  const avgPerDay = spentDayCount > 0 ? totalExpense / spentDayCount : 0;
+  let avgPerDay = 0;
+
+  if (spentDayCount > 0) {
+    avgPerDay = totalExpense / spentDayCount;
+  }
 
   // 가장 많이 쓴 카테고리
   let categoryTotals = {};
-  monthRecords.forEach((record) => {
-    if (record.type !== "expense") return;
-    if (!categoryTotals[record.category]) categoryTotals[record.category] = 0;
+
+  for (let i = 0; i < monthRecords.length; i++) {
+    let record = monthRecords[i];
+
+    if (record.type !== "expense") continue;
+
+    if (!categoryTotals[record.category]) {
+      categoryTotals[record.category] = 0;
+    }
+
     categoryTotals[record.category] += Number(record.amount) || 0;
-  });
+  }
 
   let maxCategory = null;
   let maxCategoryAmount = 0;
-  for (let cat in categoryTotals) {
-    if (categoryTotals[cat] > maxCategoryAmount) {
-      maxCategoryAmount = categoryTotals[cat];
-      maxCategory = cat;
+
+  for (let category in categoryTotals) {
+    if (categoryTotals[category] > maxCategoryAmount) {
+      maxCategoryAmount = categoryTotals[category];
+      maxCategory = category;
     }
   }
-  const categoryInfo = STAT_CATEGORIES.find((c) => c.key === maxCategory);
+
+  let categoryInfo = null;
+
+  for (let i = 0; i < STAT_CATEGORIES.length; i++) {
+    if (STAT_CATEGORIES[i].key === maxCategory) {
+      categoryInfo = STAT_CATEGORIES[i];
+      break;
+    }
+  }
 
   // 화면에 표시
   const text1 = document.getElementById("analysisText");
@@ -241,9 +281,11 @@ function renderAnalysisSummary() {
   const text3 = document.getElementById("analysisText3");
 
   if (text1) {
-    text1.textContent = maxDate
-      ? `이번달 가장 많이 지출한 날은 ${maxDate.slice(8, 10)}일, ${formatMoney(maxAmount)} 썼어요`
-      : "이번달 지출 기록이 없어요";
+    if (maxDate) {
+      text1.textContent = `이번달 가장 많이 지출한 날은 ${maxDate.slice(8, 10)}일, ${formatMoney(maxAmount)} 썼어요`;
+    } else {
+      text1.textContent = "이번달 지출 기록이 없어요";
+    }
   }
 
   if (text2) {
@@ -251,23 +293,18 @@ function renderAnalysisSummary() {
   }
 
   if (text3) {
-    text3.textContent = categoryInfo
-      ? `이번 달은 ${categoryInfo.label}에 가장 많이 썼어요 (${formatMoney(maxCategoryAmount)})`
-      : "이번달 지출 기록이 없어요";
+    if (categoryInfo) {
+      text3.textContent = `이번 달은 ${categoryInfo.label}에 가장 많이 썼어요 (${formatMoney(maxCategoryAmount)})`;
+    } else {
+      text3.textContent = "이번달 지출 기록이 없어요";
+    }
   }
 }
 
-//기간 계산하는거
-
+// 기간 계산
 function getMonthList(period) {
   const result = [];
   const endDate = new Date(now.getFullYear(), now.getMonth(), 1);
-  let startMonth;
-  if (period === "1y") {
-    startMonth = 0;
-  } else {
-    startMonth = Math.max(0, endDate.getMonth() - 5);
-  }
 
   if (period === "1y") {
     for (let month = 0; month <= endDate.getMonth(); month++) {
@@ -279,78 +316,104 @@ function getMonthList(period) {
   } else {
     for (let i = 5; i >= 0; i--) {
       const date = new Date(endDate.getFullYear(), endDate.getMonth() - i, 1);
+
       result.push({
         year: date.getFullYear(),
         month: date.getMonth(),
       });
     }
   }
+
   return result;
 }
 
-// 월별 수입/지출
-
+// 월별 수입 / 지출
 function getMonthlyTotals(period) {
   const months = getMonthList(period);
-  return months.map((item) => {
+  let result = [];
+
+  for (let i = 0; i < months.length; i++) {
+    let item = months[i];
+
     const monthRecords = getRecordsOfMonth(records, item.year, item.month + 1);
 
     let income = 0;
     let expense = 0;
-    monthRecords.forEach((record) => {
-      const amount = Number(record.amount) || 0;
+
+    for (let j = 0; j < monthRecords.length; j++) {
+      let record = monthRecords[j];
+      let amount = Number(record.amount) || 0;
+
       if (record.type === "income") {
         income += amount;
       } else {
         expense += amount;
       }
-    });
-    return {
+    }
+
+    result.push({
       year: item.year,
       month: item.month,
       income: income,
       expense: expense,
-    };
-  });
+    });
+  }
+
+  return result;
 }
 
 // 월별 카테고리 지출
 function getMonthlyCategoryTotals(period, category) {
   const months = getMonthList(period);
-  return months.map((item) => {
+  let result = [];
+
+  for (let i = 0; i < months.length; i++) {
+    let item = months[i];
+
     const monthRecords = getRecordsOfMonth(records, item.year, item.month + 1);
+
     let total = 0;
-    monthRecords.forEach((record) => {
+
+    for (let j = 0; j < monthRecords.length; j++) {
+      let record = monthRecords[j];
+
       if (record.type === "expense" && record.category === category) {
         total += Number(record.amount) || 0;
       }
-    });
+    }
 
-    return total;
-  });
+    result.push(total);
+  }
+
+  return result;
 }
 
 // 월 이름
-
 function getMonthLabels(period) {
   const months = getMonthList(period);
-  return months.map((item) => {
-    return `${item.month + 1}월`;
-  });
+  let labels = [];
+
+  for (let i = 0; i < months.length; i++) {
+    labels.push(months[i].month + 1 + "월");
+  }
+
+  return labels;
 }
 
-// 월별 소비
-
+// 월별 소비 그래프
 function createBarChart() {
   const canvas = document.getElementById("barChart");
   if (!canvas) return;
 
   const context = canvas.getContext("2d");
+
   const activePeriodButton = document.querySelector(".period-btn.active");
   const period = activePeriodButton?.dataset.period || "6m";
+
   const activeCategoryChip = document.querySelector(
     "#barCategoryFilter .filter-chip.active",
   );
+
   const category = activeCategoryChip?.dataset.cat || "all";
 
   if (barChartInstance) {
@@ -358,9 +421,19 @@ function createBarChart() {
   }
 
   const labels = getMonthLabels(period);
-  // 전체
+
+  // 전체 수입 / 지출
   if (category === "all") {
     const monthlyData = getMonthlyTotals(period);
+
+    let incomeData = [];
+    let expenseData = [];
+
+    for (let i = 0; i < monthlyData.length; i++) {
+      incomeData.push(monthlyData[i].income);
+      expenseData.push(monthlyData[i].expense);
+    }
+
     barChartInstance = new Chart(context, {
       type: "bar",
       data: {
@@ -368,7 +441,7 @@ function createBarChart() {
         datasets: [
           {
             label: "수입",
-            data: monthlyData.map((item) => item.income),
+            data: incomeData,
             backgroundColor: "#0071e3",
             borderRadius: 5,
             barPercentage: 0.65,
@@ -376,8 +449,7 @@ function createBarChart() {
           },
           {
             label: "지출",
-            data: monthlyData.map((item) => item.expense),
-
+            data: expenseData,
             backgroundColor: "#d7263d",
             borderRadius: 5,
             barPercentage: 0.65,
@@ -389,20 +461,37 @@ function createBarChart() {
     });
   }
 
-  //카테고리
+  // 카테고리별 지출
   else {
     const categoryData = getMonthlyCategoryTotals(period, category);
-    const categoryInfo = STAT_CATEGORIES.find((item) => item.key === category);
+
+    let categoryInfo = null;
+
+    for (let i = 0; i < STAT_CATEGORIES.length; i++) {
+      if (STAT_CATEGORIES[i].key === category) {
+        categoryInfo = STAT_CATEGORIES[i];
+        break;
+      }
+    }
+
+    let color = "#0071e3";
+    let label = "지출";
+
+    if (categoryInfo) {
+      color = categoryInfo.color;
+      label = categoryInfo.label;
+    }
+
     barChartInstance = new Chart(context, {
       type: "line",
       data: {
         labels: labels,
         datasets: [
           {
-            label: categoryInfo ? categoryInfo.label : "지출",
+            label: label,
             data: categoryData,
-            borderColor: categoryInfo?.color || "#0071e3",
-            backgroundColor: categoryInfo?.color || "#0071e3",
+            borderColor: color,
+            backgroundColor: color,
             borderWidth: 3,
             pointRadius: 4,
             pointHoverRadius: 6,
@@ -416,7 +505,7 @@ function createBarChart() {
   }
 }
 
-//막대 그래프
+// 막대 그래프 설정
 function getBarChartOptions() {
   return {
     responsive: true,
@@ -425,7 +514,6 @@ function getBarChartOptions() {
       mode: "index",
       intersect: false,
     },
-
     plugins: {
       legend: {
         display: true,
@@ -465,7 +553,6 @@ function getBarChartOptions() {
       },
       y: {
         beginAtZero: true,
-
         border: {
           display: false,
         },
@@ -481,6 +568,7 @@ function getBarChartOptions() {
             if (value >= 10000) {
               return value / 10000 + "만";
             }
+
             return value;
           },
         },
@@ -489,8 +577,7 @@ function getBarChartOptions() {
   };
 }
 
-// 선 그래프
-
+// 선 그래프 설정
 function getLineChartOptions() {
   return {
     responsive: true,
@@ -536,6 +623,7 @@ function getLineChartOptions() {
             if (value >= 10000) {
               return value / 10000 + "만";
             }
+
             return value;
           },
         },
@@ -544,20 +632,19 @@ function getLineChartOptions() {
   };
 }
 
-// 이번 달 며칠까지 있는지
-
+// 이번 달 날짜 수
 function getDaysInMonth(year, month) {
   return new Date(year, month + 1, 0).getDate();
 }
 
-// 이번 달 날짜별 지출 계산
-
+// 날짜별 지출 계산
 function getMonthDailyExpense() {
   const year = now.getFullYear();
   const month = now.getMonth();
   const daysInMonth = getDaysInMonth(year, month);
 
   let dailyTotals = [];
+
   for (let day = 1; day <= daysInMonth; day++) {
     const dateStr =
       year +
@@ -567,18 +654,25 @@ function getMonthDailyExpense() {
       String(day).padStart(2, "0");
 
     let total = 0;
-    records.forEach((record) => {
+
+    for (let i = 0; i < records.length; i++) {
+      let record = records[i];
+
       if (record.type === "expense" && record.date === dateStr) {
         total += Number(record.amount) || 0;
       }
-    });
+    }
 
-    dailyTotals.push({ day: day, amount: total });
+    dailyTotals.push({
+      day: day,
+      amount: total,
+    });
   }
+
   return dailyTotals;
 }
 
-//색 진하기
+// 히트맵 색상
 function getHeatColor(amount, maxAmount) {
   if (amount === 0) return "var(--bg)";
 
@@ -587,10 +681,11 @@ function getHeatColor(amount, maxAmount) {
   if (ratio > 0.75) return "#d7263d";
   if (ratio > 0.5) return "#e2828a";
   if (ratio > 0.25) return "#f3b7bc";
+
   return "#fbe1e3";
 }
 
-
+// 히트맵 만들기
 function createHeatmap() {
   const container = document.getElementById("heatmapGrid");
   if (!container) return;
@@ -599,62 +694,71 @@ function createHeatmap() {
 
   const year = now.getFullYear();
   const month = now.getMonth();
-  const firstDay = new Date(year, month, 1).getDay(); // 1일이 무슨 요일인지
+  const firstDay = new Date(year, month, 1).getDay();
 
   const dailyTotals = getMonthDailyExpense();
-  const maxAmount = Math.max(...dailyTotals.map((d) => d.amount), 1);
 
-  // 1일 앞에 빈 칸 채우기
+  let maxAmount = 1;
+
+  for (let i = 0; i < dailyTotals.length; i++) {
+    if (dailyTotals[i].amount > maxAmount) {
+      maxAmount = dailyTotals[i].amount;
+    }
+  }
+
+  // 1일 앞의 빈 칸
   for (let i = 0; i < firstDay; i++) {
     const emptyCell = document.createElement("div");
     emptyCell.className = "heatmap-cell empty";
     container.appendChild(emptyCell);
   }
 
-  dailyTotals.forEach((item) => {
+  // 날짜별 칸 만들기
+  for (let i = 0; i < dailyTotals.length; i++) {
+    let item = dailyTotals[i];
+
     const cell = document.createElement("div");
     cell.className = "heatmap-cell";
     cell.style.background = getHeatColor(item.amount, maxAmount);
     cell.textContent = item.day;
     cell.title = formatMoney(item.amount);
+
     container.appendChild(cell);
-  });
+  }
 }
 
-//버튼
+// 그래프 버튼 설정
 function setupChartControls() {
-  //최근 6개월/올해
-  document.querySelectorAll(".period-btn").forEach((button) => {
+  // 최근 6개월 / 올해
+  document.querySelectorAll(".period-btn").forEach(function (button) {
     button.addEventListener("click", function () {
-      document.querySelectorAll(".period-btn").forEach((btn) => {
+      document.querySelectorAll(".period-btn").forEach(function (btn) {
         btn.classList.remove("active");
       });
 
       this.classList.add("active");
-
       createBarChart();
     });
   });
 
-  //카테고리 선택하는거
+  // 카테고리 선택
   document
     .querySelectorAll("#barCategoryFilter .filter-chip")
-    .forEach((chip) => {
+    .forEach(function (chip) {
       chip.addEventListener("click", function () {
         document
           .querySelectorAll("#barCategoryFilter .filter-chip")
-          .forEach((item) => {
+          .forEach(function (item) {
             item.classList.remove("active");
           });
 
         this.classList.add("active");
-
         createBarChart();
       });
     });
 }
 
-//전체 새로고침
+// 통계 새로고침
 function refreshStatistics() {
   renderStatisticsSummary();
   renderAnalysisSummary();
@@ -663,16 +767,17 @@ function refreshStatistics() {
   createHeatmap();
 }
 
-//처음 실행
+// 처음 실행
 document.addEventListener("DOMContentLoaded", function () {
   setupChartControls();
   refreshStatistics();
 
   let lastMonth = now.getMonth();
-  setInterval(() => {
+
+  setInterval(function () {
     if (now.getMonth() !== lastMonth) {
       lastMonth = now.getMonth();
       refreshStatistics();
     }
-  }, 1000); //1초
+  }, 1000);
 });
