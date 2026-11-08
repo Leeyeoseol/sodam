@@ -81,7 +81,14 @@ ${question}
       }),
     });
 
-    const data = await response.json();
+    const result = await response.text();
+    let data = {};
+
+    try {
+      data = JSON.parse(result);
+    } catch (error) {
+      throw new Error("서버 응답 오류: " + result.slice(0, 200));
+    }
 
     if (!response.ok) {
       throw new Error(data.reply || "AI 오류");
@@ -90,7 +97,11 @@ ${question}
     const answer = data.reply;
 
     if (!answer) {
-      throw new Error("AI 답변을 받지 못했어요. 다시 시도해 주세요.");
+      throw new Error("AI 답변을 받지 못했습니다.");
+    }
+
+    if (!response.ok) {
+      throw new Error(data.reply || "AI 오류");
     }
 
     const answerElement = document.createElement("div");
@@ -103,11 +114,8 @@ ${question}
     const errorElement = document.createElement("div");
     errorElement.className = "message ai";
 
-    errorElement.textContent = error.message.includes("이용량")
-      ? error.message
-      : "오류가 발생했어요. 잠시 후 다시 시도해 주세요.";
-
-    chatBox.appendChild(errorElement);
+    errorElement.textContent = error.message;
+    ppendChild(errorElement);
   } finally {
     loading.remove();
   }
