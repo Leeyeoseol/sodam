@@ -100,10 +100,6 @@ ${question}
       throw new Error("AI 답변을 받지 못했습니다.");
     }
 
-    if (!response.ok) {
-      throw new Error(data.reply || "AI 오류");
-    }
-
     const answerElement = document.createElement("div");
     answerElement.className = "message ai";
     answerElement.textContent = answer;
@@ -115,7 +111,7 @@ ${question}
     errorElement.className = "message ai";
 
     errorElement.textContent = error.message;
-    ppendChild(errorElement);
+    chatBox.appendChild(errorElement);
   } finally {
     loading.remove();
   }

@@ -34,7 +34,7 @@ export default async function handler(req, res) {
     console.error("Gemini 오류:", error);
 
     res.status(500).json({
-      reply: "AI 응답을 가져오지 못했습니다.",
+      reply: error.message || "AI 응답을 가져오지 못했습니다.",
     });
   }
 }
