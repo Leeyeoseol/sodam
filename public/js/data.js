@@ -62,6 +62,7 @@ document.getElementById("entryForm").addEventListener("submit", function (e) {
   };
   records.push(newRecord);
   saveRecords();
+  renderList();
   renderSummary();
   checkSpendingInsight(newRecord);
 
