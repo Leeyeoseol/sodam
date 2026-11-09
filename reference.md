@@ -113,3 +113,16 @@ ai.js 파일에 직접 제미나이 무료 api를 넣어 사용합니다
 2. 그다음 Vercel 사이트에서 F12 → Console에
    `localStorage.setItem("sodam-records", '복사한문자열');`
    `location.reload();`
+   localStorage.setItem("sodam-records", JSON.stringify([]));
+   location.reload();
+
+const testData = [
+// ← JSON 파일 내용
+];
+
+localStorage.setItem(
+"sodam-records",
+JSON.stringify(testData)
+);
+
+location.reload();

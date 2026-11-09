@@ -1,0 +1,7889 @@
+const testData = [
+  {
+    "id": 1,
+    "date": "2026-01-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 2,
+    "date": "2026-01-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6366,
+    "memo": "분식"
+  },
+  {
+    "id": 3,
+    "date": "2026-01-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9318,
+    "memo": "분식"
+  },
+  {
+    "id": 4,
+    "date": "2026-01-02",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6210,
+    "memo": "기타"
+  },
+  {
+    "id": 5,
+    "date": "2026-01-02",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1937,
+    "memo": "버스"
+  },
+  {
+    "id": 6,
+    "date": "2026-01-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10371,
+    "memo": "분식"
+  },
+  {
+    "id": 7,
+    "date": "2026-01-03",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1828,
+    "memo": "지하철"
+  },
+  {
+    "id": 8,
+    "date": "2026-01-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3773,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 9,
+    "date": "2026-01-04",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17520,
+    "memo": "구독료"
+  },
+  {
+    "id": 10,
+    "date": "2026-01-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3180,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 11,
+    "date": "2026-01-05",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3106,
+    "memo": "기타"
+  },
+  {
+    "id": 12,
+    "date": "2026-01-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7244,
+    "memo": "분식"
+  },
+  {
+    "id": 13,
+    "date": "2026-01-06",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8677,
+    "memo": "세면도구"
+  },
+  {
+    "id": 14,
+    "date": "2026-01-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24782,
+    "memo": "노래방"
+  },
+  {
+    "id": 15,
+    "date": "2026-01-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5545,
+    "memo": "분식"
+  },
+  {
+    "id": 16,
+    "date": "2026-01-07",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8049,
+    "memo": "기타"
+  },
+  {
+    "id": 17,
+    "date": "2026-01-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 47903,
+    "memo": "생활용품"
+  },
+  {
+    "id": 18,
+    "date": "2026-01-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 19278,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 19,
+    "date": "2026-01-08",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9975,
+    "memo": "기타"
+  },
+  {
+    "id": 20,
+    "date": "2026-01-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14852,
+    "memo": "문구"
+  },
+  {
+    "id": 21,
+    "date": "2026-01-09",
+    "type": "income",
+    "category": "기타",
+    "amount": 32786,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 22,
+    "date": "2026-01-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1550,
+    "memo": "버스"
+  },
+  {
+    "id": 23,
+    "date": "2026-01-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5698,
+    "memo": "점심"
+  },
+  {
+    "id": 24,
+    "date": "2026-01-10",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7328,
+    "memo": "분식"
+  },
+  {
+    "id": 25,
+    "date": "2026-01-10",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 35446,
+    "memo": "의류"
+  },
+  {
+    "id": 26,
+    "date": "2026-01-11",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25767,
+    "memo": "생활용품"
+  },
+  {
+    "id": 27,
+    "date": "2026-01-11",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 22185,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 28,
+    "date": "2026-01-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 26498,
+    "memo": "영화"
+  },
+  {
+    "id": 29,
+    "date": "2026-01-12",
+    "type": "expense",
+    "category": "생활",
+    "amount": 11714,
+    "memo": "생필품"
+  },
+  {
+    "id": 30,
+    "date": "2026-01-13",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10270,
+    "memo": "점심"
+  },
+  {
+    "id": 31,
+    "date": "2026-01-13",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6494,
+    "memo": "저녁"
+  },
+  {
+    "id": 32,
+    "date": "2026-01-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2581,
+    "memo": "버스"
+  },
+  {
+    "id": 33,
+    "date": "2026-01-14",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6123,
+    "memo": "분식"
+  },
+  {
+    "id": 34,
+    "date": "2026-01-14",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8609,
+    "memo": "저녁"
+  },
+  {
+    "id": 35,
+    "date": "2026-01-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 36,
+    "date": "2026-01-15",
+    "type": "income",
+    "category": "기타",
+    "amount": 57529,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 37,
+    "date": "2026-01-15",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11076,
+    "memo": "영화"
+  },
+  {
+    "id": 38,
+    "date": "2026-01-15",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3903,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 39,
+    "date": "2026-01-15",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6237,
+    "memo": "메가커피"
+  },
+  {
+    "id": 40,
+    "date": "2026-01-16",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5753,
+    "memo": "생필품"
+  },
+  {
+    "id": 41,
+    "date": "2026-01-16",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11375,
+    "memo": "구독료"
+  },
+  {
+    "id": 42,
+    "date": "2026-01-16",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28671,
+    "memo": "전시"
+  },
+  {
+    "id": 43,
+    "date": "2026-01-17",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 14430,
+    "memo": "영화"
+  },
+  {
+    "id": 44,
+    "date": "2026-01-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2182,
+    "memo": "지하철"
+  },
+  {
+    "id": 45,
+    "date": "2026-01-18",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 49556,
+    "memo": "의류"
+  },
+  {
+    "id": 46,
+    "date": "2026-01-18",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6225,
+    "memo": "저녁"
+  },
+  {
+    "id": 47,
+    "date": "2026-01-19",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23166,
+    "memo": "생활용품"
+  },
+  {
+    "id": 48,
+    "date": "2026-01-19",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17711,
+    "memo": "구독료"
+  },
+  {
+    "id": 49,
+    "date": "2026-01-19",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2017,
+    "memo": "버스"
+  },
+  {
+    "id": 50,
+    "date": "2026-01-20",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28841,
+    "memo": "노래방"
+  },
+  {
+    "id": 51,
+    "date": "2026-01-20",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29092,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 52,
+    "date": "2026-01-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8728,
+    "memo": "기타"
+  },
+  {
+    "id": 53,
+    "date": "2026-01-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9485,
+    "memo": "기타"
+  },
+  {
+    "id": 54,
+    "date": "2026-01-22",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7575,
+    "memo": "기타"
+  },
+  {
+    "id": 55,
+    "date": "2026-01-22",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13192,
+    "memo": "점심"
+  },
+  {
+    "id": 56,
+    "date": "2026-01-22",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4575,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 57,
+    "date": "2026-01-23",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2503,
+    "memo": "버스"
+  },
+  {
+    "id": 58,
+    "date": "2026-01-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13593,
+    "memo": "구독료"
+  },
+  {
+    "id": 59,
+    "date": "2026-01-23",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5058,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 60,
+    "date": "2026-01-24",
+    "type": "expense",
+    "category": "생활",
+    "amount": 11366,
+    "memo": "생필품"
+  },
+  {
+    "id": 61,
+    "date": "2026-01-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 14441,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 62,
+    "date": "2026-01-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9161,
+    "memo": "기타"
+  },
+  {
+    "id": 63,
+    "date": "2026-01-25",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1988,
+    "memo": "지하철"
+  },
+  {
+    "id": 64,
+    "date": "2026-01-25",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4759,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 65,
+    "date": "2026-01-26",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 23202,
+    "memo": "전시"
+  },
+  {
+    "id": 66,
+    "date": "2026-01-26",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3675,
+    "memo": "메가커피"
+  },
+  {
+    "id": 67,
+    "date": "2026-01-26",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2185,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 68,
+    "date": "2026-01-27",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9809,
+    "memo": "분식"
+  },
+  {
+    "id": 69,
+    "date": "2026-01-27",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11445,
+    "memo": "영화"
+  },
+  {
+    "id": 70,
+    "date": "2026-01-28",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29120,
+    "memo": "전시"
+  },
+  {
+    "id": 71,
+    "date": "2026-01-28",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12868,
+    "memo": "저녁"
+  },
+  {
+    "id": 72,
+    "date": "2026-01-28",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11149,
+    "memo": "저녁"
+  },
+  {
+    "id": 73,
+    "date": "2026-01-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4580,
+    "memo": "메가커피"
+  },
+  {
+    "id": 74,
+    "date": "2026-01-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13697,
+    "memo": "구독료"
+  },
+  {
+    "id": 75,
+    "date": "2026-01-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14750,
+    "memo": "구독료"
+  },
+  {
+    "id": 76,
+    "date": "2026-01-30",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 39187,
+    "memo": "생활용품"
+  },
+  {
+    "id": 77,
+    "date": "2026-01-30",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5928,
+    "memo": "메가커피"
+  },
+  {
+    "id": 78,
+    "date": "2026-01-30",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5676,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 79,
+    "date": "2026-01-31",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2156,
+    "memo": "버스"
+  },
+  {
+    "id": 80,
+    "date": "2026-01-31",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5120,
+    "memo": "문구"
+  },
+  {
+    "id": 81,
+    "date": "2026-02-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 82,
+    "date": "2026-02-01",
+    "type": "income",
+    "category": "기타",
+    "amount": 47740,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 83,
+    "date": "2026-02-01",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17662,
+    "memo": "구독료"
+  },
+  {
+    "id": 84,
+    "date": "2026-02-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12620,
+    "memo": "점심"
+  },
+  {
+    "id": 85,
+    "date": "2026-02-02",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4499,
+    "memo": "세면도구"
+  },
+  {
+    "id": 86,
+    "date": "2026-02-02",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25235,
+    "memo": "생활용품"
+  },
+  {
+    "id": 87,
+    "date": "2026-02-02",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9394,
+    "memo": "분식"
+  },
+  {
+    "id": 88,
+    "date": "2026-02-03",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 10004,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 89,
+    "date": "2026-02-03",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5832,
+    "memo": "기타"
+  },
+  {
+    "id": 90,
+    "date": "2026-02-04",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 22944,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 91,
+    "date": "2026-02-04",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11108,
+    "memo": "구독료"
+  },
+  {
+    "id": 92,
+    "date": "2026-02-04",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 37437,
+    "memo": "생활용품"
+  },
+  {
+    "id": 93,
+    "date": "2026-02-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2087,
+    "memo": "버스"
+  },
+  {
+    "id": 94,
+    "date": "2026-02-05",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9605,
+    "memo": "기타"
+  },
+  {
+    "id": 95,
+    "date": "2026-02-05",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29854,
+    "memo": "영화"
+  },
+  {
+    "id": 96,
+    "date": "2026-02-06",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4198,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 97,
+    "date": "2026-02-06",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11753,
+    "memo": "구독료"
+  },
+  {
+    "id": 98,
+    "date": "2026-02-07",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3669,
+    "memo": "문구"
+  },
+  {
+    "id": 99,
+    "date": "2026-02-07",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2700,
+    "memo": "버스"
+  },
+  {
+    "id": 100,
+    "date": "2026-02-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9462,
+    "memo": "저녁"
+  },
+  {
+    "id": 101,
+    "date": "2026-02-08",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2378,
+    "memo": "버스"
+  },
+  {
+    "id": 102,
+    "date": "2026-02-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19708,
+    "memo": "문구"
+  },
+  {
+    "id": 103,
+    "date": "2026-02-09",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13154,
+    "memo": "구독료"
+  },
+  {
+    "id": 104,
+    "date": "2026-02-09",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17977,
+    "memo": "구독료"
+  },
+  {
+    "id": 105,
+    "date": "2026-02-09",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7525,
+    "memo": "기타"
+  },
+  {
+    "id": 106,
+    "date": "2026-02-10",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13204,
+    "memo": "생필품"
+  },
+  {
+    "id": 107,
+    "date": "2026-02-10",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 46293,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 108,
+    "date": "2026-02-11",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12344,
+    "memo": "분식"
+  },
+  {
+    "id": 109,
+    "date": "2026-02-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13996,
+    "memo": "문구"
+  },
+  {
+    "id": 110,
+    "date": "2026-02-11",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 31040,
+    "memo": "의류"
+  },
+  {
+    "id": 111,
+    "date": "2026-02-12",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2733,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 112,
+    "date": "2026-02-12",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3154,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 113,
+    "date": "2026-02-13",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12139,
+    "memo": "점심"
+  },
+  {
+    "id": 114,
+    "date": "2026-02-13",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12877,
+    "memo": "저녁"
+  },
+  {
+    "id": 115,
+    "date": "2026-02-14",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7828,
+    "memo": "점심"
+  },
+  {
+    "id": 116,
+    "date": "2026-02-14",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2665,
+    "memo": "버스"
+  },
+  {
+    "id": 117,
+    "date": "2026-02-14",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 13292,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 118,
+    "date": "2026-02-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 119,
+    "date": "2026-02-15",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 42523,
+    "memo": "생활용품"
+  },
+  {
+    "id": 120,
+    "date": "2026-02-15",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8007,
+    "memo": "기타"
+  },
+  {
+    "id": 121,
+    "date": "2026-02-15",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10402,
+    "memo": "전시"
+  },
+  {
+    "id": 122,
+    "date": "2026-02-16",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 32841,
+    "memo": "생활용품"
+  },
+  {
+    "id": 123,
+    "date": "2026-02-16",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5212,
+    "memo": "저녁"
+  },
+  {
+    "id": 124,
+    "date": "2026-02-17",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14578,
+    "memo": "문구"
+  },
+  {
+    "id": 125,
+    "date": "2026-02-17",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25560,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 126,
+    "date": "2026-02-18",
+    "type": "income",
+    "category": "기타",
+    "amount": 78787,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 127,
+    "date": "2026-02-18",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 18640,
+    "memo": "전시"
+  },
+  {
+    "id": 128,
+    "date": "2026-02-18",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29294,
+    "memo": "생활용품"
+  },
+  {
+    "id": 129,
+    "date": "2026-02-19",
+    "type": "income",
+    "category": "기타",
+    "amount": 104911,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 130,
+    "date": "2026-02-19",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1513,
+    "memo": "지하철"
+  },
+  {
+    "id": 131,
+    "date": "2026-02-19",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16115,
+    "memo": "구독료"
+  },
+  {
+    "id": 132,
+    "date": "2026-02-19",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5629,
+    "memo": "메가커피"
+  },
+  {
+    "id": 133,
+    "date": "2026-02-20",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 35018,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 134,
+    "date": "2026-02-20",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17547,
+    "memo": "구독료"
+  },
+  {
+    "id": 135,
+    "date": "2026-02-20",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 22589,
+    "memo": "노래방"
+  },
+  {
+    "id": 136,
+    "date": "2026-02-21",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9145,
+    "memo": "세면도구"
+  },
+  {
+    "id": 137,
+    "date": "2026-02-21",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9483,
+    "memo": "저녁"
+  },
+  {
+    "id": 138,
+    "date": "2026-02-21",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 17885,
+    "memo": "영화"
+  },
+  {
+    "id": 139,
+    "date": "2026-02-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15114,
+    "memo": "구독료"
+  },
+  {
+    "id": 140,
+    "date": "2026-02-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12956,
+    "memo": "구독료"
+  },
+  {
+    "id": 141,
+    "date": "2026-02-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10581,
+    "memo": "구독료"
+  },
+  {
+    "id": 142,
+    "date": "2026-02-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17397,
+    "memo": "구독료"
+  },
+  {
+    "id": 143,
+    "date": "2026-02-23",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2778,
+    "memo": "버스"
+  },
+  {
+    "id": 144,
+    "date": "2026-02-24",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 27673,
+    "memo": "노래방"
+  },
+  {
+    "id": 145,
+    "date": "2026-02-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10235,
+    "memo": "저녁"
+  },
+  {
+    "id": 146,
+    "date": "2026-02-24",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16389,
+    "memo": "구독료"
+  },
+  {
+    "id": 147,
+    "date": "2026-02-25",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13573,
+    "memo": "구독료"
+  },
+  {
+    "id": 148,
+    "date": "2026-02-25",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12649,
+    "memo": "구독료"
+  },
+  {
+    "id": 149,
+    "date": "2026-02-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9991,
+    "memo": "저녁"
+  },
+  {
+    "id": 150,
+    "date": "2026-02-26",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5337,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 151,
+    "date": "2026-02-26",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 39033,
+    "memo": "의류"
+  },
+  {
+    "id": 152,
+    "date": "2026-02-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4943,
+    "memo": "기타"
+  },
+  {
+    "id": 153,
+    "date": "2026-02-27",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9097,
+    "memo": "저녁"
+  },
+  {
+    "id": 154,
+    "date": "2026-02-28",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7863,
+    "memo": "기타"
+  },
+  {
+    "id": 155,
+    "date": "2026-02-28",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3058,
+    "memo": "생필품"
+  },
+  {
+    "id": 156,
+    "date": "2026-03-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 157,
+    "date": "2026-03-01",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10895,
+    "memo": "노래방"
+  },
+  {
+    "id": 158,
+    "date": "2026-03-01",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29626,
+    "memo": "의류"
+  },
+  {
+    "id": 159,
+    "date": "2026-03-01",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1511,
+    "memo": "지하철"
+  },
+  {
+    "id": 160,
+    "date": "2026-03-02",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6464,
+    "memo": "문구"
+  },
+  {
+    "id": 161,
+    "date": "2026-03-02",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2344,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 162,
+    "date": "2026-03-02",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6675,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 163,
+    "date": "2026-03-03",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3974,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 164,
+    "date": "2026-03-03",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2747,
+    "memo": "버스"
+  },
+  {
+    "id": 165,
+    "date": "2026-03-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6098,
+    "memo": "메가커피"
+  },
+  {
+    "id": 166,
+    "date": "2026-03-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4981,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 167,
+    "date": "2026-03-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5139,
+    "memo": "점심"
+  },
+  {
+    "id": 168,
+    "date": "2026-03-05",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3393,
+    "memo": "기타"
+  },
+  {
+    "id": 169,
+    "date": "2026-03-05",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4007,
+    "memo": "문구"
+  },
+  {
+    "id": 170,
+    "date": "2026-03-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 17382,
+    "memo": "전시"
+  },
+  {
+    "id": 171,
+    "date": "2026-03-06",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2455,
+    "memo": "지하철"
+  },
+  {
+    "id": 172,
+    "date": "2026-03-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12319,
+    "memo": "저녁"
+  },
+  {
+    "id": 173,
+    "date": "2026-03-07",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9463,
+    "memo": "기타"
+  },
+  {
+    "id": 174,
+    "date": "2026-03-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 21573,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 175,
+    "date": "2026-03-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10421,
+    "memo": "저녁"
+  },
+  {
+    "id": 176,
+    "date": "2026-03-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7069,
+    "memo": "분식"
+  },
+  {
+    "id": 177,
+    "date": "2026-03-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6346,
+    "memo": "분식"
+  },
+  {
+    "id": 178,
+    "date": "2026-03-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1832,
+    "memo": "버스"
+  },
+  {
+    "id": 179,
+    "date": "2026-03-09",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6240,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 180,
+    "date": "2026-03-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4197,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 181,
+    "date": "2026-03-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1813,
+    "memo": "버스"
+  },
+  {
+    "id": 182,
+    "date": "2026-03-10",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8556,
+    "memo": "기타"
+  },
+  {
+    "id": 183,
+    "date": "2026-03-11",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25700,
+    "memo": "의류"
+  },
+  {
+    "id": 184,
+    "date": "2026-03-11",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10217,
+    "memo": "영화"
+  },
+  {
+    "id": 185,
+    "date": "2026-03-12",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3035,
+    "memo": "기타"
+  },
+  {
+    "id": 186,
+    "date": "2026-03-12",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 33245,
+    "memo": "의류"
+  },
+  {
+    "id": 187,
+    "date": "2026-03-13",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8973,
+    "memo": "기타"
+  },
+  {
+    "id": 188,
+    "date": "2026-03-13",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 21666,
+    "memo": "영화"
+  },
+  {
+    "id": 189,
+    "date": "2026-03-14",
+    "type": "income",
+    "category": "기타",
+    "amount": 113905,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 190,
+    "date": "2026-03-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12062,
+    "memo": "구독료"
+  },
+  {
+    "id": 191,
+    "date": "2026-03-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17571,
+    "memo": "구독료"
+  },
+  {
+    "id": 192,
+    "date": "2026-03-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 193,
+    "date": "2026-03-15",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2955,
+    "memo": "지하철"
+  },
+  {
+    "id": 194,
+    "date": "2026-03-15",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4344,
+    "memo": "기타"
+  },
+  {
+    "id": 195,
+    "date": "2026-03-16",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1725,
+    "memo": "지하철"
+  },
+  {
+    "id": 196,
+    "date": "2026-03-16",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5634,
+    "memo": "메가커피"
+  },
+  {
+    "id": 197,
+    "date": "2026-03-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2771,
+    "memo": "버스"
+  },
+  {
+    "id": 198,
+    "date": "2026-03-17",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2766,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 199,
+    "date": "2026-03-17",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 23175,
+    "memo": "전시"
+  },
+  {
+    "id": 200,
+    "date": "2026-03-18",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1562,
+    "memo": "버스"
+  },
+  {
+    "id": 201,
+    "date": "2026-03-18",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4369,
+    "memo": "메가커피"
+  },
+  {
+    "id": 202,
+    "date": "2026-03-19",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 38375,
+    "memo": "생활용품"
+  },
+  {
+    "id": 203,
+    "date": "2026-03-19",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9472,
+    "memo": "점심"
+  },
+  {
+    "id": 204,
+    "date": "2026-03-20",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15208,
+    "memo": "구독료"
+  },
+  {
+    "id": 205,
+    "date": "2026-03-20",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1607,
+    "memo": "지하철"
+  },
+  {
+    "id": 206,
+    "date": "2026-03-21",
+    "type": "income",
+    "category": "기타",
+    "amount": 30656,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 207,
+    "date": "2026-03-21",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13778,
+    "memo": "세면도구"
+  },
+  {
+    "id": 208,
+    "date": "2026-03-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 21782,
+    "memo": "생활용품"
+  },
+  {
+    "id": 209,
+    "date": "2026-03-21",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28981,
+    "memo": "노래방"
+  },
+  {
+    "id": 210,
+    "date": "2026-03-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15282,
+    "memo": "구독료"
+  },
+  {
+    "id": 211,
+    "date": "2026-03-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14578,
+    "memo": "구독료"
+  },
+  {
+    "id": 212,
+    "date": "2026-03-22",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11321,
+    "memo": "저녁"
+  },
+  {
+    "id": 213,
+    "date": "2026-03-23",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2429,
+    "memo": "버스"
+  },
+  {
+    "id": 214,
+    "date": "2026-03-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13160,
+    "memo": "구독료"
+  },
+  {
+    "id": 215,
+    "date": "2026-03-24",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15328,
+    "memo": "구독료"
+  },
+  {
+    "id": 216,
+    "date": "2026-03-24",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6158,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 217,
+    "date": "2026-03-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6915,
+    "memo": "점심"
+  },
+  {
+    "id": 218,
+    "date": "2026-03-25",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6347,
+    "memo": "생필품"
+  },
+  {
+    "id": 219,
+    "date": "2026-03-26",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8728,
+    "memo": "기타"
+  },
+  {
+    "id": 220,
+    "date": "2026-03-26",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2713,
+    "memo": "지하철"
+  },
+  {
+    "id": 221,
+    "date": "2026-03-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4365,
+    "memo": "기타"
+  },
+  {
+    "id": 222,
+    "date": "2026-03-27",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 28577,
+    "memo": "생활용품"
+  },
+  {
+    "id": 223,
+    "date": "2026-03-28",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5627,
+    "memo": "기타"
+  },
+  {
+    "id": 224,
+    "date": "2026-03-28",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 20074,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 225,
+    "date": "2026-03-28",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18843,
+    "memo": "세면도구"
+  },
+  {
+    "id": 226,
+    "date": "2026-03-29",
+    "type": "income",
+    "category": "기타",
+    "amount": 100275,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 227,
+    "date": "2026-03-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3184,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 228,
+    "date": "2026-03-29",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8629,
+    "memo": "점심"
+  },
+  {
+    "id": 229,
+    "date": "2026-03-29",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 44589,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 230,
+    "date": "2026-03-30",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5466,
+    "memo": "저녁"
+  },
+  {
+    "id": 231,
+    "date": "2026-03-30",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 39112,
+    "memo": "의류"
+  },
+  {
+    "id": 232,
+    "date": "2026-03-31",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6175,
+    "memo": "점심"
+  },
+  {
+    "id": 233,
+    "date": "2026-03-31",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2965,
+    "memo": "버스"
+  },
+  {
+    "id": 234,
+    "date": "2026-04-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 235,
+    "date": "2026-04-01",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5034,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 236,
+    "date": "2026-04-01",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29164,
+    "memo": "전시"
+  },
+  {
+    "id": 237,
+    "date": "2026-04-02",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6506,
+    "memo": "메가커피"
+  },
+  {
+    "id": 238,
+    "date": "2026-04-02",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1607,
+    "memo": "버스"
+  },
+  {
+    "id": 239,
+    "date": "2026-04-03",
+    "type": "income",
+    "category": "기타",
+    "amount": 79492,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 240,
+    "date": "2026-04-03",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2219,
+    "memo": "버스"
+  },
+  {
+    "id": 241,
+    "date": "2026-04-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10739,
+    "memo": "점심"
+  },
+  {
+    "id": 242,
+    "date": "2026-04-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9860,
+    "memo": "분식"
+  },
+  {
+    "id": 243,
+    "date": "2026-04-04",
+    "type": "income",
+    "category": "기타",
+    "amount": 34506,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 244,
+    "date": "2026-04-04",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 45347,
+    "memo": "생활용품"
+  },
+  {
+    "id": 245,
+    "date": "2026-04-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5070,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 246,
+    "date": "2026-04-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13235,
+    "memo": "세면도구"
+  },
+  {
+    "id": 247,
+    "date": "2026-04-05",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14268,
+    "memo": "구독료"
+  },
+  {
+    "id": 248,
+    "date": "2026-04-05",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 37446,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 249,
+    "date": "2026-04-06",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6259,
+    "memo": "기타"
+  },
+  {
+    "id": 250,
+    "date": "2026-04-06",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6772,
+    "memo": "생필품"
+  },
+  {
+    "id": 251,
+    "date": "2026-04-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10302,
+    "memo": "점심"
+  },
+  {
+    "id": 252,
+    "date": "2026-04-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11541,
+    "memo": "저녁"
+  },
+  {
+    "id": 253,
+    "date": "2026-04-07",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 26009,
+    "memo": "전시"
+  },
+  {
+    "id": 254,
+    "date": "2026-04-08",
+    "type": "income",
+    "category": "기타",
+    "amount": 49415,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 255,
+    "date": "2026-04-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11798,
+    "memo": "분식"
+  },
+  {
+    "id": 256,
+    "date": "2026-04-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 38470,
+    "memo": "의류"
+  },
+  {
+    "id": 257,
+    "date": "2026-04-08",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 21374,
+    "memo": "전시"
+  },
+  {
+    "id": 258,
+    "date": "2026-04-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13723,
+    "memo": "분식"
+  },
+  {
+    "id": 259,
+    "date": "2026-04-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12145,
+    "memo": "저녁"
+  },
+  {
+    "id": 260,
+    "date": "2026-04-09",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12731,
+    "memo": "구독료"
+  },
+  {
+    "id": 261,
+    "date": "2026-04-10",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12707,
+    "memo": "분식"
+  },
+  {
+    "id": 262,
+    "date": "2026-04-10",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8821,
+    "memo": "점심"
+  },
+  {
+    "id": 263,
+    "date": "2026-04-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2195,
+    "memo": "지하철"
+  },
+  {
+    "id": 264,
+    "date": "2026-04-11",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9878,
+    "memo": "기타"
+  },
+  {
+    "id": 265,
+    "date": "2026-04-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 16583,
+    "memo": "생필품"
+  },
+  {
+    "id": 266,
+    "date": "2026-04-11",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4958,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 267,
+    "date": "2026-04-12",
+    "type": "expense",
+    "category": "생활",
+    "amount": 15611,
+    "memo": "생필품"
+  },
+  {
+    "id": 268,
+    "date": "2026-04-12",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3819,
+    "memo": "기타"
+  },
+  {
+    "id": 269,
+    "date": "2026-04-12",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4596,
+    "memo": "문구"
+  },
+  {
+    "id": 270,
+    "date": "2026-04-13",
+    "type": "expense",
+    "category": "생활",
+    "amount": 11201,
+    "memo": "생필품"
+  },
+  {
+    "id": 271,
+    "date": "2026-04-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1936,
+    "memo": "지하철"
+  },
+  {
+    "id": 272,
+    "date": "2026-04-13",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 27860,
+    "memo": "생활용품"
+  },
+  {
+    "id": 273,
+    "date": "2026-04-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17915,
+    "memo": "구독료"
+  },
+  {
+    "id": 274,
+    "date": "2026-04-14",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 12597,
+    "memo": "노래방"
+  },
+  {
+    "id": 275,
+    "date": "2026-04-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 276,
+    "date": "2026-04-15",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1676,
+    "memo": "버스"
+  },
+  {
+    "id": 277,
+    "date": "2026-04-15",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29503,
+    "memo": "영화"
+  },
+  {
+    "id": 278,
+    "date": "2026-04-16",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12419,
+    "memo": "생필품"
+  },
+  {
+    "id": 279,
+    "date": "2026-04-16",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2144,
+    "memo": "버스"
+  },
+  {
+    "id": 280,
+    "date": "2026-04-17",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10611,
+    "memo": "구독료"
+  },
+  {
+    "id": 281,
+    "date": "2026-04-17",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12383,
+    "memo": "저녁"
+  },
+  {
+    "id": 282,
+    "date": "2026-04-17",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15461,
+    "memo": "구독료"
+  },
+  {
+    "id": 283,
+    "date": "2026-04-18",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2974,
+    "memo": "메가커피"
+  },
+  {
+    "id": 284,
+    "date": "2026-04-18",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10435,
+    "memo": "구독료"
+  },
+  {
+    "id": 285,
+    "date": "2026-04-18",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5588,
+    "memo": "기타"
+  },
+  {
+    "id": 286,
+    "date": "2026-04-19",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7043,
+    "memo": "분식"
+  },
+  {
+    "id": 287,
+    "date": "2026-04-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24470,
+    "memo": "노래방"
+  },
+  {
+    "id": 288,
+    "date": "2026-04-19",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1981,
+    "memo": "지하철"
+  },
+  {
+    "id": 289,
+    "date": "2026-04-20",
+    "type": "income",
+    "category": "기타",
+    "amount": 46183,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 290,
+    "date": "2026-04-20",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7854,
+    "memo": "점심"
+  },
+  {
+    "id": 291,
+    "date": "2026-04-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8395,
+    "memo": "기타"
+  },
+  {
+    "id": 292,
+    "date": "2026-04-20",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12778,
+    "memo": "저녁"
+  },
+  {
+    "id": 293,
+    "date": "2026-04-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 34076,
+    "memo": "의류"
+  },
+  {
+    "id": 294,
+    "date": "2026-04-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3615,
+    "memo": "기타"
+  },
+  {
+    "id": 295,
+    "date": "2026-04-22",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 25414,
+    "memo": "영화"
+  },
+  {
+    "id": 296,
+    "date": "2026-04-22",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12111,
+    "memo": "문구"
+  },
+  {
+    "id": 297,
+    "date": "2026-04-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3604,
+    "memo": "문구"
+  },
+  {
+    "id": 298,
+    "date": "2026-04-23",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9579,
+    "memo": "영화"
+  },
+  {
+    "id": 299,
+    "date": "2026-04-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17507,
+    "memo": "구독료"
+  },
+  {
+    "id": 300,
+    "date": "2026-04-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5327,
+    "memo": "기타"
+  },
+  {
+    "id": 301,
+    "date": "2026-04-24",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1631,
+    "memo": "지하철"
+  },
+  {
+    "id": 302,
+    "date": "2026-04-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 35476,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 303,
+    "date": "2026-04-25",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12984,
+    "memo": "문구"
+  },
+  {
+    "id": 304,
+    "date": "2026-04-25",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 46126,
+    "memo": "생활용품"
+  },
+  {
+    "id": 305,
+    "date": "2026-04-26",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15946,
+    "memo": "구독료"
+  },
+  {
+    "id": 306,
+    "date": "2026-04-26",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14512,
+    "memo": "생필품"
+  },
+  {
+    "id": 307,
+    "date": "2026-04-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3233,
+    "memo": "기타"
+  },
+  {
+    "id": 308,
+    "date": "2026-04-27",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29142,
+    "memo": "영화"
+  },
+  {
+    "id": 309,
+    "date": "2026-04-28",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2689,
+    "memo": "지하철"
+  },
+  {
+    "id": 310,
+    "date": "2026-04-28",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9300,
+    "memo": "분식"
+  },
+  {
+    "id": 311,
+    "date": "2026-04-29",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9529,
+    "memo": "분식"
+  },
+  {
+    "id": 312,
+    "date": "2026-04-29",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2713,
+    "memo": "버스"
+  },
+  {
+    "id": 313,
+    "date": "2026-04-30",
+    "type": "income",
+    "category": "기타",
+    "amount": 101041,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 314,
+    "date": "2026-04-30",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2381,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 315,
+    "date": "2026-04-30",
+    "type": "expense",
+    "category": "생활",
+    "amount": 15170,
+    "memo": "세면도구"
+  },
+  {
+    "id": 316,
+    "date": "2026-04-30",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3712,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 317,
+    "date": "2026-05-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 318,
+    "date": "2026-05-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5352,
+    "memo": "분식"
+  },
+  {
+    "id": 319,
+    "date": "2026-05-01",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14104,
+    "memo": "문구"
+  },
+  {
+    "id": 320,
+    "date": "2026-05-02",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 48817,
+    "memo": "의류"
+  },
+  {
+    "id": 321,
+    "date": "2026-05-02",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 37760,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 322,
+    "date": "2026-05-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 10330,
+    "memo": "생필품"
+  },
+  {
+    "id": 323,
+    "date": "2026-05-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12888,
+    "memo": "점심"
+  },
+  {
+    "id": 324,
+    "date": "2026-05-03",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11723,
+    "memo": "구독료"
+  },
+  {
+    "id": 325,
+    "date": "2026-05-04",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1768,
+    "memo": "지하철"
+  },
+  {
+    "id": 326,
+    "date": "2026-05-04",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 40699,
+    "memo": "의류"
+  },
+  {
+    "id": 327,
+    "date": "2026-05-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6744,
+    "memo": "생필품"
+  },
+  {
+    "id": 328,
+    "date": "2026-05-05",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 22072,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 329,
+    "date": "2026-05-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11016,
+    "memo": "저녁"
+  },
+  {
+    "id": 330,
+    "date": "2026-05-06",
+    "type": "income",
+    "category": "기타",
+    "amount": 92640,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 331,
+    "date": "2026-05-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 15967,
+    "memo": "노래방"
+  },
+  {
+    "id": 332,
+    "date": "2026-05-06",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10622,
+    "memo": "구독료"
+  },
+  {
+    "id": 333,
+    "date": "2026-05-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12916,
+    "memo": "점심"
+  },
+  {
+    "id": 334,
+    "date": "2026-05-07",
+    "type": "income",
+    "category": "기타",
+    "amount": 96319,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 335,
+    "date": "2026-05-07",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13342,
+    "memo": "구독료"
+  },
+  {
+    "id": 336,
+    "date": "2026-05-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 38995,
+    "memo": "의류"
+  },
+  {
+    "id": 337,
+    "date": "2026-05-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25095,
+    "memo": "의류"
+  },
+  {
+    "id": 338,
+    "date": "2026-05-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23954,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 339,
+    "date": "2026-05-08",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28606,
+    "memo": "영화"
+  },
+  {
+    "id": 340,
+    "date": "2026-05-08",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 17571,
+    "memo": "영화"
+  },
+  {
+    "id": 341,
+    "date": "2026-05-09",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 39234,
+    "memo": "생활용품"
+  },
+  {
+    "id": 342,
+    "date": "2026-05-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1917,
+    "memo": "버스"
+  },
+  {
+    "id": 343,
+    "date": "2026-05-10",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6968,
+    "memo": "기타"
+  },
+  {
+    "id": 344,
+    "date": "2026-05-10",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24825,
+    "memo": "전시"
+  },
+  {
+    "id": 345,
+    "date": "2026-05-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3376,
+    "memo": "메가커피"
+  },
+  {
+    "id": 346,
+    "date": "2026-05-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 11670,
+    "memo": "생필품"
+  },
+  {
+    "id": 347,
+    "date": "2026-05-11",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2191,
+    "memo": "버스"
+  },
+  {
+    "id": 348,
+    "date": "2026-05-11",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11609,
+    "memo": "점심"
+  },
+  {
+    "id": 349,
+    "date": "2026-05-12",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16963,
+    "memo": "구독료"
+  },
+  {
+    "id": 350,
+    "date": "2026-05-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29845,
+    "memo": "노래방"
+  },
+  {
+    "id": 351,
+    "date": "2026-05-12",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 21205,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 352,
+    "date": "2026-05-13",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 15878,
+    "memo": "영화"
+  },
+  {
+    "id": 353,
+    "date": "2026-05-13",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4133,
+    "memo": "기타"
+  },
+  {
+    "id": 354,
+    "date": "2026-05-14",
+    "type": "income",
+    "category": "기타",
+    "amount": 88192,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 355,
+    "date": "2026-05-14",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 47658,
+    "memo": "생활용품"
+  },
+  {
+    "id": 356,
+    "date": "2026-05-14",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2568,
+    "memo": "지하철"
+  },
+  {
+    "id": 357,
+    "date": "2026-05-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 358,
+    "date": "2026-05-15",
+    "type": "income",
+    "category": "기타",
+    "amount": 81631,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 359,
+    "date": "2026-05-15",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2737,
+    "memo": "지하철"
+  },
+  {
+    "id": 360,
+    "date": "2026-05-15",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11003,
+    "memo": "점심"
+  },
+  {
+    "id": 361,
+    "date": "2026-05-15",
+    "type": "expense",
+    "category": "생활",
+    "amount": 7097,
+    "memo": "생필품"
+  },
+  {
+    "id": 362,
+    "date": "2026-05-16",
+    "type": "income",
+    "category": "기타",
+    "amount": 59544,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 363,
+    "date": "2026-05-16",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8308,
+    "memo": "기타"
+  },
+  {
+    "id": 364,
+    "date": "2026-05-16",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29847,
+    "memo": "노래방"
+  },
+  {
+    "id": 365,
+    "date": "2026-05-16",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17070,
+    "memo": "구독료"
+  },
+  {
+    "id": 366,
+    "date": "2026-05-17",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3996,
+    "memo": "메가커피"
+  },
+  {
+    "id": 367,
+    "date": "2026-05-17",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9082,
+    "memo": "세면도구"
+  },
+  {
+    "id": 368,
+    "date": "2026-05-18",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2346,
+    "memo": "지하철"
+  },
+  {
+    "id": 369,
+    "date": "2026-05-18",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6854,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 370,
+    "date": "2026-05-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28024,
+    "memo": "영화"
+  },
+  {
+    "id": 371,
+    "date": "2026-05-19",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1917,
+    "memo": "지하철"
+  },
+  {
+    "id": 372,
+    "date": "2026-05-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9389,
+    "memo": "기타"
+  },
+  {
+    "id": 373,
+    "date": "2026-05-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7107,
+    "memo": "기타"
+  },
+  {
+    "id": 374,
+    "date": "2026-05-21",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10739,
+    "memo": "노래방"
+  },
+  {
+    "id": 375,
+    "date": "2026-05-21",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6281,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 376,
+    "date": "2026-05-22",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1912,
+    "memo": "지하철"
+  },
+  {
+    "id": 377,
+    "date": "2026-05-22",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 33763,
+    "memo": "생활용품"
+  },
+  {
+    "id": 378,
+    "date": "2026-05-23",
+    "type": "income",
+    "category": "기타",
+    "amount": 111710,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 379,
+    "date": "2026-05-23",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2608,
+    "memo": "메가커피"
+  },
+  {
+    "id": 380,
+    "date": "2026-05-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5426,
+    "memo": "생필품"
+  },
+  {
+    "id": 381,
+    "date": "2026-05-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7772,
+    "memo": "점심"
+  },
+  {
+    "id": 382,
+    "date": "2026-05-24",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2858,
+    "memo": "지하철"
+  },
+  {
+    "id": 383,
+    "date": "2026-05-25",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29979,
+    "memo": "영화"
+  },
+  {
+    "id": 384,
+    "date": "2026-05-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8897,
+    "memo": "분식"
+  },
+  {
+    "id": 385,
+    "date": "2026-05-26",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 15489,
+    "memo": "생활용품"
+  },
+  {
+    "id": 386,
+    "date": "2026-05-26",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6016,
+    "memo": "저녁"
+  },
+  {
+    "id": 387,
+    "date": "2026-05-26",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1677,
+    "memo": "버스"
+  },
+  {
+    "id": 388,
+    "date": "2026-05-27",
+    "type": "income",
+    "category": "기타",
+    "amount": 86610,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 389,
+    "date": "2026-05-27",
+    "type": "expense",
+    "category": "생활",
+    "amount": 10840,
+    "memo": "문구"
+  },
+  {
+    "id": 390,
+    "date": "2026-05-27",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14232,
+    "memo": "구독료"
+  },
+  {
+    "id": 391,
+    "date": "2026-05-28",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6547,
+    "memo": "분식"
+  },
+  {
+    "id": 392,
+    "date": "2026-05-28",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4260,
+    "memo": "세면도구"
+  },
+  {
+    "id": 393,
+    "date": "2026-05-29",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7479,
+    "memo": "분식"
+  },
+  {
+    "id": 394,
+    "date": "2026-05-29",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 34055,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 395,
+    "date": "2026-05-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10656,
+    "memo": "구독료"
+  },
+  {
+    "id": 396,
+    "date": "2026-05-30",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 27167,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 397,
+    "date": "2026-05-30",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11113,
+    "memo": "구독료"
+  },
+  {
+    "id": 398,
+    "date": "2026-05-31",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 22683,
+    "memo": "영화"
+  },
+  {
+    "id": 399,
+    "date": "2026-05-31",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 24858,
+    "memo": "의류"
+  },
+  {
+    "id": 400,
+    "date": "2026-05-31",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9142,
+    "memo": "전시"
+  },
+  {
+    "id": 401,
+    "date": "2026-06-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 402,
+    "date": "2026-06-01",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9982,
+    "memo": "문구"
+  },
+  {
+    "id": 403,
+    "date": "2026-06-01",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2859,
+    "memo": "지하철"
+  },
+  {
+    "id": 404,
+    "date": "2026-06-02",
+    "type": "income",
+    "category": "기타",
+    "amount": 99122,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 405,
+    "date": "2026-06-02",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1537,
+    "memo": "버스"
+  },
+  {
+    "id": 406,
+    "date": "2026-06-02",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 43852,
+    "memo": "의류"
+  },
+  {
+    "id": 407,
+    "date": "2026-06-03",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 23416,
+    "memo": "영화"
+  },
+  {
+    "id": 408,
+    "date": "2026-06-03",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10470,
+    "memo": "구독료"
+  },
+  {
+    "id": 409,
+    "date": "2026-06-03",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10580,
+    "memo": "구독료"
+  },
+  {
+    "id": 410,
+    "date": "2026-06-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19832,
+    "memo": "문구"
+  },
+  {
+    "id": 411,
+    "date": "2026-06-04",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2345,
+    "memo": "지하철"
+  },
+  {
+    "id": 412,
+    "date": "2026-06-05",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29889,
+    "memo": "의류"
+  },
+  {
+    "id": 413,
+    "date": "2026-06-05",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10078,
+    "memo": "구독료"
+  },
+  {
+    "id": 414,
+    "date": "2026-06-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 13177,
+    "memo": "전시"
+  },
+  {
+    "id": 415,
+    "date": "2026-06-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9632,
+    "memo": "분식"
+  },
+  {
+    "id": 416,
+    "date": "2026-06-07",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3484,
+    "memo": "세면도구"
+  },
+  {
+    "id": 417,
+    "date": "2026-06-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 33068,
+    "memo": "의류"
+  },
+  {
+    "id": 418,
+    "date": "2026-06-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13566,
+    "memo": "분식"
+  },
+  {
+    "id": 419,
+    "date": "2026-06-08",
+    "type": "income",
+    "category": "기타",
+    "amount": 82579,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 420,
+    "date": "2026-06-08",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5906,
+    "memo": "기타"
+  },
+  {
+    "id": 421,
+    "date": "2026-06-08",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5283,
+    "memo": "기타"
+  },
+  {
+    "id": 422,
+    "date": "2026-06-09",
+    "type": "income",
+    "category": "기타",
+    "amount": 115511,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 423,
+    "date": "2026-06-09",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12912,
+    "memo": "구독료"
+  },
+  {
+    "id": 424,
+    "date": "2026-06-09",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6453,
+    "memo": "기타"
+  },
+  {
+    "id": 425,
+    "date": "2026-06-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2403,
+    "memo": "지하철"
+  },
+  {
+    "id": 426,
+    "date": "2026-06-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2249,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 427,
+    "date": "2026-06-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2359,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 428,
+    "date": "2026-06-11",
+    "type": "income",
+    "category": "기타",
+    "amount": 104287,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 429,
+    "date": "2026-06-11",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5277,
+    "memo": "기타"
+  },
+  {
+    "id": 430,
+    "date": "2026-06-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13030,
+    "memo": "문구"
+  },
+  {
+    "id": 431,
+    "date": "2026-06-12",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10501,
+    "memo": "구독료"
+  },
+  {
+    "id": 432,
+    "date": "2026-06-12",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1824,
+    "memo": "버스"
+  },
+  {
+    "id": 433,
+    "date": "2026-06-13",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12892,
+    "memo": "점심"
+  },
+  {
+    "id": 434,
+    "date": "2026-06-13",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10889,
+    "memo": "구독료"
+  },
+  {
+    "id": 435,
+    "date": "2026-06-14",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 16662,
+    "memo": "영화"
+  },
+  {
+    "id": 436,
+    "date": "2026-06-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17680,
+    "memo": "구독료"
+  },
+  {
+    "id": 437,
+    "date": "2026-06-14",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1987,
+    "memo": "버스"
+  },
+  {
+    "id": 438,
+    "date": "2026-06-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 439,
+    "date": "2026-06-15",
+    "type": "income",
+    "category": "기타",
+    "amount": 67444,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 440,
+    "date": "2026-06-15",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8979,
+    "memo": "기타"
+  },
+  {
+    "id": 441,
+    "date": "2026-06-15",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 14364,
+    "memo": "영화"
+  },
+  {
+    "id": 442,
+    "date": "2026-06-16",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2955,
+    "memo": "버스"
+  },
+  {
+    "id": 443,
+    "date": "2026-06-16",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16132,
+    "memo": "구독료"
+  },
+  {
+    "id": 444,
+    "date": "2026-06-17",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8804,
+    "memo": "분식"
+  },
+  {
+    "id": 445,
+    "date": "2026-06-17",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4319,
+    "memo": "문구"
+  },
+  {
+    "id": 446,
+    "date": "2026-06-18",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 12664,
+    "memo": "의류"
+  },
+  {
+    "id": 447,
+    "date": "2026-06-18",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17294,
+    "memo": "구독료"
+  },
+  {
+    "id": 448,
+    "date": "2026-06-18",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9013,
+    "memo": "기타"
+  },
+  {
+    "id": 449,
+    "date": "2026-06-19",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6897,
+    "memo": "기타"
+  },
+  {
+    "id": 450,
+    "date": "2026-06-19",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8912,
+    "memo": "세면도구"
+  },
+  {
+    "id": 451,
+    "date": "2026-06-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3708,
+    "memo": "기타"
+  },
+  {
+    "id": 452,
+    "date": "2026-06-20",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 27052,
+    "memo": "영화"
+  },
+  {
+    "id": 453,
+    "date": "2026-06-21",
+    "type": "income",
+    "category": "기타",
+    "amount": 81964,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 454,
+    "date": "2026-06-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5801,
+    "memo": "기타"
+  },
+  {
+    "id": 455,
+    "date": "2026-06-21",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2355,
+    "memo": "버스"
+  },
+  {
+    "id": 456,
+    "date": "2026-06-22",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11024,
+    "memo": "점심"
+  },
+  {
+    "id": 457,
+    "date": "2026-06-22",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4267,
+    "memo": "기타"
+  },
+  {
+    "id": 458,
+    "date": "2026-06-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13198,
+    "memo": "구독료"
+  },
+  {
+    "id": 459,
+    "date": "2026-06-23",
+    "type": "income",
+    "category": "기타",
+    "amount": 46300,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 460,
+    "date": "2026-06-23",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10790,
+    "memo": "구독료"
+  },
+  {
+    "id": 461,
+    "date": "2026-06-23",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3596,
+    "memo": "기타"
+  },
+  {
+    "id": 462,
+    "date": "2026-06-23",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13425,
+    "memo": "저녁"
+  },
+  {
+    "id": 463,
+    "date": "2026-06-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23120,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 464,
+    "date": "2026-06-24",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1679,
+    "memo": "버스"
+  },
+  {
+    "id": 465,
+    "date": "2026-06-25",
+    "type": "income",
+    "category": "기타",
+    "amount": 85460,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 466,
+    "date": "2026-06-25",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1854,
+    "memo": "지하철"
+  },
+  {
+    "id": 467,
+    "date": "2026-06-25",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9181,
+    "memo": "노래방"
+  },
+  {
+    "id": 468,
+    "date": "2026-06-25",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6571,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 469,
+    "date": "2026-06-26",
+    "type": "income",
+    "category": "기타",
+    "amount": 36830,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 470,
+    "date": "2026-06-26",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7168,
+    "memo": "저녁"
+  },
+  {
+    "id": 471,
+    "date": "2026-06-26",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 8235,
+    "memo": "노래방"
+  },
+  {
+    "id": 472,
+    "date": "2026-06-27",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6589,
+    "memo": "저녁"
+  },
+  {
+    "id": 473,
+    "date": "2026-06-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9524,
+    "memo": "기타"
+  },
+  {
+    "id": 474,
+    "date": "2026-06-27",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2350,
+    "memo": "메가커피"
+  },
+  {
+    "id": 475,
+    "date": "2026-06-28",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23650,
+    "memo": "의류"
+  },
+  {
+    "id": 476,
+    "date": "2026-06-28",
+    "type": "expense",
+    "category": "생활",
+    "amount": 7438,
+    "memo": "문구"
+  },
+  {
+    "id": 477,
+    "date": "2026-06-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6976,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 478,
+    "date": "2026-06-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5705,
+    "memo": "메가커피"
+  },
+  {
+    "id": 479,
+    "date": "2026-06-30",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5529,
+    "memo": "문구"
+  },
+  {
+    "id": 480,
+    "date": "2026-06-30",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13673,
+    "memo": "분식"
+  },
+  {
+    "id": 481,
+    "date": "2026-07-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 482,
+    "date": "2026-07-01",
+    "type": "income",
+    "category": "기타",
+    "amount": 72284,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 483,
+    "date": "2026-07-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12603,
+    "memo": "분식"
+  },
+  {
+    "id": 484,
+    "date": "2026-07-01",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3730,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 485,
+    "date": "2026-07-01",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2650,
+    "memo": "지하철"
+  },
+  {
+    "id": 486,
+    "date": "2026-07-02",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4601,
+    "memo": "기타"
+  },
+  {
+    "id": 487,
+    "date": "2026-07-02",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12024,
+    "memo": "저녁"
+  },
+  {
+    "id": 488,
+    "date": "2026-07-02",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2560,
+    "memo": "버스"
+  },
+  {
+    "id": 489,
+    "date": "2026-07-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19472,
+    "memo": "세면도구"
+  },
+  {
+    "id": 490,
+    "date": "2026-07-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12539,
+    "memo": "분식"
+  },
+  {
+    "id": 491,
+    "date": "2026-07-03",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4024,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 492,
+    "date": "2026-07-04",
+    "type": "income",
+    "category": "기타",
+    "amount": 110663,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 493,
+    "date": "2026-07-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6520,
+    "memo": "생필품"
+  },
+  {
+    "id": 494,
+    "date": "2026-07-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 7306,
+    "memo": "문구"
+  },
+  {
+    "id": 495,
+    "date": "2026-07-05",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 17644,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 496,
+    "date": "2026-07-05",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7171,
+    "memo": "기타"
+  },
+  {
+    "id": 497,
+    "date": "2026-07-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1934,
+    "memo": "버스"
+  },
+  {
+    "id": 498,
+    "date": "2026-07-06",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13895,
+    "memo": "구독료"
+  },
+  {
+    "id": 499,
+    "date": "2026-07-06",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1896,
+    "memo": "지하철"
+  },
+  {
+    "id": 500,
+    "date": "2026-07-07",
+    "type": "income",
+    "category": "기타",
+    "amount": 102799,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 501,
+    "date": "2026-07-07",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6444,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 502,
+    "date": "2026-07-07",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13020,
+    "memo": "생필품"
+  },
+  {
+    "id": 503,
+    "date": "2026-07-07",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14529,
+    "memo": "구독료"
+  },
+  {
+    "id": 504,
+    "date": "2026-07-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 19194,
+    "memo": "의류"
+  },
+  {
+    "id": 505,
+    "date": "2026-07-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 17378,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 506,
+    "date": "2026-07-08",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4708,
+    "memo": "메가커피"
+  },
+  {
+    "id": 507,
+    "date": "2026-07-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2195,
+    "memo": "지하철"
+  },
+  {
+    "id": 508,
+    "date": "2026-07-09",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4819,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 509,
+    "date": "2026-07-09",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2673,
+    "memo": "메가커피"
+  },
+  {
+    "id": 510,
+    "date": "2026-07-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2760,
+    "memo": "버스"
+  },
+  {
+    "id": 511,
+    "date": "2026-07-10",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19979,
+    "memo": "생필품"
+  },
+  {
+    "id": 512,
+    "date": "2026-07-10",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7143,
+    "memo": "기타"
+  },
+  {
+    "id": 513,
+    "date": "2026-07-11",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12982,
+    "memo": "저녁"
+  },
+  {
+    "id": 514,
+    "date": "2026-07-11",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16822,
+    "memo": "구독료"
+  },
+  {
+    "id": 515,
+    "date": "2026-07-12",
+    "type": "income",
+    "category": "기타",
+    "amount": 102165,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 516,
+    "date": "2026-07-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 16012,
+    "memo": "노래방"
+  },
+  {
+    "id": 517,
+    "date": "2026-07-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9519,
+    "memo": "저녁"
+  },
+  {
+    "id": 518,
+    "date": "2026-07-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13409,
+    "memo": "점심"
+  },
+  {
+    "id": 519,
+    "date": "2026-07-13",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17181,
+    "memo": "구독료"
+  },
+  {
+    "id": 520,
+    "date": "2026-07-13",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8350,
+    "memo": "기타"
+  },
+  {
+    "id": 521,
+    "date": "2026-07-13",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 27470,
+    "memo": "의류"
+  },
+  {
+    "id": 522,
+    "date": "2026-07-14",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5867,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 523,
+    "date": "2026-07-14",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2895,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 524,
+    "date": "2026-07-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 525,
+    "date": "2026-07-15",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11062,
+    "memo": "구독료"
+  },
+  {
+    "id": 526,
+    "date": "2026-07-15",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7774,
+    "memo": "분식"
+  },
+  {
+    "id": 527,
+    "date": "2026-07-16",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1652,
+    "memo": "버스"
+  },
+  {
+    "id": 528,
+    "date": "2026-07-16",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6624,
+    "memo": "메가커피"
+  },
+  {
+    "id": 529,
+    "date": "2026-07-17",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6915,
+    "memo": "기타"
+  },
+  {
+    "id": 530,
+    "date": "2026-07-17",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6982,
+    "memo": "분식"
+  },
+  {
+    "id": 531,
+    "date": "2026-07-18",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5400,
+    "memo": "기타"
+  },
+  {
+    "id": 532,
+    "date": "2026-07-18",
+    "type": "expense",
+    "category": "생활",
+    "amount": 17257,
+    "memo": "문구"
+  },
+  {
+    "id": 533,
+    "date": "2026-07-19",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11843,
+    "memo": "저녁"
+  },
+  {
+    "id": 534,
+    "date": "2026-07-19",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2028,
+    "memo": "지하철"
+  },
+  {
+    "id": 535,
+    "date": "2026-07-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11438,
+    "memo": "노래방"
+  },
+  {
+    "id": 536,
+    "date": "2026-07-20",
+    "type": "income",
+    "category": "기타",
+    "amount": 91640,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 537,
+    "date": "2026-07-20",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12023,
+    "memo": "점심"
+  },
+  {
+    "id": 538,
+    "date": "2026-07-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3085,
+    "memo": "기타"
+  },
+  {
+    "id": 539,
+    "date": "2026-07-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6622,
+    "memo": "기타"
+  },
+  {
+    "id": 540,
+    "date": "2026-07-21",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9574,
+    "memo": "저녁"
+  },
+  {
+    "id": 541,
+    "date": "2026-07-21",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8149,
+    "memo": "점심"
+  },
+  {
+    "id": 542,
+    "date": "2026-07-21",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13938,
+    "memo": "구독료"
+  },
+  {
+    "id": 543,
+    "date": "2026-07-22",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2314,
+    "memo": "지하철"
+  },
+  {
+    "id": 544,
+    "date": "2026-07-22",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2687,
+    "memo": "버스"
+  },
+  {
+    "id": 545,
+    "date": "2026-07-23",
+    "type": "income",
+    "category": "기타",
+    "amount": 75925,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 546,
+    "date": "2026-07-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13027,
+    "memo": "세면도구"
+  },
+  {
+    "id": 547,
+    "date": "2026-07-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9411,
+    "memo": "세면도구"
+  },
+  {
+    "id": 548,
+    "date": "2026-07-23",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4615,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 549,
+    "date": "2026-07-24",
+    "type": "income",
+    "category": "기타",
+    "amount": 68278,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 550,
+    "date": "2026-07-24",
+    "type": "expense",
+    "category": "생활",
+    "amount": 7494,
+    "memo": "생필품"
+  },
+  {
+    "id": 551,
+    "date": "2026-07-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5895,
+    "memo": "기타"
+  },
+  {
+    "id": 552,
+    "date": "2026-07-25",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11087,
+    "memo": "노래방"
+  },
+  {
+    "id": 553,
+    "date": "2026-07-25",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 47754,
+    "memo": "생활용품"
+  },
+  {
+    "id": 554,
+    "date": "2026-07-26",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5596,
+    "memo": "메가커피"
+  },
+  {
+    "id": 555,
+    "date": "2026-07-26",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6797,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 556,
+    "date": "2026-07-27",
+    "type": "income",
+    "category": "기타",
+    "amount": 33309,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 557,
+    "date": "2026-07-27",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29236,
+    "memo": "전시"
+  },
+  {
+    "id": 558,
+    "date": "2026-07-27",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5110,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 559,
+    "date": "2026-07-28",
+    "type": "income",
+    "category": "기타",
+    "amount": 85784,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 560,
+    "date": "2026-07-28",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11328,
+    "memo": "영화"
+  },
+  {
+    "id": 561,
+    "date": "2026-07-28",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2813,
+    "memo": "지하철"
+  },
+  {
+    "id": 562,
+    "date": "2026-07-28",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12608,
+    "memo": "세면도구"
+  },
+  {
+    "id": 563,
+    "date": "2026-07-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14545,
+    "memo": "구독료"
+  },
+  {
+    "id": 564,
+    "date": "2026-07-29",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19842,
+    "memo": "생필품"
+  },
+  {
+    "id": 565,
+    "date": "2026-07-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 21166,
+    "memo": "영화"
+  },
+  {
+    "id": 566,
+    "date": "2026-07-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9307,
+    "memo": "전시"
+  },
+  {
+    "id": 567,
+    "date": "2026-07-30",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16699,
+    "memo": "구독료"
+  },
+  {
+    "id": 568,
+    "date": "2026-07-31",
+    "type": "income",
+    "category": "기타",
+    "amount": 30913,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 569,
+    "date": "2026-07-31",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2279,
+    "memo": "버스"
+  },
+  {
+    "id": 570,
+    "date": "2026-07-31",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2748,
+    "memo": "버스"
+  },
+  {
+    "id": 571,
+    "date": "2026-07-31",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10902,
+    "memo": "구독료"
+  },
+  {
+    "id": 572,
+    "date": "2026-08-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 573,
+    "date": "2026-08-01",
+    "type": "expense",
+    "category": "생활",
+    "amount": 16964,
+    "memo": "세면도구"
+  },
+  {
+    "id": 574,
+    "date": "2026-08-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9506,
+    "memo": "저녁"
+  },
+  {
+    "id": 575,
+    "date": "2026-08-01",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4660,
+    "memo": "메가커피"
+  },
+  {
+    "id": 576,
+    "date": "2026-08-02",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5462,
+    "memo": "기타"
+  },
+  {
+    "id": 577,
+    "date": "2026-08-02",
+    "type": "expense",
+    "category": "생활",
+    "amount": 11979,
+    "memo": "생필품"
+  },
+  {
+    "id": 578,
+    "date": "2026-08-02",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5586,
+    "memo": "기타"
+  },
+  {
+    "id": 579,
+    "date": "2026-08-03",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 10348,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 580,
+    "date": "2026-08-03",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15613,
+    "memo": "구독료"
+  },
+  {
+    "id": 581,
+    "date": "2026-08-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6108,
+    "memo": "분식"
+  },
+  {
+    "id": 582,
+    "date": "2026-08-04",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7657,
+    "memo": "점심"
+  },
+  {
+    "id": 583,
+    "date": "2026-08-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14229,
+    "memo": "생필품"
+  },
+  {
+    "id": 584,
+    "date": "2026-08-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6812,
+    "memo": "메가커피"
+  },
+  {
+    "id": 585,
+    "date": "2026-08-05",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12366,
+    "memo": "생필품"
+  },
+  {
+    "id": 586,
+    "date": "2026-08-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12378,
+    "memo": "분식"
+  },
+  {
+    "id": 587,
+    "date": "2026-08-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2941,
+    "memo": "버스"
+  },
+  {
+    "id": 588,
+    "date": "2026-08-06",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6336,
+    "memo": "기타"
+  },
+  {
+    "id": 589,
+    "date": "2026-08-06",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 48408,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 590,
+    "date": "2026-08-07",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2008,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 591,
+    "date": "2026-08-07",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2776,
+    "memo": "버스"
+  },
+  {
+    "id": 592,
+    "date": "2026-08-07",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14764,
+    "memo": "세면도구"
+  },
+  {
+    "id": 593,
+    "date": "2026-08-08",
+    "type": "income",
+    "category": "기타",
+    "amount": 116420,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 594,
+    "date": "2026-08-08",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2320,
+    "memo": "지하철"
+  },
+  {
+    "id": 595,
+    "date": "2026-08-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5362,
+    "memo": "저녁"
+  },
+  {
+    "id": 596,
+    "date": "2026-08-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18218,
+    "memo": "문구"
+  },
+  {
+    "id": 597,
+    "date": "2026-08-09",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 13726,
+    "memo": "영화"
+  },
+  {
+    "id": 598,
+    "date": "2026-08-09",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6004,
+    "memo": "기타"
+  },
+  {
+    "id": 599,
+    "date": "2026-08-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2374,
+    "memo": "지하철"
+  },
+  {
+    "id": 600,
+    "date": "2026-08-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2157,
+    "memo": "지하철"
+  },
+  {
+    "id": 601,
+    "date": "2026-08-10",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11782,
+    "memo": "구독료"
+  },
+  {
+    "id": 602,
+    "date": "2026-08-10",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7465,
+    "memo": "기타"
+  },
+  {
+    "id": 603,
+    "date": "2026-08-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 17255,
+    "memo": "문구"
+  },
+  {
+    "id": 604,
+    "date": "2026-08-11",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10102,
+    "memo": "구독료"
+  },
+  {
+    "id": 605,
+    "date": "2026-08-11",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7132,
+    "memo": "기타"
+  },
+  {
+    "id": 606,
+    "date": "2026-08-12",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17127,
+    "memo": "구독료"
+  },
+  {
+    "id": 607,
+    "date": "2026-08-12",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5017,
+    "memo": "문구"
+  },
+  {
+    "id": 608,
+    "date": "2026-08-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2005,
+    "memo": "지하철"
+  },
+  {
+    "id": 609,
+    "date": "2026-08-13",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3084,
+    "memo": "기타"
+  },
+  {
+    "id": 610,
+    "date": "2026-08-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14311,
+    "memo": "구독료"
+  },
+  {
+    "id": 611,
+    "date": "2026-08-14",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8598,
+    "memo": "기타"
+  },
+  {
+    "id": 612,
+    "date": "2026-08-14",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8230,
+    "memo": "생필품"
+  },
+  {
+    "id": 613,
+    "date": "2026-08-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 614,
+    "date": "2026-08-15",
+    "type": "income",
+    "category": "기타",
+    "amount": 86770,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 615,
+    "date": "2026-08-15",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12385,
+    "memo": "구독료"
+  },
+  {
+    "id": 616,
+    "date": "2026-08-15",
+    "type": "expense",
+    "category": "생활",
+    "amount": 4235,
+    "memo": "생필품"
+  },
+  {
+    "id": 617,
+    "date": "2026-08-15",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29305,
+    "memo": "생활용품"
+  },
+  {
+    "id": 618,
+    "date": "2026-08-16",
+    "type": "expense",
+    "category": "생활",
+    "amount": 17439,
+    "memo": "문구"
+  },
+  {
+    "id": 619,
+    "date": "2026-08-16",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13785,
+    "memo": "점심"
+  },
+  {
+    "id": 620,
+    "date": "2026-08-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1887,
+    "memo": "버스"
+  },
+  {
+    "id": 621,
+    "date": "2026-08-17",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 35584,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 622,
+    "date": "2026-08-18",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8135,
+    "memo": "문구"
+  },
+  {
+    "id": 623,
+    "date": "2026-08-18",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 16591,
+    "memo": "노래방"
+  },
+  {
+    "id": 624,
+    "date": "2026-08-19",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 31646,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 625,
+    "date": "2026-08-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 21553,
+    "memo": "노래방"
+  },
+  {
+    "id": 626,
+    "date": "2026-08-20",
+    "type": "income",
+    "category": "기타",
+    "amount": 41559,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 627,
+    "date": "2026-08-20",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12346,
+    "memo": "구독료"
+  },
+  {
+    "id": 628,
+    "date": "2026-08-20",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5879,
+    "memo": "점심"
+  },
+  {
+    "id": 629,
+    "date": "2026-08-21",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2723,
+    "memo": "버스"
+  },
+  {
+    "id": 630,
+    "date": "2026-08-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5933,
+    "memo": "기타"
+  },
+  {
+    "id": 631,
+    "date": "2026-08-22",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3086,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 632,
+    "date": "2026-08-22",
+    "type": "expense",
+    "category": "생활",
+    "amount": 15926,
+    "memo": "문구"
+  },
+  {
+    "id": 633,
+    "date": "2026-08-23",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 14662,
+    "memo": "영화"
+  },
+  {
+    "id": 634,
+    "date": "2026-08-23",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8802,
+    "memo": "기타"
+  },
+  {
+    "id": 635,
+    "date": "2026-08-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9687,
+    "memo": "기타"
+  },
+  {
+    "id": 636,
+    "date": "2026-08-24",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 26898,
+    "memo": "전시"
+  },
+  {
+    "id": 637,
+    "date": "2026-08-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 42753,
+    "memo": "생활용품"
+  },
+  {
+    "id": 638,
+    "date": "2026-08-25",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1540,
+    "memo": "지하철"
+  },
+  {
+    "id": 639,
+    "date": "2026-08-25",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3430,
+    "memo": "기타"
+  },
+  {
+    "id": 640,
+    "date": "2026-08-26",
+    "type": "income",
+    "category": "기타",
+    "amount": 107849,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 641,
+    "date": "2026-08-26",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11985,
+    "memo": "저녁"
+  },
+  {
+    "id": 642,
+    "date": "2026-08-26",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10478,
+    "memo": "분식"
+  },
+  {
+    "id": 643,
+    "date": "2026-08-27",
+    "type": "income",
+    "category": "기타",
+    "amount": 115962,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 644,
+    "date": "2026-08-27",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1581,
+    "memo": "지하철"
+  },
+  {
+    "id": 645,
+    "date": "2026-08-27",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 8704,
+    "memo": "영화"
+  },
+  {
+    "id": 646,
+    "date": "2026-08-27",
+    "type": "expense",
+    "category": "생활",
+    "amount": 10684,
+    "memo": "문구"
+  },
+  {
+    "id": 647,
+    "date": "2026-08-28",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2554,
+    "memo": "버스"
+  },
+  {
+    "id": 648,
+    "date": "2026-08-28",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17002,
+    "memo": "구독료"
+  },
+  {
+    "id": 649,
+    "date": "2026-08-28",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8897,
+    "memo": "기타"
+  },
+  {
+    "id": 650,
+    "date": "2026-08-29",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6231,
+    "memo": "기타"
+  },
+  {
+    "id": 651,
+    "date": "2026-08-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17465,
+    "memo": "구독료"
+  },
+  {
+    "id": 652,
+    "date": "2026-08-30",
+    "type": "income",
+    "category": "기타",
+    "amount": 104927,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 653,
+    "date": "2026-08-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11406,
+    "memo": "노래방"
+  },
+  {
+    "id": 654,
+    "date": "2026-08-30",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14339,
+    "memo": "문구"
+  },
+  {
+    "id": 655,
+    "date": "2026-08-31",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11466,
+    "memo": "분식"
+  },
+  {
+    "id": 656,
+    "date": "2026-08-31",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 10227,
+    "memo": "생활용품"
+  },
+  {
+    "id": 657,
+    "date": "2026-09-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 658,
+    "date": "2026-09-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5927,
+    "memo": "점심"
+  },
+  {
+    "id": 659,
+    "date": "2026-09-01",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 19458,
+    "memo": "의류"
+  },
+  {
+    "id": 660,
+    "date": "2026-09-02",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2451,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 661,
+    "date": "2026-09-02",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11616,
+    "memo": "구독료"
+  },
+  {
+    "id": 662,
+    "date": "2026-09-03",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 31309,
+    "memo": "생활용품"
+  },
+  {
+    "id": 663,
+    "date": "2026-09-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 15173,
+    "memo": "생필품"
+  },
+  {
+    "id": 664,
+    "date": "2026-09-04",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6149,
+    "memo": "메가커피"
+  },
+  {
+    "id": 665,
+    "date": "2026-09-04",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8899,
+    "memo": "기타"
+  },
+  {
+    "id": 666,
+    "date": "2026-09-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9684,
+    "memo": "분식"
+  },
+  {
+    "id": 667,
+    "date": "2026-09-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2694,
+    "memo": "지하철"
+  },
+  {
+    "id": 668,
+    "date": "2026-09-06",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4118,
+    "memo": "기타"
+  },
+  {
+    "id": 669,
+    "date": "2026-09-06",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14816,
+    "memo": "구독료"
+  },
+  {
+    "id": 670,
+    "date": "2026-09-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 21299,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 671,
+    "date": "2026-09-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13949,
+    "memo": "점심"
+  },
+  {
+    "id": 672,
+    "date": "2026-09-08",
+    "type": "income",
+    "category": "기타",
+    "amount": 64221,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 673,
+    "date": "2026-09-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9554,
+    "memo": "분식"
+  },
+  {
+    "id": 674,
+    "date": "2026-09-08",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2176,
+    "memo": "버스"
+  },
+  {
+    "id": 675,
+    "date": "2026-09-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 40209,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 676,
+    "date": "2026-09-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5057,
+    "memo": "점심"
+  },
+  {
+    "id": 677,
+    "date": "2026-09-09",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4052,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 678,
+    "date": "2026-09-09",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4686,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 679,
+    "date": "2026-09-10",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18305,
+    "memo": "문구"
+  },
+  {
+    "id": 680,
+    "date": "2026-09-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3988,
+    "memo": "메가커피"
+  },
+  {
+    "id": 681,
+    "date": "2026-09-11",
+    "type": "income",
+    "category": "기타",
+    "amount": 53613,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 682,
+    "date": "2026-09-11",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11668,
+    "memo": "구독료"
+  },
+  {
+    "id": 683,
+    "date": "2026-09-11",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4736,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 684,
+    "date": "2026-09-12",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6811,
+    "memo": "기타"
+  },
+  {
+    "id": 685,
+    "date": "2026-09-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12501,
+    "memo": "분식"
+  },
+  {
+    "id": 686,
+    "date": "2026-09-13",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6389,
+    "memo": "세면도구"
+  },
+  {
+    "id": 687,
+    "date": "2026-09-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2357,
+    "memo": "지하철"
+  },
+  {
+    "id": 688,
+    "date": "2026-09-14",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5332,
+    "memo": "기타"
+  },
+  {
+    "id": 689,
+    "date": "2026-09-14",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14832,
+    "memo": "구독료"
+  },
+  {
+    "id": 690,
+    "date": "2026-09-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 691,
+    "date": "2026-09-15",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 27630,
+    "memo": "의류"
+  },
+  {
+    "id": 692,
+    "date": "2026-09-15",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6446,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 693,
+    "date": "2026-09-16",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9721,
+    "memo": "분식"
+  },
+  {
+    "id": 694,
+    "date": "2026-09-16",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 33311,
+    "memo": "생활용품"
+  },
+  {
+    "id": 695,
+    "date": "2026-09-17",
+    "type": "income",
+    "category": "기타",
+    "amount": 79963,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 696,
+    "date": "2026-09-17",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4164,
+    "memo": "기타"
+  },
+  {
+    "id": 697,
+    "date": "2026-09-17",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9528,
+    "memo": "기타"
+  },
+  {
+    "id": 698,
+    "date": "2026-09-18",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4993,
+    "memo": "메가커피"
+  },
+  {
+    "id": 699,
+    "date": "2026-09-18",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3158,
+    "memo": "메가커피"
+  },
+  {
+    "id": 700,
+    "date": "2026-09-18",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12502,
+    "memo": "구독료"
+  },
+  {
+    "id": 701,
+    "date": "2026-09-19",
+    "type": "income",
+    "category": "기타",
+    "amount": 108908,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 702,
+    "date": "2026-09-19",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4669,
+    "memo": "기타"
+  },
+  {
+    "id": 703,
+    "date": "2026-09-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9768,
+    "memo": "영화"
+  },
+  {
+    "id": 704,
+    "date": "2026-09-20",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5202,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 705,
+    "date": "2026-09-20",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12550,
+    "memo": "구독료"
+  },
+  {
+    "id": 706,
+    "date": "2026-09-20",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1623,
+    "memo": "버스"
+  },
+  {
+    "id": 707,
+    "date": "2026-09-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4297,
+    "memo": "기타"
+  },
+  {
+    "id": 708,
+    "date": "2026-09-21",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6197,
+    "memo": "기타"
+  },
+  {
+    "id": 709,
+    "date": "2026-09-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 36308,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 710,
+    "date": "2026-09-22",
+    "type": "income",
+    "category": "기타",
+    "amount": 94059,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 711,
+    "date": "2026-09-22",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 15668,
+    "memo": "의류"
+  },
+  {
+    "id": 712,
+    "date": "2026-09-22",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9925,
+    "memo": "분식"
+  },
+  {
+    "id": 713,
+    "date": "2026-09-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3777,
+    "memo": "세면도구"
+  },
+  {
+    "id": 714,
+    "date": "2026-09-23",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 21751,
+    "memo": "노래방"
+  },
+  {
+    "id": 715,
+    "date": "2026-09-24",
+    "type": "income",
+    "category": "기타",
+    "amount": 51563,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 716,
+    "date": "2026-09-24",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2687,
+    "memo": "지하철"
+  },
+  {
+    "id": 717,
+    "date": "2026-09-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 19518,
+    "memo": "의류"
+  },
+  {
+    "id": 718,
+    "date": "2026-09-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6120,
+    "memo": "분식"
+  },
+  {
+    "id": 719,
+    "date": "2026-09-25",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9602,
+    "memo": "전시"
+  },
+  {
+    "id": 720,
+    "date": "2026-09-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6502,
+    "memo": "점심"
+  },
+  {
+    "id": 721,
+    "date": "2026-09-25",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4453,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 722,
+    "date": "2026-09-26",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13495,
+    "memo": "생필품"
+  },
+  {
+    "id": 723,
+    "date": "2026-09-26",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10630,
+    "memo": "구독료"
+  },
+  {
+    "id": 724,
+    "date": "2026-09-26",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17279,
+    "memo": "구독료"
+  },
+  {
+    "id": 725,
+    "date": "2026-09-27",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2780,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 726,
+    "date": "2026-09-27",
+    "type": "expense",
+    "category": "생활",
+    "amount": 7043,
+    "memo": "세면도구"
+  },
+  {
+    "id": 727,
+    "date": "2026-09-28",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3707,
+    "memo": "메가커피"
+  },
+  {
+    "id": 728,
+    "date": "2026-09-28",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2401,
+    "memo": "버스"
+  },
+  {
+    "id": 729,
+    "date": "2026-09-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11475,
+    "memo": "구독료"
+  },
+  {
+    "id": 730,
+    "date": "2026-09-29",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11341,
+    "memo": "저녁"
+  },
+  {
+    "id": 731,
+    "date": "2026-09-29",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5838,
+    "memo": "기타"
+  },
+  {
+    "id": 732,
+    "date": "2026-09-30",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18962,
+    "memo": "세면도구"
+  },
+  {
+    "id": 733,
+    "date": "2026-09-30",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11254,
+    "memo": "분식"
+  },
+  {
+    "id": 734,
+    "date": "2026-10-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 735,
+    "date": "2026-10-01",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10000,
+    "memo": "구독료"
+  },
+  {
+    "id": 736,
+    "date": "2026-10-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7057,
+    "memo": "분식"
+  },
+  {
+    "id": 737,
+    "date": "2026-10-01",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4136,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 738,
+    "date": "2026-10-02",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10723,
+    "memo": "점심"
+  },
+  {
+    "id": 739,
+    "date": "2026-10-02",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 8115,
+    "memo": "영화"
+  },
+  {
+    "id": 740,
+    "date": "2026-10-03",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11559,
+    "memo": "점심"
+  },
+  {
+    "id": 741,
+    "date": "2026-10-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5862,
+    "memo": "문구"
+  },
+  {
+    "id": 742,
+    "date": "2026-10-04",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16654,
+    "memo": "구독료"
+  },
+  {
+    "id": 743,
+    "date": "2026-10-04",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11775,
+    "memo": "구독료"
+  },
+  {
+    "id": 744,
+    "date": "2026-10-04",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 45258,
+    "memo": "생활용품"
+  },
+  {
+    "id": 745,
+    "date": "2026-10-05",
+    "type": "income",
+    "category": "기타",
+    "amount": 77779,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 746,
+    "date": "2026-10-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2544,
+    "memo": "버스"
+  },
+  {
+    "id": 747,
+    "date": "2026-10-05",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13580,
+    "memo": "점심"
+  },
+  {
+    "id": 748,
+    "date": "2026-10-05",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12793,
+    "memo": "구독료"
+  },
+  {
+    "id": 749,
+    "date": "2026-10-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 19938,
+    "memo": "영화"
+  },
+  {
+    "id": 750,
+    "date": "2026-10-06",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 44660,
+    "memo": "생활용품"
+  },
+  {
+    "id": 751,
+    "date": "2026-10-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13491,
+    "memo": "분식"
+  },
+  {
+    "id": 752,
+    "date": "2026-10-07",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12956,
+    "memo": "구독료"
+  },
+  {
+    "id": 753,
+    "date": "2026-10-07",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 22298,
+    "memo": "전시"
+  },
+  {
+    "id": 754,
+    "date": "2026-10-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18916,
+    "memo": "세면도구"
+  },
+  {
+    "id": 755,
+    "date": "2026-10-08",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16613,
+    "memo": "구독료"
+  },
+  {
+    "id": 756,
+    "date": "2026-10-08",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 30406,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 757,
+    "date": "2026-10-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13718,
+    "memo": "저녁"
+  },
+  {
+    "id": 758,
+    "date": "2026-10-09",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 12170,
+    "memo": "전시"
+  },
+  {
+    "id": 759,
+    "date": "2026-10-09",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4212,
+    "memo": "기타"
+  },
+  {
+    "id": 760,
+    "date": "2026-10-10",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13008,
+    "memo": "구독료"
+  },
+  {
+    "id": 761,
+    "date": "2026-10-10",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5303,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 762,
+    "date": "2026-10-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1697,
+    "memo": "지하철"
+  },
+  {
+    "id": 763,
+    "date": "2026-10-11",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6509,
+    "memo": "메가커피"
+  },
+  {
+    "id": 764,
+    "date": "2026-10-11",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28366,
+    "memo": "영화"
+  },
+  {
+    "id": 765,
+    "date": "2026-10-11",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1867,
+    "memo": "버스"
+  },
+  {
+    "id": 766,
+    "date": "2026-10-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 8342,
+    "memo": "전시"
+  },
+  {
+    "id": 767,
+    "date": "2026-10-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9528,
+    "memo": "분식"
+  },
+  {
+    "id": 768,
+    "date": "2026-10-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 28156,
+    "memo": "영화"
+  },
+  {
+    "id": 769,
+    "date": "2026-10-13",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3750,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 770,
+    "date": "2026-10-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2033,
+    "memo": "지하철"
+  },
+  {
+    "id": 771,
+    "date": "2026-10-14",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 12664,
+    "memo": "영화"
+  },
+  {
+    "id": 772,
+    "date": "2026-10-14",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8873,
+    "memo": "기타"
+  },
+  {
+    "id": 773,
+    "date": "2026-10-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 774,
+    "date": "2026-10-15",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7191,
+    "memo": "기타"
+  },
+  {
+    "id": 775,
+    "date": "2026-10-15",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7975,
+    "memo": "기타"
+  },
+  {
+    "id": 776,
+    "date": "2026-10-16",
+    "type": "income",
+    "category": "기타",
+    "amount": 95448,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 777,
+    "date": "2026-10-16",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9758,
+    "memo": "노래방"
+  },
+  {
+    "id": 778,
+    "date": "2026-10-16",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8505,
+    "memo": "기타"
+  },
+  {
+    "id": 779,
+    "date": "2026-10-17",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19186,
+    "memo": "생필품"
+  },
+  {
+    "id": 780,
+    "date": "2026-10-17",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9636,
+    "memo": "기타"
+  },
+  {
+    "id": 781,
+    "date": "2026-10-18",
+    "type": "income",
+    "category": "기타",
+    "amount": 64532,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 782,
+    "date": "2026-10-18",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9622,
+    "memo": "영화"
+  },
+  {
+    "id": 783,
+    "date": "2026-10-18",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1858,
+    "memo": "지하철"
+  },
+  {
+    "id": 784,
+    "date": "2026-10-18",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16698,
+    "memo": "구독료"
+  },
+  {
+    "id": 785,
+    "date": "2026-10-19",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6778,
+    "memo": "저녁"
+  },
+  {
+    "id": 786,
+    "date": "2026-10-19",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9004,
+    "memo": "기타"
+  },
+  {
+    "id": 787,
+    "date": "2026-10-20",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 17087,
+    "memo": "구독료"
+  },
+  {
+    "id": 788,
+    "date": "2026-10-20",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9406,
+    "memo": "기타"
+  },
+  {
+    "id": 789,
+    "date": "2026-10-20",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1618,
+    "memo": "지하철"
+  },
+  {
+    "id": 790,
+    "date": "2026-10-21",
+    "type": "income",
+    "category": "기타",
+    "amount": 90889,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 791,
+    "date": "2026-10-21",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3914,
+    "memo": "메가커피"
+  },
+  {
+    "id": 792,
+    "date": "2026-10-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 28580,
+    "memo": "의류"
+  },
+  {
+    "id": 793,
+    "date": "2026-10-21",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10731,
+    "memo": "구독료"
+  },
+  {
+    "id": 794,
+    "date": "2026-10-22",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24038,
+    "memo": "노래방"
+  },
+  {
+    "id": 795,
+    "date": "2026-10-22",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12834,
+    "memo": "구독료"
+  },
+  {
+    "id": 796,
+    "date": "2026-10-23",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 39338,
+    "memo": "의류"
+  },
+  {
+    "id": 797,
+    "date": "2026-10-23",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6394,
+    "memo": "저녁"
+  },
+  {
+    "id": 798,
+    "date": "2026-10-23",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4906,
+    "memo": "기타"
+  },
+  {
+    "id": 799,
+    "date": "2026-10-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6465,
+    "memo": "기타"
+  },
+  {
+    "id": 800,
+    "date": "2026-10-24",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3285,
+    "memo": "기타"
+  },
+  {
+    "id": 801,
+    "date": "2026-10-25",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 29658,
+    "memo": "의류"
+  },
+  {
+    "id": 802,
+    "date": "2026-10-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9789,
+    "memo": "저녁"
+  },
+  {
+    "id": 803,
+    "date": "2026-10-25",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11743,
+    "memo": "구독료"
+  },
+  {
+    "id": 804,
+    "date": "2026-10-26",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3545,
+    "memo": "기타"
+  },
+  {
+    "id": 805,
+    "date": "2026-10-26",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 16083,
+    "memo": "전시"
+  },
+  {
+    "id": 806,
+    "date": "2026-10-26",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10259,
+    "memo": "구독료"
+  },
+  {
+    "id": 807,
+    "date": "2026-10-27",
+    "type": "income",
+    "category": "기타",
+    "amount": 89067,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 808,
+    "date": "2026-10-27",
+    "type": "expense",
+    "category": "식비",
+    "amount": 9932,
+    "memo": "점심"
+  },
+  {
+    "id": 809,
+    "date": "2026-10-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7671,
+    "memo": "기타"
+  },
+  {
+    "id": 810,
+    "date": "2026-10-27",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 45719,
+    "memo": "의류"
+  },
+  {
+    "id": 811,
+    "date": "2026-10-28",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13468,
+    "memo": "구독료"
+  },
+  {
+    "id": 812,
+    "date": "2026-10-28",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 38052,
+    "memo": "생활용품"
+  },
+  {
+    "id": 813,
+    "date": "2026-10-28",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10455,
+    "memo": "구독료"
+  },
+  {
+    "id": 814,
+    "date": "2026-10-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15216,
+    "memo": "구독료"
+  },
+  {
+    "id": 815,
+    "date": "2026-10-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5714,
+    "memo": "메가커피"
+  },
+  {
+    "id": 816,
+    "date": "2026-10-29",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8025,
+    "memo": "점심"
+  },
+  {
+    "id": 817,
+    "date": "2026-10-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 14071,
+    "memo": "노래방"
+  },
+  {
+    "id": 818,
+    "date": "2026-10-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 16387,
+    "memo": "영화"
+  },
+  {
+    "id": 819,
+    "date": "2026-10-31",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 19123,
+    "memo": "노래방"
+  },
+  {
+    "id": 820,
+    "date": "2026-10-31",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3613,
+    "memo": "메가커피"
+  },
+  {
+    "id": 821,
+    "date": "2026-10-31",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7026,
+    "memo": "저녁"
+  },
+  {
+    "id": 822,
+    "date": "2026-11-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 823,
+    "date": "2026-11-01",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 15722,
+    "memo": "노래방"
+  },
+  {
+    "id": 824,
+    "date": "2026-11-01",
+    "type": "expense",
+    "category": "생활",
+    "amount": 10858,
+    "memo": "생필품"
+  },
+  {
+    "id": 825,
+    "date": "2026-11-01",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 35737,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 826,
+    "date": "2026-11-02",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 42969,
+    "memo": "생활용품"
+  },
+  {
+    "id": 827,
+    "date": "2026-11-02",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14604,
+    "memo": "생필품"
+  },
+  {
+    "id": 828,
+    "date": "2026-11-03",
+    "type": "income",
+    "category": "기타",
+    "amount": 65141,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 829,
+    "date": "2026-11-03",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2086,
+    "memo": "지하철"
+  },
+  {
+    "id": 830,
+    "date": "2026-11-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 15920,
+    "memo": "생필품"
+  },
+  {
+    "id": 831,
+    "date": "2026-11-03",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2490,
+    "memo": "버스"
+  },
+  {
+    "id": 832,
+    "date": "2026-11-04",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 11738,
+    "memo": "구독료"
+  },
+  {
+    "id": 833,
+    "date": "2026-11-04",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8343,
+    "memo": "기타"
+  },
+  {
+    "id": 834,
+    "date": "2026-11-04",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3297,
+    "memo": "문구"
+  },
+  {
+    "id": 835,
+    "date": "2026-11-05",
+    "type": "income",
+    "category": "기타",
+    "amount": 44910,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 836,
+    "date": "2026-11-05",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2268,
+    "memo": "버스"
+  },
+  {
+    "id": 837,
+    "date": "2026-11-05",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8552,
+    "memo": "생필품"
+  },
+  {
+    "id": 838,
+    "date": "2026-11-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 18376,
+    "memo": "전시"
+  },
+  {
+    "id": 839,
+    "date": "2026-11-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8848,
+    "memo": "저녁"
+  },
+  {
+    "id": 840,
+    "date": "2026-11-07",
+    "type": "income",
+    "category": "기타",
+    "amount": 64310,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 841,
+    "date": "2026-11-07",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11207,
+    "memo": "저녁"
+  },
+  {
+    "id": 842,
+    "date": "2026-11-07",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 48828,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 843,
+    "date": "2026-11-08",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3173,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 844,
+    "date": "2026-11-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3070,
+    "memo": "세면도구"
+  },
+  {
+    "id": 845,
+    "date": "2026-11-08",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3644,
+    "memo": "기타"
+  },
+  {
+    "id": 846,
+    "date": "2026-11-09",
+    "type": "expense",
+    "category": "생활",
+    "amount": 8296,
+    "memo": "세면도구"
+  },
+  {
+    "id": 847,
+    "date": "2026-11-09",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5645,
+    "memo": "분식"
+  },
+  {
+    "id": 848,
+    "date": "2026-11-10",
+    "type": "expense",
+    "category": "생활",
+    "amount": 14219,
+    "memo": "세면도구"
+  },
+  {
+    "id": 849,
+    "date": "2026-11-10",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 16805,
+    "memo": "구독료"
+  },
+  {
+    "id": 850,
+    "date": "2026-11-10",
+    "type": "expense",
+    "category": "생활",
+    "amount": 5068,
+    "memo": "문구"
+  },
+  {
+    "id": 851,
+    "date": "2026-11-11",
+    "type": "income",
+    "category": "기타",
+    "amount": 69060,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 852,
+    "date": "2026-11-11",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12579,
+    "memo": "구독료"
+  },
+  {
+    "id": 853,
+    "date": "2026-11-11",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3847,
+    "memo": "메가커피"
+  },
+  {
+    "id": 854,
+    "date": "2026-11-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12826,
+    "memo": "분식"
+  },
+  {
+    "id": 855,
+    "date": "2026-11-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9415,
+    "memo": "노래방"
+  },
+  {
+    "id": 856,
+    "date": "2026-11-13",
+    "type": "expense",
+    "category": "카페",
+    "amount": 2241,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 857,
+    "date": "2026-11-13",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1769,
+    "memo": "지하철"
+  },
+  {
+    "id": 858,
+    "date": "2026-11-14",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 46883,
+    "memo": "의류"
+  },
+  {
+    "id": 859,
+    "date": "2026-11-14",
+    "type": "expense",
+    "category": "기타",
+    "amount": 6725,
+    "memo": "기타"
+  },
+  {
+    "id": 860,
+    "date": "2026-11-14",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6616,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 861,
+    "date": "2026-11-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 862,
+    "date": "2026-11-15",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13361,
+    "memo": "구독료"
+  },
+  {
+    "id": 863,
+    "date": "2026-11-15",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 37648,
+    "memo": "의류"
+  },
+  {
+    "id": 864,
+    "date": "2026-11-15",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8307,
+    "memo": "저녁"
+  },
+  {
+    "id": 865,
+    "date": "2026-11-16",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18668,
+    "memo": "생필품"
+  },
+  {
+    "id": 866,
+    "date": "2026-11-16",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5104,
+    "memo": "점심"
+  },
+  {
+    "id": 867,
+    "date": "2026-11-16",
+    "type": "expense",
+    "category": "생활",
+    "amount": 12414,
+    "memo": "문구"
+  },
+  {
+    "id": 868,
+    "date": "2026-11-17",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 25945,
+    "memo": "영화"
+  },
+  {
+    "id": 869,
+    "date": "2026-11-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2165,
+    "memo": "지하철"
+  },
+  {
+    "id": 870,
+    "date": "2026-11-18",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2760,
+    "memo": "버스"
+  },
+  {
+    "id": 871,
+    "date": "2026-11-18",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7675,
+    "memo": "기타"
+  },
+  {
+    "id": 872,
+    "date": "2026-11-19",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4621,
+    "memo": "기타"
+  },
+  {
+    "id": 873,
+    "date": "2026-11-19",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12681,
+    "memo": "점심"
+  },
+  {
+    "id": 874,
+    "date": "2026-11-19",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 9593,
+    "memo": "영화"
+  },
+  {
+    "id": 875,
+    "date": "2026-11-20",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2506,
+    "memo": "지하철"
+  },
+  {
+    "id": 876,
+    "date": "2026-11-20",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 22884,
+    "memo": "노래방"
+  },
+  {
+    "id": 877,
+    "date": "2026-11-20",
+    "type": "expense",
+    "category": "카페",
+    "amount": 6528,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 878,
+    "date": "2026-11-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23941,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 879,
+    "date": "2026-11-21",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2519,
+    "memo": "지하철"
+  },
+  {
+    "id": 880,
+    "date": "2026-11-22",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 27961,
+    "memo": "전시"
+  },
+  {
+    "id": 881,
+    "date": "2026-11-22",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5796,
+    "memo": "메가커피"
+  },
+  {
+    "id": 882,
+    "date": "2026-11-22",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4809,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 883,
+    "date": "2026-11-23",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 19530,
+    "memo": "영화"
+  },
+  {
+    "id": 884,
+    "date": "2026-11-23",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 13156,
+    "memo": "의류"
+  },
+  {
+    "id": 885,
+    "date": "2026-11-23",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11188,
+    "memo": "점심"
+  },
+  {
+    "id": 886,
+    "date": "2026-11-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 5388,
+    "memo": "분식"
+  },
+  {
+    "id": 887,
+    "date": "2026-11-24",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2472,
+    "memo": "버스"
+  },
+  {
+    "id": 888,
+    "date": "2026-11-24",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 26878,
+    "memo": "생활용품"
+  },
+  {
+    "id": 889,
+    "date": "2026-11-25",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 42271,
+    "memo": "의류"
+  },
+  {
+    "id": 890,
+    "date": "2026-11-25",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10579,
+    "memo": "분식"
+  },
+  {
+    "id": 891,
+    "date": "2026-11-25",
+    "type": "expense",
+    "category": "생활",
+    "amount": 19622,
+    "memo": "문구"
+  },
+  {
+    "id": 892,
+    "date": "2026-11-26",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 13890,
+    "memo": "노래방"
+  },
+  {
+    "id": 893,
+    "date": "2026-11-26",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 18496,
+    "memo": "영화"
+  },
+  {
+    "id": 894,
+    "date": "2026-11-27",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5063,
+    "memo": "메가커피"
+  },
+  {
+    "id": 895,
+    "date": "2026-11-27",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 22051,
+    "memo": "전시"
+  },
+  {
+    "id": 896,
+    "date": "2026-11-28",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2375,
+    "memo": "버스"
+  },
+  {
+    "id": 897,
+    "date": "2026-11-28",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29483,
+    "memo": "전시"
+  },
+  {
+    "id": 898,
+    "date": "2026-11-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12057,
+    "memo": "구독료"
+  },
+  {
+    "id": 899,
+    "date": "2026-11-29",
+    "type": "expense",
+    "category": "기타",
+    "amount": 5373,
+    "memo": "기타"
+  },
+  {
+    "id": 900,
+    "date": "2026-11-30",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2021,
+    "memo": "지하철"
+  },
+  {
+    "id": 901,
+    "date": "2026-11-30",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 11199,
+    "memo": "노래방"
+  },
+  {
+    "id": 902,
+    "date": "2026-11-30",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 43089,
+    "memo": "의류"
+  },
+  {
+    "id": 903,
+    "date": "2026-12-01",
+    "type": "income",
+    "category": "용돈",
+    "amount": 400000,
+    "memo": "월 용돈"
+  },
+  {
+    "id": 904,
+    "date": "2026-12-01",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 13940,
+    "memo": "전시"
+  },
+  {
+    "id": 905,
+    "date": "2026-12-01",
+    "type": "expense",
+    "category": "식비",
+    "amount": 10154,
+    "memo": "저녁"
+  },
+  {
+    "id": 906,
+    "date": "2026-12-01",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2056,
+    "memo": "지하철"
+  },
+  {
+    "id": 907,
+    "date": "2026-12-02",
+    "type": "income",
+    "category": "기타",
+    "amount": 48300,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 908,
+    "date": "2026-12-02",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13911,
+    "memo": "구독료"
+  },
+  {
+    "id": 909,
+    "date": "2026-12-02",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1802,
+    "memo": "지하철"
+  },
+  {
+    "id": 910,
+    "date": "2026-12-02",
+    "type": "expense",
+    "category": "기타",
+    "amount": 3741,
+    "memo": "기타"
+  },
+  {
+    "id": 911,
+    "date": "2026-12-03",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 49936,
+    "memo": "의류"
+  },
+  {
+    "id": 912,
+    "date": "2026-12-03",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4471,
+    "memo": "기타"
+  },
+  {
+    "id": 913,
+    "date": "2026-12-03",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9227,
+    "memo": "세면도구"
+  },
+  {
+    "id": 914,
+    "date": "2026-12-04",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6567,
+    "memo": "점심"
+  },
+  {
+    "id": 915,
+    "date": "2026-12-04",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4880,
+    "memo": "기타"
+  },
+  {
+    "id": 916,
+    "date": "2026-12-05",
+    "type": "expense",
+    "category": "생활",
+    "amount": 10147,
+    "memo": "문구"
+  },
+  {
+    "id": 917,
+    "date": "2026-12-05",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 22633,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 918,
+    "date": "2026-12-06",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 8701,
+    "memo": "영화"
+  },
+  {
+    "id": 919,
+    "date": "2026-12-06",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6096,
+    "memo": "저녁"
+  },
+  {
+    "id": 920,
+    "date": "2026-12-07",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1859,
+    "memo": "버스"
+  },
+  {
+    "id": 921,
+    "date": "2026-12-07",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2547,
+    "memo": "버스"
+  },
+  {
+    "id": 922,
+    "date": "2026-12-07",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1951,
+    "memo": "지하철"
+  },
+  {
+    "id": 923,
+    "date": "2026-12-08",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6026,
+    "memo": "세면도구"
+  },
+  {
+    "id": 924,
+    "date": "2026-12-08",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7415,
+    "memo": "점심"
+  },
+  {
+    "id": 925,
+    "date": "2026-12-08",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10258,
+    "memo": "영화"
+  },
+  {
+    "id": 926,
+    "date": "2026-12-09",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 13787,
+    "memo": "영화"
+  },
+  {
+    "id": 927,
+    "date": "2026-12-09",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2243,
+    "memo": "지하철"
+  },
+  {
+    "id": 928,
+    "date": "2026-12-10",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 10956,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 929,
+    "date": "2026-12-10",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2685,
+    "memo": "버스"
+  },
+  {
+    "id": 930,
+    "date": "2026-12-10",
+    "type": "expense",
+    "category": "식비",
+    "amount": 13915,
+    "memo": "점심"
+  },
+  {
+    "id": 931,
+    "date": "2026-12-11",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18520,
+    "memo": "세면도구"
+  },
+  {
+    "id": 932,
+    "date": "2026-12-11",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 48383,
+    "memo": "의류"
+  },
+  {
+    "id": 933,
+    "date": "2026-12-11",
+    "type": "expense",
+    "category": "기타",
+    "amount": 9209,
+    "memo": "기타"
+  },
+  {
+    "id": 934,
+    "date": "2026-12-12",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24975,
+    "memo": "전시"
+  },
+  {
+    "id": 935,
+    "date": "2026-12-12",
+    "type": "expense",
+    "category": "식비",
+    "amount": 6521,
+    "memo": "저녁"
+  },
+  {
+    "id": 936,
+    "date": "2026-12-12",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 15618,
+    "memo": "구독료"
+  },
+  {
+    "id": 937,
+    "date": "2026-12-13",
+    "type": "expense",
+    "category": "생활",
+    "amount": 9884,
+    "memo": "생필품"
+  },
+  {
+    "id": 938,
+    "date": "2026-12-13",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 10554,
+    "memo": "영화"
+  },
+  {
+    "id": 939,
+    "date": "2026-12-14",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 45087,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 940,
+    "date": "2026-12-14",
+    "type": "expense",
+    "category": "카페",
+    "amount": 4865,
+    "memo": "스타벅스"
+  },
+  {
+    "id": 941,
+    "date": "2026-12-14",
+    "type": "expense",
+    "category": "기타",
+    "amount": 8080,
+    "memo": "기타"
+  },
+  {
+    "id": 942,
+    "date": "2026-12-15",
+    "type": "income",
+    "category": "아르바이트",
+    "amount": 700000,
+    "memo": "알바 급여"
+  },
+  {
+    "id": 943,
+    "date": "2026-12-15",
+    "type": "expense",
+    "category": "생활",
+    "amount": 3394,
+    "memo": "생필품"
+  },
+  {
+    "id": 944,
+    "date": "2026-12-15",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 44836,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 945,
+    "date": "2026-12-16",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2398,
+    "memo": "지하철"
+  },
+  {
+    "id": 946,
+    "date": "2026-12-16",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7967,
+    "memo": "분식"
+  },
+  {
+    "id": 947,
+    "date": "2026-12-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2429,
+    "memo": "지하철"
+  },
+  {
+    "id": 948,
+    "date": "2026-12-17",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 47751,
+    "memo": "의류"
+  },
+  {
+    "id": 949,
+    "date": "2026-12-17",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1574,
+    "memo": "버스"
+  },
+  {
+    "id": 950,
+    "date": "2026-12-18",
+    "type": "income",
+    "category": "기타",
+    "amount": 94895,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 951,
+    "date": "2026-12-18",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 29365,
+    "memo": "영화"
+  },
+  {
+    "id": 952,
+    "date": "2026-12-18",
+    "type": "expense",
+    "category": "식비",
+    "amount": 7931,
+    "memo": "저녁"
+  },
+  {
+    "id": 953,
+    "date": "2026-12-18",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12451,
+    "memo": "구독료"
+  },
+  {
+    "id": 954,
+    "date": "2026-12-19",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 23794,
+    "memo": "의류"
+  },
+  {
+    "id": 955,
+    "date": "2026-12-19",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 26064,
+    "memo": "생활용품"
+  },
+  {
+    "id": 956,
+    "date": "2026-12-20",
+    "type": "expense",
+    "category": "식비",
+    "amount": 11097,
+    "memo": "분식"
+  },
+  {
+    "id": 957,
+    "date": "2026-12-20",
+    "type": "expense",
+    "category": "생활",
+    "amount": 6989,
+    "memo": "세면도구"
+  },
+  {
+    "id": 958,
+    "date": "2026-12-20",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2965,
+    "memo": "지하철"
+  },
+  {
+    "id": 959,
+    "date": "2026-12-21",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 21044,
+    "memo": "의류"
+  },
+  {
+    "id": 960,
+    "date": "2026-12-21",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 19118,
+    "memo": "노래방"
+  },
+  {
+    "id": 961,
+    "date": "2026-12-22",
+    "type": "expense",
+    "category": "카페",
+    "amount": 3143,
+    "memo": "메가커피"
+  },
+  {
+    "id": 962,
+    "date": "2026-12-22",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1851,
+    "memo": "버스"
+  },
+  {
+    "id": 963,
+    "date": "2026-12-22",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 25688,
+    "memo": "생활용품"
+  },
+  {
+    "id": 964,
+    "date": "2026-12-23",
+    "type": "income",
+    "category": "기타",
+    "amount": 42669,
+    "memo": "중고거래/캐시백"
+  },
+  {
+    "id": 965,
+    "date": "2026-12-23",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 19989,
+    "memo": "영화"
+  },
+  {
+    "id": 966,
+    "date": "2026-12-23",
+    "type": "expense",
+    "category": "생활",
+    "amount": 13795,
+    "memo": "생필품"
+  },
+  {
+    "id": 967,
+    "date": "2026-12-24",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14772,
+    "memo": "구독료"
+  },
+  {
+    "id": 968,
+    "date": "2026-12-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 12287,
+    "memo": "분식"
+  },
+  {
+    "id": 969,
+    "date": "2026-12-24",
+    "type": "expense",
+    "category": "식비",
+    "amount": 8277,
+    "memo": "점심"
+  },
+  {
+    "id": 970,
+    "date": "2026-12-25",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10988,
+    "memo": "구독료"
+  },
+  {
+    "id": 971,
+    "date": "2026-12-25",
+    "type": "expense",
+    "category": "교통",
+    "amount": 1596,
+    "memo": "버스"
+  },
+  {
+    "id": 972,
+    "date": "2026-12-25",
+    "type": "expense",
+    "category": "기타",
+    "amount": 4470,
+    "memo": "기타"
+  },
+  {
+    "id": 973,
+    "date": "2026-12-26",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2863,
+    "memo": "지하철"
+  },
+  {
+    "id": 974,
+    "date": "2026-12-26",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 14085,
+    "memo": "구독료"
+  },
+  {
+    "id": 975,
+    "date": "2026-12-27",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 13257,
+    "memo": "구독료"
+  },
+  {
+    "id": 976,
+    "date": "2026-12-27",
+    "type": "expense",
+    "category": "기타",
+    "amount": 7591,
+    "memo": "기타"
+  },
+  {
+    "id": 977,
+    "date": "2026-12-28",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 10050,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 978,
+    "date": "2026-12-28",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 22141,
+    "memo": "온라인 구매"
+  },
+  {
+    "id": 979,
+    "date": "2026-12-28",
+    "type": "expense",
+    "category": "문화·여가",
+    "amount": 24299,
+    "memo": "영화"
+  },
+  {
+    "id": 980,
+    "date": "2026-12-29",
+    "type": "expense",
+    "category": "카페",
+    "amount": 5052,
+    "memo": "컴포즈"
+  },
+  {
+    "id": 981,
+    "date": "2026-12-29",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 10325,
+    "memo": "구독료"
+  },
+  {
+    "id": 982,
+    "date": "2026-12-30",
+    "type": "expense",
+    "category": "생활",
+    "amount": 18580,
+    "memo": "세면도구"
+  },
+  {
+    "id": 983,
+    "date": "2026-12-30",
+    "type": "expense",
+    "category": "쇼핑",
+    "amount": 13150,
+    "memo": "의류"
+  },
+  {
+    "id": 984,
+    "date": "2026-12-31",
+    "type": "expense",
+    "category": "교통",
+    "amount": 2660,
+    "memo": "지하철"
+  },
+  {
+    "id": 985,
+    "date": "2026-12-31",
+    "type": "expense",
+    "category": "고정지출",
+    "amount": 12335,
+    "memo": "구독료"
+  }
+];
+
+localStorage.setItem(
+  "sodam-records",
+  JSON.stringify(testData)
+);
+
+location.reload();

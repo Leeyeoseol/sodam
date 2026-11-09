@@ -1115,3 +1115,16 @@ details:not([open]) > .day-header {
   border-top: 1px solid var(--line);
   box-sizing: border-box;
 }
+.heatmap-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.heatmap-weekdays span {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
