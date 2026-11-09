@@ -117,10 +117,10 @@ function renderList(list = records) {
             newRecords.push(records[k]);
           }
         }
-
         records = newRecords;
         saveRecords(); // 저장
         updateFilter(); // 필터 유지
+        renderSummary();
       });
 
       right.appendChild(amountText);
