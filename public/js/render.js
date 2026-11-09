@@ -118,8 +118,8 @@ function renderList(list = records) {
           }
         }
         records = newRecords;
-        saveRecords(); // 저장
-        updateFilter(); // 필터 유지
+        saveRecords();
+        renderList();
         renderSummary();
       });
 
